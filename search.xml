@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>GAMES101重要公式推导与算法补充</title>
+    <url>/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/</url>
+    <content><![CDATA[<h1 id="Rodrigues旋转公式"><a href="#Rodrigues旋转公式" class="headerlink" title="Rodrigues旋转公式"></a>Rodrigues旋转公式</h1><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>实现某三维物体的坐标绕过原点的向量轴<strong>n</strong>（默认过原点），旋转α角度（右手定则的四指方向）的旋转矩阵为R(<strong>n</strong>,α)，其表达形式为：<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-06-17-50-47.png" alt="Rodrigues旋转公式"></p>
+<p>该旋转矩阵左乘三维物体上的某个点（列向量、列矩阵）即可得到旋转变换后的点。</p>
+<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><blockquote>
+<p>说明：字母上带有<code>→</code>表示向量，不带箭头表示该向量对应的列矩阵；字母上的<code>^</code>表示该向量的单位向量。</p>
+</blockquote>
+<h4 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h4><p>将<strong>S</strong>向量分解为旋转轴<strong>n</strong>方向和垂直于旋转轴方向的两个向量，其中<code>I</code>表示旋转轴的单位列矩阵<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-55-48.png"></p>
+<h4 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h4><p>求出与旋转轴<strong>n</strong>和向量<strong>S</strong>所在平面垂直的向量<strong>C</strong><br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-56-11.png"></p>
+<h4 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h4><p>将<strong>S</strong>在垂直于旋转轴的分量向<strong>C</strong>旋转α度<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-57-58.png"></p>
+<h4 id="Step4"><a href="#Step4" class="headerlink" title="Step4"></a>Step4</h4><p>上一步得到的向量与<strong>S</strong>在旋转轴的分量相加，得到旋转后的向量，由于两个向量的叉乘可以写成一个矩阵乘以列向量的形式（证明略）<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-53-09.png"></p>
+<p>整理与提取，即可得到旋转矩阵R（A为单位矩阵）：<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-58-44.png"></p>
+<hr>
+<h1 id="透视投影变换坐标变化证明"><a href="#透视投影变换坐标变化证明" class="headerlink" title="透视投影变换坐标变化证明"></a>透视投影变换坐标变化证明</h1><h2 id="概要-1"><a href="#概要-1" class="headerlink" title="概要"></a>概要</h2><p>透视投影是利用相似三角形原理将远处平面坐标映射到相机可见的窗口处：<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-12-39.png"></p>
+<p>但该过程可以等价为：可以看作先将远处的平面压缩为等同于相机可见的窗口大小的平面，得到一个长方体，然后再进行正交投影得到以原点为中心的边长为2的立方体<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-14-43.png" alt="远处平面压缩"><br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-16-01.png" alt="正交投影变换"></p>
+<p>这个压缩过程规定：近处的平面的大小和位置永远不变；远处平面的大小会被压缩，但远近（z值不变）；远处平面的中心点在压缩后也不变。那么对于近处和远处平面中间的点，其坐标是向远处平面靠近的，下面给出证明。</p>
+<h2 id="证明过程"><a href="#证明过程" class="headerlink" title="证明过程"></a>证明过程</h2><h4 id="Step1-透视投影变换矩阵形式"><a href="#Step1-透视投影变换矩阵形式" class="headerlink" title="Step1 透视投影变换矩阵形式"></a>Step1 透视投影变换矩阵形式</h4><p>该矩阵的推导过程见<a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_04.pdf">课程PPT</a>，下面直接给出其形式：</p>
+<p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-42-08.png"></p>
+<h4 id="Step2-1"><a href="#Step2-1" class="headerlink" title="Step2"></a>Step2</h4><p>初始点经过变换后得到新坐标，其中z方向的新坐标为<code>f(z0)/z0</code></p>
+<p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-43-57.png"></p>
+<h4 id="Step3-1"><a href="#Step3-1" class="headerlink" title="Step3"></a>Step3</h4><p>判断新坐标与初始坐标的z方向的大小，记为函数<code>g(z0)</code></p>
+<p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-45-40.png"></p>
+<p>最终得到g(z0)始终&lt;0，即新坐标小于初始坐标，由于视角方向是-z方向，可以得到中间点是向远处平面靠近的。</p>
+<h1 id="蒙特卡洛路径追踪算法"><a href="#蒙特卡洛路径追踪算法" class="headerlink" title="蒙特卡洛路径追踪算法"></a>蒙特卡洛路径追踪算法</h1><p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-30-18-47-31.png" alt="示意图"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 着色算法</span><br><span class="hljs-built_in">shade</span>(p, wo)<br>	<span class="hljs-comment">// Contribution from the light source.</span><br>	L_dir = <span class="hljs-number">0.0</span><br>	Uniformly sample the light at x’ (pdf_light = <span class="hljs-number">1</span> / A)<br>	Shoot a ray from p to x’<br>	If the ray is <span class="hljs-keyword">not</span> blocked in the middle<br>		L_dir = L_i * f_r * cos θ * cos θ’ / |x’ - p|^<span class="hljs-number">2</span> / pdf_light<br><br>	<span class="hljs-comment">// Contribution from other reflectors.</span><br>	L_indir = <span class="hljs-number">0.0</span><br>	Test Russian Roulette with probability P_RR<br>	Uniformly sample the hemisphere toward <span class="hljs-built_in">wi</span> (pdf_hemi = <span class="hljs-number">1</span> / <span class="hljs-number">2</span>pi)<br>	Trace a ray <span class="hljs-built_in">r</span>(p, wi)<br>	If ray r hit a non-emitting object at q<br>		L_indir = <span class="hljs-built_in">shade</span>(q, -wi) * f_r * cos θ / pdf_hemi / P_RR<br>Return L_dir + L_indir<br></code></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES101</category>
+      </categories>
+      <tags>
+        <tag>旋转矩阵</tag>
+        <tag>视图变换</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo + GitHub 搭建我的个人博客记录</title>
     <url>/2022/05/03/Hexo-GitHub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="💙-搭建教程"><a href="#💙-搭建教程" class="headerlink" title="💙 搭建教程"></a>💙 搭建教程</h2><p>参考了网上一些教程和官方文档：</p>
@@ -103,42 +139,6 @@
       </tags>
   </entry>
   <entry>
-    <title>GAMES101重要公式推导与算法补充</title>
-    <url>/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/</url>
-    <content><![CDATA[<h1 id="Rodrigues旋转公式"><a href="#Rodrigues旋转公式" class="headerlink" title="Rodrigues旋转公式"></a>Rodrigues旋转公式</h1><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>实现某三维物体的坐标绕过原点的向量轴<strong>n</strong>（默认过原点），旋转α角度（右手定则的四指方向）的旋转矩阵为R(<strong>n</strong>,α)，其表达形式为：<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-06-17-50-47.png" alt="Rodrigues旋转公式"></p>
-<p>该旋转矩阵左乘三维物体上的某个点（列向量、列矩阵）即可得到旋转变换后的点。</p>
-<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><blockquote>
-<p>说明：字母上带有<code>→</code>表示向量，不带箭头表示该向量对应的列矩阵；字母上的<code>^</code>表示该向量的单位向量。</p>
-</blockquote>
-<h4 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h4><p>将<strong>S</strong>向量分解为旋转轴<strong>n</strong>方向和垂直于旋转轴方向的两个向量，其中<code>I</code>表示旋转轴的单位列矩阵<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-55-48.png"></p>
-<h4 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h4><p>求出与旋转轴<strong>n</strong>和向量<strong>S</strong>所在平面垂直的向量<strong>C</strong><br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-56-11.png"></p>
-<h4 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h4><p>将<strong>S</strong>在垂直于旋转轴的分量向<strong>C</strong>旋转α度<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-57-58.png"></p>
-<h4 id="Step4"><a href="#Step4" class="headerlink" title="Step4"></a>Step4</h4><p>上一步得到的向量与<strong>S</strong>在旋转轴的分量相加，得到旋转后的向量，由于两个向量的叉乘可以写成一个矩阵乘以列向量的形式（证明略）<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-53-09.png"></p>
-<p>整理与提取，即可得到旋转矩阵R（A为单位矩阵）：<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-58-44.png"></p>
-<hr>
-<h1 id="透视投影变换坐标变化证明"><a href="#透视投影变换坐标变化证明" class="headerlink" title="透视投影变换坐标变化证明"></a>透视投影变换坐标变化证明</h1><h2 id="概要-1"><a href="#概要-1" class="headerlink" title="概要"></a>概要</h2><p>透视投影是利用相似三角形原理将远处平面坐标映射到相机可见的窗口处：<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-12-39.png"></p>
-<p>但该过程可以等价为：可以看作先将远处的平面压缩为等同于相机可见的窗口大小的平面，得到一个长方体，然后再进行正交投影得到以原点为中心的边长为2的立方体<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-14-43.png" alt="远处平面压缩"><br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-16-01.png" alt="正交投影变换"></p>
-<p>这个压缩过程规定：近处的平面的大小和位置永远不变；远处平面的大小会被压缩，但远近（z值不变）；远处平面的中心点在压缩后也不变。那么对于近处和远处平面中间的点，其坐标是向远处平面靠近的，下面给出证明。</p>
-<h2 id="证明过程"><a href="#证明过程" class="headerlink" title="证明过程"></a>证明过程</h2><h4 id="Step1-透视投影变换矩阵形式"><a href="#Step1-透视投影变换矩阵形式" class="headerlink" title="Step1 透视投影变换矩阵形式"></a>Step1 透视投影变换矩阵形式</h4><p>该矩阵的推导过程见<a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_04.pdf">课程PPT</a>，下面直接给出其形式：</p>
-<p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-42-08.png"></p>
-<h4 id="Step2-1"><a href="#Step2-1" class="headerlink" title="Step2"></a>Step2</h4><p>初始点经过变换后得到新坐标，其中z方向的新坐标为<code>f(z0)/z0</code></p>
-<p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-43-57.png"></p>
-<h4 id="Step3-1"><a href="#Step3-1" class="headerlink" title="Step3"></a>Step3</h4><p>判断新坐标与初始坐标的z方向的大小，记为函数<code>g(z0)</code></p>
-<p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-45-40.png"></p>
-<p>最终得到g(z0)始终&lt;0，即新坐标小于初始坐标，由于视角方向是-z方向，可以得到中间点是向远处平面靠近的。</p>
-<h1 id="蒙特卡洛路径追踪算法"><a href="#蒙特卡洛路径追踪算法" class="headerlink" title="蒙特卡洛路径追踪算法"></a>蒙特卡洛路径追踪算法</h1><p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-30-18-47-31.png" alt="示意图"></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 着色算法</span><br><span class="hljs-built_in">shade</span>(p, wo)<br>	<span class="hljs-comment">// Contribution from the light source.</span><br>	L_dir = <span class="hljs-number">0.0</span><br>	Uniformly sample the light at x’ (pdf_light = <span class="hljs-number">1</span> / A)<br>	Shoot a ray from p to x’<br>	If the ray is <span class="hljs-keyword">not</span> blocked in the middle<br>		L_dir = L_i * f_r * cos θ * cos θ’ / |x’ - p|^<span class="hljs-number">2</span> / pdf_light<br><br>	<span class="hljs-comment">// Contribution from other reflectors.</span><br>	L_indir = <span class="hljs-number">0.0</span><br>	Test Russian Roulette with probability P_RR<br>	Uniformly sample the hemisphere toward <span class="hljs-built_in">wi</span> (pdf_hemi = <span class="hljs-number">1</span> / <span class="hljs-number">2</span>pi)<br>	Trace a ray <span class="hljs-built_in">r</span>(p, wi)<br>	If ray r hit a non-emitting object at q<br>		L_indir = <span class="hljs-built_in">shade</span>(q, -wi) * f_r * cos θ / pdf_hemi / P_RR<br>Return L_dir + L_indir<br></code></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>CG</category>
-        <category>GAMES101</category>
-      </categories>
-      <tags>
-        <tag>旋转矩阵</tag>
-        <tag>视图变换</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LearnOpenGL-环境配置</title>
     <url>/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="Step1：获取GLFW与GLAD依赖库"><a href="#Step1：获取GLFW与GLAD依赖库" class="headerlink" title="Step1：获取GLFW与GLAD依赖库"></a>Step1：获取GLFW与GLAD依赖库</h1><p>GLFW是一个专门针对OpenGL的C语言库，它提供了一些渲染物体所需的最低限度的接口。它允许用户创建OpenGL上下文，定义窗口参数以及处理用户输入。该步骤保证它恰当地创建OpenGL上下文并显示窗口。</p>
@@ -176,8 +176,8 @@
 <p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-08-01.png" alt="运行结果"></p>
 ]]></content>
       <categories>
-        <category>Configuration</category>
         <category>CG</category>
+        <category>Configuration</category>
         <category>OpenGL</category>
       </categories>
       <tags>
@@ -276,6 +276,62 @@
         <tag>npm</tag>
         <tag>webpack</tag>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>链接合集</title>
+    <url>/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/</url>
+    <content><![CDATA[<h1 id="📗-工具介绍"><a href="#📗-工具介绍" class="headerlink" title="📗 工具介绍"></a>📗 工具介绍</h1><ul>
+<li><a href="https://www.jianshu.com/p/c4f02f46224f">yarn的介绍及workspace的使用</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/77577415">Monorepo 是什么，为什么大家都在用？</a></li>
+<li><a href="https://www.jianshu.com/p/dafc2052eedc">Monorepo实战</a></li>
+</ul>
+<h1 id="🎈-文档链接"><a href="#🎈-文档链接" class="headerlink" title="🎈 文档链接"></a>🎈 文档链接</h1><ul>
+<li><a href="https://yarn.bootcss.com/docs/">Yarn</a></li>
+<li><a href="https://webpack.docschina.org/configuration">webpack</a></li>
+<li><a href="https://github.com/lerna/lerna">Lerna</a></li>
+</ul>
+<h1 id="💙-参考教程"><a href="#💙-参考教程" class="headerlink" title="💙 参考教程"></a>💙 参考教程</h1><h2 id="VS-Code-——-C-开发"><a href="#VS-Code-——-C-开发" class="headerlink" title="VS Code —— C++开发"></a>VS Code —— C++开发</h2><ul>
+<li><a href="https://www.whbwiki.com/335.html">开发环境配置详细教程</a></li>
+<li><a href="https://blog.csdn.net/weixin_43343144/article/details/85147439">配置文件说明</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/153252108">插件CodeRunner运行C++代码时中文乱码问题的解决</a></li>
+<li><a href="https://blog.csdn.net/weixin_43940314/article/details/115456199">安装和使用C++线性代数库eigen（Windows，MinGW，VS Code和VS2019的配置）</a></li>
+<li>Code-Runner在编译时不会自动引入eigen，需要在setting.json中设置<code>&quot;code-runner.executorMap&quot;</code>中的<code>&quot;cpp&quot;: &quot;cd $dir &amp;&amp; g++ -g $fileName -o $fileNameWithoutExt -I &#39;C:/Users/xxx/eigen-3.4-rc1&#39; &amp;&amp; $dir$fileNameWithoutExt&quot;</code>，才可以正常运行。当然这个插件配置较为简单，更加复杂、稳妥的配置推荐使用C/C++插件中的tasks.json文件。</li>
+</ul>
+<h2 id="VS-Code-——-CMake"><a href="#VS-Code-——-CMake" class="headerlink" title="VS Code —— CMake"></a>VS Code —— CMake</h2><ul>
+<li><a href="https://www.cnblogs.com/herelsp/p/8679200.html#_label2">CMake+MinGW64搭建C/C++编译环境</a></li>
+<li><a href="https://blog.csdn.net/JohnJim0/article/details/81842249?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-9.pc_relevant_baidujshouduan&spm=1001.2101.3001.4242">CMake+VSCode搭建C/C++编译环境</a> <h4 id="使用CMake编译和运行包含有eigen库的步骤"><a href="#使用CMake编译和运行包含有eigen库的步骤" class="headerlink" title="使用CMake编译和运行包含有eigen库的步骤"></a>使用CMake编译和运行包含有eigen库的步骤</h4></li>
+</ul>
+<ol>
+<li>编写main.cpp文件</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;Eigen/Core&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;Eigen/Dense&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-comment">// Example of vector</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Example of vector \n&quot;</span>;<br>    <span class="hljs-comment">// vector definition</span><br>    <span class="hljs-function">Eigen::Vector3f <span class="hljs-title">v</span><span class="hljs-params">(<span class="hljs-number">1.0f</span>,<span class="hljs-number">2.0f</span>,<span class="hljs-number">3.0f</span>)</span></span>;<br>    <span class="hljs-function">Eigen::Vector3f <span class="hljs-title">w</span><span class="hljs-params">(<span class="hljs-number">1.0f</span>,<span class="hljs-number">0.0f</span>,<span class="hljs-number">0.0f</span>)</span></span>;<br>    <span class="hljs-comment">// vector output</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Example of output \n&quot;</span>;<br>    std::cout &lt;&lt; v &lt;&lt; std::endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>编写CMakeLists.txt文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">cmake_minimum_required (VERSION 2.8.11)<br><br># 项目名<br>project (Transformation)<br><br># 将解压后的Eigen库的目录引入<br>include_directories(&quot;C:/Users/xxx/eigen-3.4-rc1/&quot;)<br><br># 添加可执行文件<br>add_executable (Transformation main.cpp)<br><br></code></pre></td></tr></table></figure></li>
+<li><p>在main.cpp所在目录下，打开终端(命令行)，依次输入：</p>
+</li>
+</ol>
+<ul>
+<li><code>mkdir build</code> 创建名为build的文件夹</li>
+<li><code>cd build</code> 移动到build文件夹下</li>
+<li><code>cmake -G &quot;MinGW Makefiles&quot; ..</code> 注意其中<code>..</code>表示上一级目录，若为<code>.</code>则表示当前目录；<code>&quot;MinGW Makefiles&quot;</code>指定了使用MinGW编译器，否则默认是MSVC（Visual Studio的编译器）</li>
+<li><code>mingw32-make.exe</code> 编译程序，错误提示会显示在终端中</li>
+<li><code>./Transformation</code>：若上一步无错误，则可运行程序(这里的Transformation为可执行文件名，可参照CMakeLists.txt中修改)</li>
+</ul>
+<p><img src="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/2021-08-10-09-06-58.png" alt="文件目录结构"></p>
+<p><img src="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/2021-08-10-09-16-22.png" alt="执行结果"></p>
+<blockquote>
+<p>cmake 在 find_path 和 find_library 时，会搜索一些默认的路径。当我们将一些lib安装在非默认搜索路径时，cmake就没法搜索到了。这是我们需要添加路径。方法如下：<br><code>set(CMAKE_INCLUDE_PATH &quot;include_path&quot;)</code><br><code>set(CMAKE_LIBRARY_PATH &quot;lib_path&quot;)</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Link-collect</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+        <tag>Monorepo</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
   <entry>
