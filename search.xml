@@ -227,98 +227,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Lecturer 06 [反走样]</title>
-    <url>/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/</url>
-    <content><![CDATA[<h1 id="走样"><a href="#走样" class="headerlink" title="走样"></a>走样</h1><ul>
-<li><p>扫描转换的算法在处理图形非水平或者非垂直线段时引起了锯齿或阶梯状的变形。</p>
-</li>
-<li><p>具体解释</p>
-<ul>
-<li>（1）几何图形中的直线段无限细，多边形的边亦如此，它们均是带宽无限的信号，即傅里叶频谱中的最高频率为无限大；</li>
-<li>（2）由于几何图形为带宽无限信号，所以将几何图形像素化时，采样频率无法满足乃奎斯特定理，导致采样过程中丢失高频成分，因而产生的图像信号失真现象，称为“走样”。</li>
-<li>（3）在视觉上，直线段或多边形边界走样呈现为锯齿状，即“直线边界不直”。</li>
-</ul>
-</li>
-</ul>
-<h1 id="采样理论"><a href="#采样理论" class="headerlink" title="采样理论"></a>采样理论</h1><ul>
-<li><p>频率与频谱的理解</p>
-<ul>
-<li><p>通过傅里叶变换（时域 → 频域），将任何周期信号通过级数理论转变为正弦或余弦信号的叠加（每个正余弦信号叫做谐波），而通过刻画这些单个正余弦信号的属性（频率、振幅、相位）形成的对应关系，就形成了该信号的频谱。而原来是通过记录信号随时间变化的起伏来描述该信号（时域），现在便可以通过频谱来描述该信号（频域）。</p>
-<ul>
-<li><p>总结</p>
-<p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/30f27f04-cb35-4143-a29f-80c5f2661505-11709514.jpg"><br><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8dcc19b2-f5b0-431a-8064-45d23d07459a-11709514.jpg"></p>
-</li>
-<li><p>振幅频谱</p>
-<p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8e2c07f0-5647-40e6-b793-bebeff4b2f2e-11709514.jpg"></p>
-</li>
-<li><p>相位频谱</p>
-<p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/f652c394-f00f-4452-9046-8d31742bee70-11709514.jpg"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>如何对图像分析频率和频谱</p>
-<ul>
-<li><p>基础知识的理解</p>
-<ul>
-<li><p><a href="https://zhuanlan.zhihu.com/p/19763358">傅里叶分析</a></p>
-<ul>
-<li><p>相位谱和频率谱的直观理解</p>
-<p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/0265e20c-1abd-4338-93c8-d8fd229492ba-11709514.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p><a href="https://blog.csdn.net/Vichael_Chan/article/details/102570542">数字图像处理：图像的频域</a></p>
-</li>
-<li><p><a href="http://www.360doc.com/content/18/0410/09/7551_744364416.shtml">图像 RGB 值、灰度值与像素值的关系</a></p>
-</li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/99605178">通俗讲解：图像傅里叶变换</a></p>
-</li>
-<li><p><a href="https://www.zhihu.com/question/26969067/answer/567804862">对图像二维傅立叶变换到底是完成什么功能？</a></p>
-</li>
-<li><p><a href="https://blog.csdn.net/turbogofi/article/details/12048777?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1.control&spm=1001.2101.3001.4242">图像处理中频域(Fourier)的应用总结</a></p>
-</li>
-<li><p>图像频谱</p>
-<p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/76eed36a-099d-443c-8348-cfc44d132a80-11709514.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>通过频率分析图像中的走样：通过同样的频率采样两种频率截然不同的函数，得到的采样点可以完全相同，即为走样</p>
-<p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8f5ba925-a659-4fd8-926e-87eb1f77fffd-11709514.jpg"></p>
-</li>
-<li><p>图像操作</p>
-<ul>
-<li>时域上的卷积=频域上的乘积</li>
-<li>卷积核可以看作一张小的图片，卷积核越大，保留的高频信息越少，在频域图上高频区域的亮度就越低</li>
-<li>高通滤波器——保留高频信息</li>
-<li>采样反映到频谱中——重复原始信号的频谱。采样的频率越小，反映到频谱中，频谱的重复越密集，于是出现频谱的混叠，产生走样</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="反走样的思路"><a href="#反走样的思路" class="headerlink" title="反走样的思路"></a>反走样的思路</h1><ul>
-<li><p>增加采样率（并不是反走样所研究的）</p>
-</li>
-<li><p>采样之前，先对信号进行模糊（或者说低通滤波，即拿掉高频信息，这样边界会看起来变得更浅，具体做法是将某个像素计算其在图形内部的覆盖面积，将该像素值进行平均覆盖），再进行采样，那么在频谱中便不容易发生混叠，可以对走样进行一定程度的改善</p>
-<p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/45769713-a6c4-44b3-91f2-414194b0212d-11709514.jpg"></p>
-<ul>
-<li>如何判断某个像素在三角形内部的比例？MSAA 方法，将每个像素分割为更小的像素点，计算在三角形内部的点占该像素所有点的比例即可。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>CG</category>
-        <category>GAMES101</category>
-        <category>Theory</category>
-      </categories>
-      <tags>
-        <tag>CG</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Lecture 04-05 [旋转&amp;光栅化]</title>
     <url>/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&amp;%E5%85%89%E6%A0%85%E5%8C%96/</url>
     <content><![CDATA[<h1 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h1><ul>
@@ -388,6 +296,291 @@
 </li>
 </ul>
 </li>
+</ul>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES101</category>
+        <category>Theory</category>
+      </categories>
+      <tags>
+        <tag>CG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lecture 06 [反走样]</title>
+    <url>/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/</url>
+    <content><![CDATA[<h1 id="走样"><a href="#走样" class="headerlink" title="走样"></a>走样</h1><ul>
+<li><p>扫描转换的算法在处理图形非水平或者非垂直线段时引起了锯齿或阶梯状的变形。</p>
+</li>
+<li><p>具体解释</p>
+<ul>
+<li>（1）几何图形中的直线段无限细，多边形的边亦如此，它们均是带宽无限的信号，即傅里叶频谱中的最高频率为无限大；</li>
+<li>（2）由于几何图形为带宽无限信号，所以将几何图形像素化时，采样频率无法满足乃奎斯特定理，导致采样过程中丢失高频成分，因而产生的图像信号失真现象，称为“走样”。</li>
+<li>（3）在视觉上，直线段或多边形边界走样呈现为锯齿状，即“直线边界不直”。</li>
+</ul>
+</li>
+</ul>
+<h1 id="采样理论"><a href="#采样理论" class="headerlink" title="采样理论"></a>采样理论</h1><ul>
+<li><p>频率与频谱的理解</p>
+<ul>
+<li><p>通过傅里叶变换（时域 → 频域），将任何周期信号通过级数理论转变为正弦或余弦信号的叠加（每个正余弦信号叫做谐波），而通过刻画这些单个正余弦信号的属性（频率、振幅、相位）形成的对应关系，就形成了该信号的频谱。而原来是通过记录信号随时间变化的起伏来描述该信号（时域），现在便可以通过频谱来描述该信号（频域）。</p>
+<ul>
+<li><p>总结</p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/30f27f04-cb35-4143-a29f-80c5f2661505-11709514.jpg"><br><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8dcc19b2-f5b0-431a-8064-45d23d07459a-11709514.jpg"></p>
+</li>
+<li><p>振幅频谱</p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8e2c07f0-5647-40e6-b793-bebeff4b2f2e-11709514.jpg"></p>
+</li>
+<li><p>相位频谱</p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/f652c394-f00f-4452-9046-8d31742bee70-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何对图像分析频率和频谱</p>
+<ul>
+<li><p>基础知识的理解</p>
+<ul>
+<li><p><a href="https://zhuanlan.zhihu.com/p/19763358">傅里叶分析</a></p>
+<ul>
+<li><p>相位谱和频率谱的直观理解</p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/0265e20c-1abd-4338-93c8-d8fd229492ba-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p><a href="https://blog.csdn.net/Vichael_Chan/article/details/102570542">数字图像处理：图像的频域</a></p>
+</li>
+<li><p><a href="http://www.360doc.com/content/18/0410/09/7551_744364416.shtml">图像 RGB 值、灰度值与像素值的关系</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/99605178">通俗讲解：图像傅里叶变换</a></p>
+</li>
+<li><p><a href="https://www.zhihu.com/question/26969067/answer/567804862">对图像二维傅立叶变换到底是完成什么功能？</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/turbogofi/article/details/12048777?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1.control&spm=1001.2101.3001.4242">图像处理中频域(Fourier)的应用总结</a></p>
+</li>
+<li><p>图像频谱</p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/76eed36a-099d-443c-8348-cfc44d132a80-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>通过频率分析图像中的走样：通过同样的频率采样两种频率截然不同的函数，得到的采样点可以完全相同，即为走样</p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8f5ba925-a659-4fd8-926e-87eb1f77fffd-11709514.jpg"></p>
+</li>
+<li><p>图像操作</p>
+<ul>
+<li>时域上的卷积=频域上的乘积</li>
+<li>卷积核可以看作一张小的图片，卷积核越大，保留的高频信息越少，在频域图上高频区域的亮度就越低</li>
+<li>高通滤波器——保留高频信息</li>
+<li>采样反映到频谱中——重复原始信号的频谱。采样的频率越小，反映到频谱中，频谱的重复越密集，于是出现频谱的混叠，产生走样</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="反走样的思路"><a href="#反走样的思路" class="headerlink" title="反走样的思路"></a>反走样的思路</h1><ul>
+<li><p>增加采样率（并不是反走样所研究的）</p>
+</li>
+<li><p>采样之前，先对信号进行模糊（或者说低通滤波，即拿掉高频信息，这样边界会看起来变得更浅，具体做法是将某个像素计算其在图形内部的覆盖面积，将该像素值进行平均覆盖），再进行采样，那么在频谱中便不容易发生混叠，可以对走样进行一定程度的改善</p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/45769713-a6c4-44b3-91f2-414194b0212d-11709514.jpg"></p>
+<ul>
+<li>如何判断某个像素在三角形内部的比例？MSAA 方法，将每个像素分割为更小的像素点，计算在三角形内部的点占该像素所有点的比例即可。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES101</category>
+        <category>Theory</category>
+      </categories>
+      <tags>
+        <tag>CG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lecture 07-09 [着色]</title>
+    <url>/2021/01/05/Lecture-07-09-%E7%9D%80%E8%89%B2/</url>
+    <content><![CDATA[<h1 id="深度缓冲与着色"><a href="#深度缓冲与着色" class="headerlink" title="深度缓冲与着色"></a><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_07.pdf">深度缓冲与着色</a></h1><ul>
+<li><p>思路与算法：在绘制最终的图像同时，绘制深度图，记录每个像素距离相机最近的深度值</p>
+<p><img src="/./GAMES101_files/885605b7-fa53-4251-801b-abc5e1dd54a3-11709514.jpg"><br><img src="/./GAMES101_files/9ba89a84-9af3-45cf-86c0-1d4b80765924-11709514.jpg"></p>
+</li>
+</ul>
+<h1 id="着色-Shading"><a href="#着色-Shading" class="headerlink" title="着色 Shading"></a>着色 Shading</h1><ul>
+<li><p>对不同的物体应用不同的材质的过程（不同的材质就是不同的着色方法）</p>
+</li>
+<li><p>漫反射</p>
+<ul>
+<li><p>漫反射与人眼位置无关，从各个方向看上去亮度均相同，公式中也可以反映出来。</p>
+<p><img src="/./GAMES101_files/4878aaed-f61e-4742-9ea0-c6f2541e1f54-11709514.jpg"></p>
+</li>
+<li><p>其中，Kd 表示漫反射系数，0 为完全不反射，1 为镜面反射。可以使用一个颜色向量值来表示该点反射出的光线的颜色</p>
+</li>
+</ul>
+</li>
+<li><p><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_08.pdf">高光</a></p>
+<ul>
+<li><p>当眼睛的方向和镜面反射光线的方向较为接近时可以看到，即下图的 R 与 v 接近</p>
+</li>
+<li><p>Blinn-Phong 模型：将“R 与 v 接近”转换为“半程向量 h 与法向量 n 接近”</p>
+<p><img src="/./GAMES101_files/fba13898-d13a-465d-8c28-1cd3c4587f3c-11709514.jpg"><br><img src="/./GAMES101_files/c790f435-67a6-448f-bced-3e7572255be9-11709514.jpg"></p>
+</li>
+<li><p>上图的指数 p 表示高光系数，原因：余弦函数对角度的容忍度较高，而期望的效果是高光集中在很小的范围内，因此对其进行指数操作。p 一般取 100~200。</p>
+<p><img src="/./GAMES101_files/7709757f-c013-46e0-803d-a70ca5675f17-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>环境光</p>
+<ul>
+<li>来自四面八方的反射光线，极为复杂，因此假设（简化后）：环境光来自所有方向，且强度相同，颜色相同。与实际光线方向和眼睛的方向无关，设为一个常数。实际上要计算真实环境光需要用到全局光照的部分。</li>
+</ul>
+</li>
+<li><p>Blinn-Phong 反射模型</p>
+<p><img src="/./GAMES101_files/d37cb07f-d01d-45a4-897f-bb9dae15ef5b-11709514.jpg"></p>
+</li>
+<li><p>着色频率</p>
+<ul>
+<li><p>通俗理解：将着色应用到哪些点上</p>
+</li>
+<li><p>着色频率的分类</p>
+<ul>
+<li><p>Flat shading（对每个三角形求一个法向量，对应只有一个颜色，对光滑表面效果较差）</p>
+</li>
+<li><p>Gouraud shading（对每个顶点求法向量，三角形内部利用插值进行着色）。顶点的法向量，可以对其相邻接的三角形的各个法向量求加权平均，权重可以设置为该三角形的面积。</p>
+<p><img src="/./GAMES101_files/91a1ac4b-5586-4b76-8c1e-21c114ab845f-11709514.jpg"></p>
+</li>
+<li><p>Phong shading（对每个三角形，得到三个顶点的法向量，从而插值出三角形内部每个像素的法向量，然后对每个像素进行一次着色）</p>
+</li>
+</ul>
+</li>
+<li><p>当顶点足够多、模型足够复杂时，就可以使用比较简单的着色频率，效果可以接收。</p>
+<p><img src="/./GAMES101_files/3715656e-a809-4679-a03d-aa3d45450b8b-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="图形管线（实时渲染管线）"><a href="#图形管线（实时渲染管线）" class="headerlink" title="图形管线（实时渲染管线）"></a>图形管线（实时渲染管线）</h1><ul>
+<li><p>通俗理解：从场景到一张图片所经历的整个过程的不同操作</p>
+</li>
+<li><p>OpenGL 中的 Fragment（片段）可以理解为像素。该过程已经在硬件中写好，即 GPU 的渲染过程。</p>
+<p><img src="/./GAMES101_files/d6369dca-3917-4cbf-958d-f1ca1a10e58d-11709514.jpg"></p>
+<ul>
+<li><p>顶点处理的作用是指对所有的顶点数据进行 Model，View，和 Projection 的变换，最终得到投影到二维平面的坐标信息(同时为了 Zbuffer 保留深度 z 值)。当然如果超出观察空间的会被剪裁掉。</p>
+</li>
+<li><p>三角形处理就是将所有的顶点按照原几何信息，变成三角面，每个面由 3 个顶点组成。得到了许许多多个三角形之后，接下来的操作自然就是三角形光栅化。</p>
+</li>
+<li><p>在进行完三角形的光栅化之后，知道了哪些在三角形内的点可以被显示，那么如何确定每个像素点或者说片元(Fragement)的颜色呢？[注：片元可能比像素更小，如 MSAA 抗拒齿操作的进一步细分得到的采样点]。那自然就是着色了，也就是片元处理阶段应该做的。</p>
+</li>
+<li><p>着色部分在顶点和像素处理过程都可能发生，关键看着色频率的方法。如果是 Gouraud shading，仅在顶点进行着色；如果是 Phong shading，则会在像素生成之后进行着色。因此，着色的关键在于——顶点或者像素（片段）如何着色，该部分的程序即为着色器（定义了一个顶点或者像素该执行什么操作，且只执行一次）。在现代的 GPU 中，该套渲染管线允许某些部分是可编程的。</p>
+<p><img src="/./GAMES101_files/c33119a5-bd24-4b62-992d-aab9af40546a-11709514.jpg"></p>
+</li>
+<li><p>Framebuffer 的操作，就是将所有的像素颜色信息整合在一起，输送给显示设备加以显示。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h1><ul>
+<li><p>规定</p>
+<ul>
+<li>假设三维物体中的坐标可以映射到二维纹理图片的坐标（参数化）</li>
+<li>对于二维的纹理图片（不考虑像素和长宽），其 u、v 均在（0，1）范围内</li>
+</ul>
+</li>
+<li><p>重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值</p>
+<ul>
+<li><p>重心坐标定义在一个三角形中，如果某个点在三角形内部，这三个值（α、β、γ）均为非负，且和为 1。三个值（α、β、γ）可以用面积求得，也可以利用三个顶点的坐标公式求得。</p>
+<p><img src="/./GAMES101_files/13eff49a-6d7e-4282-bce5-b6c645bc45b6-11709514.jpg"><br><img src="/./GAMES101_files/fd247a7b-20a3-4364-b4f8-a5589ab5efb2-11709514.jpg"></p>
+</li>
+<li><p>插值应该在三维物体投影到二维平面之前做，因为重心坐标不能保证投影后插值得到的属性值不变。</p>
+</li>
+</ul>
+</li>
+<li><p>存在的问题</p>
+<ul>
+<li><p>如果屏幕分辨率很大（如 4k），而纹理图片分辨率很小（如 256*256），那么会出现：屏幕与纹理图片上的点并不能一一对应，得到的是非整数的纹理坐标。解决方法：</p>
+<p><img src="/./GAMES101_files/dc915635-f15f-467a-93cf-4c3fdb24cc8e-11709514.jpg"></p>
+<ul>
+<li><p>Nearest：取整，相当于屏幕的多个点（像素）对应了纹理图片的一个像素</p>
+</li>
+<li><p>Bilinear：双线性插值。红点的来源：三维物体中三角面片内部的某一点，经过插值得到一个点，再经过投影变换到屏幕上，再经过映射得到纹理坐标，即该红点。双线性插值经历了两次水平方向的插值，一次竖直方向的插值，最终得到一个平滑的纹理的像素值。</p>
+<p><img src="/./GAMES101_files/b6a30e8c-fce6-47b6-bb14-bca0a5dfb44d-11709514.jpg"></p>
+</li>
+<li><p>Bicubic：双三次插值，对周围的 16 个纹理坐标进行插值得到像素值。</p>
+</li>
+</ul>
+</li>
+<li><p>相反，如果屏幕分辨率很小，而纹理图片分辨率很大，那么会出现一个屏幕像素点对应了多个纹理像素点，即覆盖了大块的包含图案变化的纹理区域，便出现走样（屏幕的采样频率跟不上纹理的变化频率）。解决方法：</p>
+<ul>
+<li><p>超采样：一个屏幕像素点分为多个采样点来对应纹理坐标，最后取平均值（有效果，开销过大）</p>
+</li>
+<li><p>Mipmap 多级渐远纹理（利用范围查询的知识：给一个区域，立刻能够知道该区域内部纹理像素的平均值），只能做近似的正方形的范围查询。在渲染之前，提前计算纹理图的渐远纹理，存储空间仅为原图的 4/3。</p>
+<p><img src="/./GAMES101_files/9f87a3c3-d840-483d-b3d8-66dd5df0dfc8-11709514.jpg"></p>
+<ul>
+<li><p>关键：计算某个屏幕像素应该映射到哪个 level（记为 D）的纹理上。将一个屏幕像素的临近点映射到 level 0 的纹理图上，估计该像素覆盖的一个正方形的边长 L，求以 2 为底的对数即可得到 D。如果 L=1，即一个屏幕像素对应 1 个原始纹理像素，利用原始纹理图即可，D=0；如果 L=4，即一个屏幕像素对应 4*4 个原始纹理像素，那么利用 D=2 的纹理图即可得到对应的 1 个纹理像素。</p>
+<p><img src="/./GAMES101_files/aacbafb2-25b5-4f68-b510-2ecf4ff175a4-11709514.jpg"></p>
+</li>
+<li><p>问题 1：如果 L 不是 2 的指数，可以对 D 取整，但很有可能得到的纹理映射结果出现断层。此时利用三线性（Trilinear）插值即可——L=3 时，分别计算 D=1 和 D=2 的双线性插值结果后，再计算两个结果的线性插值。</p>
+<p><img src="/./GAMES101_files/d8ab277e-341c-4975-b72b-84428cc81159-11709514.jpg"></p>
+</li>
+<li><p>问题 2：过度模糊（Overblur）问题，在远处无法得到清晰的纹理映射。原因在于，屏幕上的一个像素映射到纹理坐标，可能覆盖了多个纹理像素，此时查询多级渐远纹理后只对应了一个平均的纹理像素值，就产生了模糊。</p>
+<p><img src="/./GAMES101_files/00e56316-69c7-4f3e-9287-5c161b68d53b-11709514.jpg"></p>
+<ul>
+<li><p>解决方法</p>
+<ul>
+<li><p>各向异性过滤（Anisotropic Filtering，或 Ripmap），将纹理像素的长和宽分别压缩与同时压缩，耗费了原始纹理像素的 3 倍存储空间，那么对于上图右侧的矩形即可准确得到纹理映射。缺点在于：对于上图左侧的倾斜矩形，无法得到正确的结果。</p>
+<p><img src="/./GAMES101_files/10a8e5e2-135b-4982-b8d5-576ae0af7c25-11709514.jpg"></p>
+</li>
+<li><p>EWA 过滤，把一个覆盖到纹理像素的不规则形状拆分为多个圆形，执行多级查询，耗费时间，但效果较好。</p>
+<p><img src="/./GAMES101_files/e6846262-5bfc-4528-9477-f50b49decc05-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>纹理应用技术</p>
+<ul>
+<li><p>现代计算机 GPU 中，可以把纹理理解为一块内存，以及可以在这块内存中进行范围查询，即 texture = memory + range query (filtering)</p>
+</li>
+<li><p>环境映射（Environment Mapping）。为了实现接受环境光的效果，我们可以用一个贴图来存放环境光信息，即 环境贴图（Environment Map） 或 反射贴图（Reflection Map），在给物体着色的时候不仅采样普通纹理，也采样环境贴图，按一定比例混合这两者的颜色（例如物体材质越光滑，镜面反射效果越强）。即用纹理描述环境光的样子，从而用该纹理去渲染物体。</p>
+<p><img src="/./GAMES101_files/df959a07-ad93-4529-b7b0-dfd17ee8b3a4-11709514.jpg"></p>
+</li>
+<li><p>球面环境贴图（Spherical Environment Map）。把环境光记录到球面上，并展开，但会出现扭曲现象。</p>
+<p><img src="/./GAMES101_files/15f78112-fa47-4662-b969-e8d3e80a3108-11709514.jpg"></p>
+</li>
+<li><p>解决球面环境贴图扭曲现象的办法——立方体贴图（Cube Map）。设置一个包围盒，将球面上的点延长交于包围盒，并展开。</p>
+<p><img src="/./GAMES101_files/82604133-9408-4d05-a820-4d8d21022015-11709514.jpg"></p>
+</li>
+<li><p>凹凸贴图（Bump Mapping）。通过改变表面各点的相对高度，使本来是平的东西看起来有凹凸的效果，是一种欺骗眼睛的技术（因为物体结构并没有发生改变）。例如这个球看起来凹凸不平，实际它的几何结构就是光滑的球，只是通过凹凸贴图改变了各像素点的法线方向，从而导致光照结果不一，产生出凹凸不平的视觉效果。即不把几何形体变复杂的情况下，可以通过应用复杂的纹理定义相对高度，从而法线会发生变化。</p>
+<p><img src="/./GAMES101_files/f89bdc6f-1b36-45ec-b54d-364b79ed708a-11709514.jpg"></p>
+<ul>
+<li><p>首先，凹凸贴图是在不增加三角面片的情况下增加表面细节来实现的。黑色的线是真实的表面，黄色的线是通过凹凸贴图定义的，那么其法向量原本是 p，改变为 n</p>
+<p><img src="/./GAMES101_files/eaa66795-188d-4d03-94c4-89b08c1d3398-11709514.jpg"></p>
+</li>
+<li><p>下图展示的是二维情况下的法向量改变的过程：先假设某一点 p 的局部法向量 n（p），计算该点处在凹凸贴图上的切线，求其垂直向量。之后推广到三维情况即可，需要注意的是：真实模型中某一点 p 的法向量不一定是朝向 z 的，但假设在该局部是这样，计算好改变后的法向量后需要通过变换才能得到真实的改变了的法向量。</p>
+<p><img src="/./GAMES101_files/fe60eddd-d3a7-4d04-a0eb-a5d8be7d6b05-11709514.jpg"><br><img src="/./GAMES101_files/a8c244a4-2543-4d87-bf82-582f7b1e3bdc-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>位移贴图（Displacement mapping），需要三角形足够细致，否则还会出现走样问题。但在 DirectX 中可以根据需要将三角形进行细分，从而避免该问题。</p>
+<p><img src="/./GAMES101_files/f189f5db-db71-4bc9-a4bf-2d0e2739a254-11709514.jpg"></p>
+</li>
+<li><p>除此之外，还有三维纹理、环境光遮蔽、医学体渲染等纹理应用。可以参考：<a href="https://www.cnblogs.com/KillerAery/p/15106770.html#%E7%BA%B9%E7%90%86%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF%EF%BC%88texture-application%EF%BC%89">纹理映射技术</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h1><ul>
+<li>这里考虑点光源产生的阴影，只有两种情况：在阴影中和不在阴影中（硬阴影）。如果是软阴影，则光源一定有大小。</li>
+<li>关键——人眼和光源能够同时看到该点，就不在阴影中。</li>
+<li>step1：假设光源前有一个屏幕，从光源看场景，记录每个点到光源屏幕的深度，得到一张深度图</li>
+<li>step2：从人眼（相机）看物体的每个点，再投影到光源处，计算该点到光源的深度，如果等于 step1 中计算的深度，就表示不在阴影中。</li>
 </ul>
 ]]></content>
       <categories>
@@ -494,6 +687,62 @@
       </tags>
   </entry>
   <entry>
+    <title>链接合集</title>
+    <url>/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/</url>
+    <content><![CDATA[<h1 id="📗-工具介绍"><a href="#📗-工具介绍" class="headerlink" title="📗 工具介绍"></a>📗 工具介绍</h1><ul>
+<li><a href="https://www.jianshu.com/p/c4f02f46224f">yarn的介绍及workspace的使用</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/77577415">Monorepo 是什么，为什么大家都在用？</a></li>
+<li><a href="https://www.jianshu.com/p/dafc2052eedc">Monorepo实战</a></li>
+</ul>
+<h1 id="🎈-文档链接"><a href="#🎈-文档链接" class="headerlink" title="🎈 文档链接"></a>🎈 文档链接</h1><ul>
+<li><a href="https://yarn.bootcss.com/docs/">Yarn</a></li>
+<li><a href="https://webpack.docschina.org/configuration">webpack</a></li>
+<li><a href="https://github.com/lerna/lerna">Lerna</a></li>
+</ul>
+<h1 id="💙-参考教程"><a href="#💙-参考教程" class="headerlink" title="💙 参考教程"></a>💙 参考教程</h1><h2 id="VS-Code-——-C-开发"><a href="#VS-Code-——-C-开发" class="headerlink" title="VS Code —— C++开发"></a>VS Code —— C++开发</h2><ul>
+<li><a href="https://www.whbwiki.com/335.html">开发环境配置详细教程</a></li>
+<li><a href="https://blog.csdn.net/weixin_43343144/article/details/85147439">配置文件说明</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/153252108">插件CodeRunner运行C++代码时中文乱码问题的解决</a></li>
+<li><a href="https://blog.csdn.net/weixin_43940314/article/details/115456199">安装和使用C++线性代数库eigen（Windows，MinGW，VS Code和VS2019的配置）</a></li>
+<li>Code-Runner在编译时不会自动引入eigen，需要在setting.json中设置<code>&quot;code-runner.executorMap&quot;</code>中的<code>&quot;cpp&quot;: &quot;cd $dir &amp;&amp; g++ -g $fileName -o $fileNameWithoutExt -I &#39;C:/Users/xxx/eigen-3.4-rc1&#39; &amp;&amp; $dir$fileNameWithoutExt&quot;</code>，才可以正常运行。当然这个插件配置较为简单，更加复杂、稳妥的配置推荐使用C/C++插件中的tasks.json文件。</li>
+</ul>
+<h2 id="VS-Code-——-CMake"><a href="#VS-Code-——-CMake" class="headerlink" title="VS Code —— CMake"></a>VS Code —— CMake</h2><ul>
+<li><a href="https://www.cnblogs.com/herelsp/p/8679200.html#_label2">CMake+MinGW64搭建C/C++编译环境</a></li>
+<li><a href="https://blog.csdn.net/JohnJim0/article/details/81842249?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-9.pc_relevant_baidujshouduan&spm=1001.2101.3001.4242">CMake+VSCode搭建C/C++编译环境</a> <h4 id="使用CMake编译和运行包含有eigen库的步骤"><a href="#使用CMake编译和运行包含有eigen库的步骤" class="headerlink" title="使用CMake编译和运行包含有eigen库的步骤"></a>使用CMake编译和运行包含有eigen库的步骤</h4></li>
+</ul>
+<ol>
+<li>编写main.cpp文件</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;Eigen/Core&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;Eigen/Dense&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-comment">// Example of vector</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Example of vector \n&quot;</span>;<br>    <span class="hljs-comment">// vector definition</span><br>    <span class="hljs-function">Eigen::Vector3f <span class="hljs-title">v</span><span class="hljs-params">(<span class="hljs-number">1.0f</span>,<span class="hljs-number">2.0f</span>,<span class="hljs-number">3.0f</span>)</span></span>;<br>    <span class="hljs-function">Eigen::Vector3f <span class="hljs-title">w</span><span class="hljs-params">(<span class="hljs-number">1.0f</span>,<span class="hljs-number">0.0f</span>,<span class="hljs-number">0.0f</span>)</span></span>;<br>    <span class="hljs-comment">// vector output</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Example of output \n&quot;</span>;<br>    std::cout &lt;&lt; v &lt;&lt; std::endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>编写CMakeLists.txt文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">cmake_minimum_required (VERSION 2.8.11)<br><br># 项目名<br>project (Transformation)<br><br># 将解压后的Eigen库的目录引入<br>include_directories(&quot;C:/Users/xxx/eigen-3.4-rc1/&quot;)<br><br># 添加可执行文件<br>add_executable (Transformation main.cpp)<br><br></code></pre></td></tr></table></figure></li>
+<li><p>在main.cpp所在目录下，打开终端(命令行)，依次输入：</p>
+</li>
+</ol>
+<ul>
+<li><code>mkdir build</code> 创建名为build的文件夹</li>
+<li><code>cd build</code> 移动到build文件夹下</li>
+<li><code>cmake -G &quot;MinGW Makefiles&quot; ..</code> 注意其中<code>..</code>表示上一级目录，若为<code>.</code>则表示当前目录；<code>&quot;MinGW Makefiles&quot;</code>指定了使用MinGW编译器，否则默认是MSVC（Visual Studio的编译器）</li>
+<li><code>mingw32-make.exe</code> 编译程序，错误提示会显示在终端中</li>
+<li><code>./Transformation</code>：若上一步无错误，则可运行程序(这里的Transformation为可执行文件名，可参照CMakeLists.txt中修改)</li>
+</ul>
+<p><img src="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/2021-08-10-09-06-58.png" alt="文件目录结构"></p>
+<p><img src="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/2021-08-10-09-16-22.png" alt="执行结果"></p>
+<blockquote>
+<p>cmake 在 find_path 和 find_library 时，会搜索一些默认的路径。当我们将一些lib安装在非默认搜索路径时，cmake就没法搜索到了。这是我们需要添加路径。方法如下：<br><code>set(CMAKE_INCLUDE_PATH &quot;include_path&quot;)</code><br><code>set(CMAKE_LIBRARY_PATH &quot;lib_path&quot;)</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Link-collect</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+        <tag>Monorepo</tag>
+        <tag>C++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端规范</title>
     <url>/2021/12/06/%E5%89%8D%E7%AB%AF%E8%A7%84%E8%8C%83/</url>
     <content><![CDATA[<h1 id="🔵代码编辑器-使用-vscode"><a href="#🔵代码编辑器-使用-vscode" class="headerlink" title="🔵代码编辑器: 使用 vscode"></a>🔵代码编辑器: 使用 vscode</h1><p>编辑器使用vscode，代码的规范基本都要依赖于 vscode的插件</p>
@@ -597,62 +846,6 @@
       <tags>
         <tag>前端</tag>
         <tag>规范</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>链接合集</title>
-    <url>/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/</url>
-    <content><![CDATA[<h1 id="📗-工具介绍"><a href="#📗-工具介绍" class="headerlink" title="📗 工具介绍"></a>📗 工具介绍</h1><ul>
-<li><a href="https://www.jianshu.com/p/c4f02f46224f">yarn的介绍及workspace的使用</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/77577415">Monorepo 是什么，为什么大家都在用？</a></li>
-<li><a href="https://www.jianshu.com/p/dafc2052eedc">Monorepo实战</a></li>
-</ul>
-<h1 id="🎈-文档链接"><a href="#🎈-文档链接" class="headerlink" title="🎈 文档链接"></a>🎈 文档链接</h1><ul>
-<li><a href="https://yarn.bootcss.com/docs/">Yarn</a></li>
-<li><a href="https://webpack.docschina.org/configuration">webpack</a></li>
-<li><a href="https://github.com/lerna/lerna">Lerna</a></li>
-</ul>
-<h1 id="💙-参考教程"><a href="#💙-参考教程" class="headerlink" title="💙 参考教程"></a>💙 参考教程</h1><h2 id="VS-Code-——-C-开发"><a href="#VS-Code-——-C-开发" class="headerlink" title="VS Code —— C++开发"></a>VS Code —— C++开发</h2><ul>
-<li><a href="https://www.whbwiki.com/335.html">开发环境配置详细教程</a></li>
-<li><a href="https://blog.csdn.net/weixin_43343144/article/details/85147439">配置文件说明</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/153252108">插件CodeRunner运行C++代码时中文乱码问题的解决</a></li>
-<li><a href="https://blog.csdn.net/weixin_43940314/article/details/115456199">安装和使用C++线性代数库eigen（Windows，MinGW，VS Code和VS2019的配置）</a></li>
-<li>Code-Runner在编译时不会自动引入eigen，需要在setting.json中设置<code>&quot;code-runner.executorMap&quot;</code>中的<code>&quot;cpp&quot;: &quot;cd $dir &amp;&amp; g++ -g $fileName -o $fileNameWithoutExt -I &#39;C:/Users/xxx/eigen-3.4-rc1&#39; &amp;&amp; $dir$fileNameWithoutExt&quot;</code>，才可以正常运行。当然这个插件配置较为简单，更加复杂、稳妥的配置推荐使用C/C++插件中的tasks.json文件。</li>
-</ul>
-<h2 id="VS-Code-——-CMake"><a href="#VS-Code-——-CMake" class="headerlink" title="VS Code —— CMake"></a>VS Code —— CMake</h2><ul>
-<li><a href="https://www.cnblogs.com/herelsp/p/8679200.html#_label2">CMake+MinGW64搭建C/C++编译环境</a></li>
-<li><a href="https://blog.csdn.net/JohnJim0/article/details/81842249?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-9.pc_relevant_baidujshouduan&spm=1001.2101.3001.4242">CMake+VSCode搭建C/C++编译环境</a> <h4 id="使用CMake编译和运行包含有eigen库的步骤"><a href="#使用CMake编译和运行包含有eigen库的步骤" class="headerlink" title="使用CMake编译和运行包含有eigen库的步骤"></a>使用CMake编译和运行包含有eigen库的步骤</h4></li>
-</ul>
-<ol>
-<li>编写main.cpp文件</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;Eigen/Core&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;Eigen/Dense&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-comment">// Example of vector</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Example of vector \n&quot;</span>;<br>    <span class="hljs-comment">// vector definition</span><br>    <span class="hljs-function">Eigen::Vector3f <span class="hljs-title">v</span><span class="hljs-params">(<span class="hljs-number">1.0f</span>,<span class="hljs-number">2.0f</span>,<span class="hljs-number">3.0f</span>)</span></span>;<br>    <span class="hljs-function">Eigen::Vector3f <span class="hljs-title">w</span><span class="hljs-params">(<span class="hljs-number">1.0f</span>,<span class="hljs-number">0.0f</span>,<span class="hljs-number">0.0f</span>)</span></span>;<br>    <span class="hljs-comment">// vector output</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Example of output \n&quot;</span>;<br>    std::cout &lt;&lt; v &lt;&lt; std::endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<ol start="2">
-<li><p>编写CMakeLists.txt文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">cmake_minimum_required (VERSION 2.8.11)<br><br># 项目名<br>project (Transformation)<br><br># 将解压后的Eigen库的目录引入<br>include_directories(&quot;C:/Users/xxx/eigen-3.4-rc1/&quot;)<br><br># 添加可执行文件<br>add_executable (Transformation main.cpp)<br><br></code></pre></td></tr></table></figure></li>
-<li><p>在main.cpp所在目录下，打开终端(命令行)，依次输入：</p>
-</li>
-</ol>
-<ul>
-<li><code>mkdir build</code> 创建名为build的文件夹</li>
-<li><code>cd build</code> 移动到build文件夹下</li>
-<li><code>cmake -G &quot;MinGW Makefiles&quot; ..</code> 注意其中<code>..</code>表示上一级目录，若为<code>.</code>则表示当前目录；<code>&quot;MinGW Makefiles&quot;</code>指定了使用MinGW编译器，否则默认是MSVC（Visual Studio的编译器）</li>
-<li><code>mingw32-make.exe</code> 编译程序，错误提示会显示在终端中</li>
-<li><code>./Transformation</code>：若上一步无错误，则可运行程序(这里的Transformation为可执行文件名，可参照CMakeLists.txt中修改)</li>
-</ul>
-<p><img src="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/2021-08-10-09-06-58.png" alt="文件目录结构"></p>
-<p><img src="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/2021-08-10-09-16-22.png" alt="执行结果"></p>
-<blockquote>
-<p>cmake 在 find_path 和 find_library 时，会搜索一些默认的路径。当我们将一些lib安装在非默认搜索路径时，cmake就没法搜索到了。这是我们需要添加路径。方法如下：<br><code>set(CMAKE_INCLUDE_PATH &quot;include_path&quot;)</code><br><code>set(CMAKE_LIBRARY_PATH &quot;lib_path&quot;)</code></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Link-collect</category>
-      </categories>
-      <tags>
-        <tag>webpack</tag>
-        <tag>Monorepo</tag>
-        <tag>C++</tag>
       </tags>
   </entry>
 </search>
