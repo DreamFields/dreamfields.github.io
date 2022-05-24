@@ -29,6 +29,93 @@
   
   
   <entry>
+    <title>Lecturer 06 [反走样]</title>
+    <link href="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/"/>
+    <url>/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/</url>
+    
+    <content type="html"><![CDATA[<h1 id="走样"><a href="#走样" class="headerlink" title="走样"></a>走样</h1><ul><li><p>扫描转换的算法在处理图形非水平或者非垂直线段时引起了锯齿或阶梯状的变形。</p></li><li><p>具体解释</p><ul><li>（1）几何图形中的直线段无限细，多边形的边亦如此，它们均是带宽无限的信号，即傅里叶频谱中的最高频率为无限大；</li><li>（2）由于几何图形为带宽无限信号，所以将几何图形像素化时，采样频率无法满足乃奎斯特定理，导致采样过程中丢失高频成分，因而产生的图像信号失真现象，称为“走样”。</li><li>（3）在视觉上，直线段或多边形边界走样呈现为锯齿状，即“直线边界不直”。</li></ul></li></ul><h1 id="采样理论"><a href="#采样理论" class="headerlink" title="采样理论"></a>采样理论</h1><ul><li><p>频率与频谱的理解</p><ul><li><p>通过傅里叶变换（时域 → 频域），将任何周期信号通过级数理论转变为正弦或余弦信号的叠加（每个正余弦信号叫做谐波），而通过刻画这些单个正余弦信号的属性（频率、振幅、相位）形成的对应关系，就形成了该信号的频谱。而原来是通过记录信号随时间变化的起伏来描述该信号（时域），现在便可以通过频谱来描述该信号（频域）。</p><ul><li><p>总结</p><p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/30f27f04-cb35-4143-a29f-80c5f2661505-11709514.jpg"><br><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8dcc19b2-f5b0-431a-8064-45d23d07459a-11709514.jpg"></p></li><li><p>振幅频谱</p><p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8e2c07f0-5647-40e6-b793-bebeff4b2f2e-11709514.jpg"></p></li><li><p>相位频谱</p><p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/f652c394-f00f-4452-9046-8d31742bee70-11709514.jpg"></p></li></ul></li></ul></li><li><p>如何对图像分析频率和频谱</p><ul><li><p>基础知识的理解</p><ul><li><p><a href="https://zhuanlan.zhihu.com/p/19763358">傅里叶分析</a></p><ul><li><p>相位谱和频率谱的直观理解</p><p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/0265e20c-1abd-4338-93c8-d8fd229492ba-11709514.jpg"></p></li></ul></li><li><p><a href="https://blog.csdn.net/Vichael_Chan/article/details/102570542">数字图像处理：图像的频域</a></p></li><li><p><a href="http://www.360doc.com/content/18/0410/09/7551_744364416.shtml">图像 RGB 值、灰度值与像素值的关系</a></p></li><li><p><a href="https://zhuanlan.zhihu.com/p/99605178">通俗讲解：图像傅里叶变换</a></p></li><li><p><a href="https://www.zhihu.com/question/26969067/answer/567804862">对图像二维傅立叶变换到底是完成什么功能？</a></p></li><li><p><a href="https://blog.csdn.net/turbogofi/article/details/12048777?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1.control&spm=1001.2101.3001.4242">图像处理中频域(Fourier)的应用总结</a></p></li><li><p>图像频谱</p><p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/76eed36a-099d-443c-8348-cfc44d132a80-11709514.jpg"></p></li></ul></li><li><p>通过频率分析图像中的走样：通过同样的频率采样两种频率截然不同的函数，得到的采样点可以完全相同，即为走样</p><p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8f5ba925-a659-4fd8-926e-87eb1f77fffd-11709514.jpg"></p></li><li><p>图像操作</p><ul><li>时域上的卷积=频域上的乘积</li><li>卷积核可以看作一张小的图片，卷积核越大，保留的高频信息越少，在频域图上高频区域的亮度就越低</li><li>高通滤波器——保留高频信息</li><li>采样反映到频谱中——重复原始信号的频谱。采样的频率越小，反映到频谱中，频谱的重复越密集，于是出现频谱的混叠，产生走样</li></ul></li></ul></li></ul><h1 id="反走样的思路"><a href="#反走样的思路" class="headerlink" title="反走样的思路"></a>反走样的思路</h1><ul><li><p>增加采样率（并不是反走样所研究的）</p></li><li><p>采样之前，先对信号进行模糊（或者说低通滤波，即拿掉高频信息，这样边界会看起来变得更浅，具体做法是将某个像素计算其在图形内部的覆盖面积，将该像素值进行平均覆盖），再进行采样，那么在频谱中便不容易发生混叠，可以对走样进行一定程度的改善</p><p><img src="/2021/12/27/Lecturer-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/45769713-a6c4-44b3-91f2-414194b0212d-11709514.jpg"></p><ul><li>如何判断某个像素在三角形内部的比例？MSAA 方法，将每个像素分割为更小的像素点，计算在三角形内部的点占该像素所有点的比例即可。</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>CG</category>
+      
+      <category>GAMES101</category>
+      
+      <category>Theory</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CG</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Lecture 04-05 [旋转&amp;光栅化]</title>
+    <link href="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&amp;%E5%85%89%E6%A0%85%E5%8C%96/"/>
+    <url>/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&amp;%E5%85%89%E6%A0%85%E5%8C%96/</url>
+    
+    <content type="html"><![CDATA[<h1 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h1><ul><li><p>Rodrigues 旋转公式：实现某三维物体的坐标绕过原点的向量轴 n 旋转 α 角度的旋转矩阵为 R(n,α)，这是<a href="https://dreamfields.github.io/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/#Rodrigues%E6%97%8B%E8%BD%AC%E5%85%AC%E5%BC%8F">Rodrigues 旋转公式的推导</a></p><p><img src="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&%E5%85%89%E6%A0%85%E5%8C%96/11e15ed4-a5a4-4d8f-9548-8ea3a666bc1e-11709514.jpg"><br><img src="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&%E5%85%89%E6%A0%85%E5%8C%96/c07cae47-379d-4cf9-be8e-c374a6d6d84a-11709514.jpg"></p></li><li><p>图形学的成像，类比拍照。</p><ul><li><p>第一步将模型摆好，称为模型变换；第二部将相机的位置摆好，称为视图（或相机）变换；第三步将物体投影到屏幕上，称为投影变换。</p><p><img src="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&%E5%85%89%E6%A0%85%E5%8C%96/b4c37547-b653-4143-9757-fa34a446a312-11709514.jpg"></p></li><li><p>其中，观测变换包括两部分：视图变换 + 投影变换</p><p><img src="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&%E5%85%89%E6%A0%85%E5%8C%96/aa77ced8-dfb8-4956-9bd1-abeb8ca11b24-11709514.jpg"></p></li><li><p>1.视图变换</p><ul><li><p>摆放相机：因为我们屏幕看到的物体始终是从原点看向负 z 轴，所以这一步的任务就是——将一个任意位置、看向任意方向的相机，摆放到原点，并看向负 z 轴，即定义位置（原点）、上方向（y 方向）、看的方向（-z 方向）。该过程实际上是将世界坐标系的物体进行变换，使得从原点处向负 z 轴看变换后的该物体等于原来相机位置处看向原来物体的样子，也就是说，得到一个视图变换矩阵，让物体经过该矩阵的变换，达到屏幕显示的物体等于摄像机在原来位置处想要看到的物体的效果。进一步说，关键在于——将相机固定住，所有的移动都是物体在移动</p><p><img src="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&%E5%85%89%E6%A0%85%E5%8C%96/15b83597-7bb1-4818-b44b-a790899a53f9-11709514.jpg"></p></li><li><p>如何将当前相机（左）变换到规定的方向（右）</p><p><img src="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&%E5%85%89%E6%A0%85%E5%8C%96/305737c0-7340-4837-aeb0-b4526b5f978a-11709514.jpg"></p><ul><li><p>通过一个变换矩阵，其中 T（view）为平移矩阵，R（view）为旋转矩阵。</p><ul><li><p>可以验证，R 逆分别对 X(1,0,0,0)、Y(0,1,0,0)、Z(0,0,1,0)进行变换后，就可以得到 g×t、t、-g</p></li><li><p>如何写出 R 的逆矩阵？从右图的标准位置向左变换即可。</p><p><img src="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&%E5%85%89%E6%A0%85%E5%8C%96/6ea2e63d-54d3-40bc-9aa1-12e1db58e706-11709514.jpg"></p></li></ul></li></ul></li></ul></li><li><p>2.投影变换</p><ul><li><p>正交投影</p><ul><li><p>相机看作一个平面。将空间中的所有物体经过变换矩阵统统变换到以原点为中心的边长为 2 的立方体中，注意是先平移到原点后放缩为立方体，其变换矩阵如下：（此时物体会被放缩变形，但之后会再进行视口变换，再次对物体进行放缩还原）</p><p><img src="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&%E5%85%89%E6%A0%85%E5%8C%96/cf838ce3-a04b-4e9c-a9ed-78c28f7bc83e-11709514.jpg"></p></li></ul></li><li><p>透视投影</p><ul><li><p>相机看作一个点。将空间中的物体所在面映射到一个固定的平面，可以看作先将远处的平面压缩为等同于固定平面大小的平面，得到上图的最左边的立方体，然后再进行正交投影得到以原点为中心的边长为 2 的立方体。</p><p><img src="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&%E5%85%89%E6%A0%85%E5%8C%96/48860929-7010-4941-af7c-c7c3c3ae8f5c-11709514.jpg"></p></li><li><p>规定：近处的平面的大小和位置永远不变；远处平面的大小会被压缩，但远近（z 值不变）；远处平面的中心点在压缩后也不变。<a href="https://dreamfields.github.io/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/#%F0%9F%92%99-%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E5%9D%90%E6%A0%87%E5%8F%98%E5%8C%96%E8%AF%81%E6%98%8E">经过证明</a>，中间的点会向远处的平面靠近。</p></li></ul></li></ul></li></ul></li></ul><h1 id="光栅化"><a href="#光栅化" class="headerlink" title="光栅化"></a>光栅化</h1><ul><li><p>光栅化是一种将几何图元变为二维图像的过程。</p><ul><li><p>视口变换：将经过视图和投影变换后，得到的二维平面将会是中心点在原点、边长为 2 的正方形，视口变换就是将该正方形重新拉伸为实际的长方形，并将左下角移动到原点的过程，便于将像素值存储到二维矩阵中。在 OpenGL 中，视口变换是通过 glViewport 函数来完成的。</p><p><img src="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&%E5%85%89%E6%A0%85%E5%8C%96/6aba5f6a-94a1-4a3d-bd57-338475d7f0e1-11709514.jpg"></p></li><li><p>这个过程与 z 并不相关，注意是先放缩为矩形后平移，其变换矩阵如下：</p><p><img src="/2021/12/26/Lecture-04-05-%E6%97%8B%E8%BD%AC&%E5%85%89%E6%A0%85%E5%8C%96/5b874574-796c-4b3c-8da2-03a6065a548a-11709514.jpg"></p></li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>CG</category>
+      
+      <category>GAMES101</category>
+      
+      <category>Theory</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CG</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Lecture 02-03 [线性代数基础&amp;线性变换]</title>
+    <link href="/2021/12/24/Lecture-02-03-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80&amp;%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/"/>
+    <url>/2021/12/24/Lecture-02-03-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80&amp;%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="线性代数基础"><a href="#线性代数基础" class="headerlink" title="线性代数基础"></a>线性代数基础</h1><ul><li><p>叉乘计算公式</p><p><img src="/2021/12/24/Lecture-02-03-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80&%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/52012971-bac3-4e11-9ba2-73fd1f57b629-11709514.jpg"></p></li><li><p>任意向量在三维坐标中的分解</p><p><img src="/2021/12/24/Lecture-02-03-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80&%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/fe4ca04a-0d81-4f06-84c0-d5c72e06226e-11709514.jpg"></p></li><li><p>向量与矩阵的联系</p><p><img src="/2021/12/24/Lecture-02-03-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80&%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/00568a0e-8eac-43bc-af48-9ff6cb4b1eff-11709514.jpg"></p></li></ul><h1 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h1><ul><li><p>基本概念</p><ul><li>如果 AAT=E（E 为单位矩阵，AT 表示“矩阵 A 的转置矩阵”）或 ATA=E，则 n 阶实矩阵 A 称为正交矩阵</li><li>设 A 是一个 n 阶矩阵，若存在另一个 n 阶矩阵 B，使得： AB=BA=E ，则称方阵 A 可逆，并称方阵 B 是 A 的逆矩阵</li></ul></li><li><p>齐次坐标的目的：将线性变换（压缩、旋转等）和非线性变换（平移）都用一个变换矩阵来表示。向量和点的区别，2 维的向量或点用 3 维的矩阵表示</p><p><img src="/2021/12/24/Lecture-02-03-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80&%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/3b2d1d7d-0b8a-4162-a6ec-cd26254f8ce9-11709514.jpg"><br><img src="/2021/12/24/Lecture-02-03-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80&%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/19f91740-8e76-482a-a411-fdd3c516cc62-11709514.jpg"></p></li><li><p>仿射变换，又称仿射映射，是指在<a href="https://baike.baidu.com/item/%E5%87%A0%E4%BD%95/303227">几何</a>中，一个<a href="https://baike.baidu.com/item/%E5%90%91%E9%87%8F%E7%A9%BA%E9%97%B4/5936597">向量空间</a>进行一次<a href="https://baike.baidu.com/item/%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/5904192">线性变换</a>并接上一个<a href="https://baike.baidu.com/item/%E5%B9%B3%E7%A7%BB/2376933">平移</a>，变换为另一个向量空间。</p></li><li><p>投影变换（projection transformation）是将一种<a href="https://baike.baidu.com/item/%E5%9C%B0%E5%9B%BE%E6%8A%95%E5%BD%B1">地图投影</a>点的<a href="https://baike.baidu.com/item/%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/5261943">坐标变换</a>为另一种地图投影点的<a href="https://baike.baidu.com/item/%E5%9D%90%E6%A0%87/85345">坐标</a>的过程。研究投影点坐标变换的理论和方法。</p></li><li><p>表示旋转的时候，变换矩阵的逆矩阵等于变换矩阵的转置（说明该变换矩阵为正交矩阵）</p><p><img src="/2021/12/24/Lecture-02-03-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80&%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/ffe289b4-2652-4ceb-a63e-020602e17b64-11709514.jpg"></p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>CG</category>
+      
+      <category>GAMES101</category>
+      
+      <category>Theory</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CG</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>前端规范</title>
     <link href="/2021/12/06/%E5%89%8D%E7%AB%AF%E8%A7%84%E8%8C%83/"/>
     <url>/2021/12/06/%E5%89%8D%E7%AB%AF%E8%A7%84%E8%8C%83/</url>
