@@ -23,20 +23,20 @@
 <meta property="og:site_name" content="Dream Fields">
 <meta property="og:description" content="走样 扫描转换的算法在处理图形非水平或者非垂直线段时引起了锯齿或阶梯状的变形。  具体解释  （1）几何图形中的直线段无限细，多边形的边亦如此，它们均是带宽无限的信号，即傅里叶频谱中的最高频率为无限大； （2）由于几何图形为带宽无限信号，所以将几何图形像素化时，采样频率无法满足乃奎斯特定理，导致采样过程中丢失高频成分，因而产生的图像信号失真现象，称为“走样”。 （3）在视觉上，直线段或多边形边界走">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/30f27f04-cb35-4143-a29f-80c5f2661505-11709514.jpg">
-<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8dcc19b2-f5b0-431a-8064-45d23d07459a-11709514.jpg">
-<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8e2c07f0-5647-40e6-b793-bebeff4b2f2e-11709514.jpg">
-<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/f652c394-f00f-4452-9046-8d31742bee70-11709514.jpg">
-<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/0265e20c-1abd-4338-93c8-d8fd229492ba-11709514.jpg">
-<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/76eed36a-099d-443c-8348-cfc44d132a80-11709514.jpg">
-<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8f5ba925-a659-4fd8-926e-87eb1f77fffd-11709514.jpg">
-<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/45769713-a6c4-44b3-91f2-414194b0212d-11709514.jpg">
+<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/30f27f04-cb35-4143-a29f-80c5f2661505-11709514.jpg">
+<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8dcc19b2-f5b0-431a-8064-45d23d07459a-11709514.jpg">
+<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8e2c07f0-5647-40e6-b793-bebeff4b2f2e-11709514.jpg">
+<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/f652c394-f00f-4452-9046-8d31742bee70-11709514.jpg">
+<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/0265e20c-1abd-4338-93c8-d8fd229492ba-11709514.jpg">
+<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/76eed36a-099d-443c-8348-cfc44d132a80-11709514.jpg">
+<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8f5ba925-a659-4fd8-926e-87eb1f77fffd-11709514.jpg">
+<meta property="og:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/45769713-a6c4-44b3-91f2-414194b0212d-11709514.jpg">
 <meta property="article:published_time" content="2021-12-27T13:25:58.000Z">
-<meta property="article:modified_time" content="2022-05-24T14:03:40.708Z">
+<meta property="article:modified_time" content="2022-05-29T09:27:44.367Z">
 <meta property="article:author" content="木夕">
 <meta property="article:tag" content="CG">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/30f27f04-cb35-4143-a29f-80c5f2661505-11709514.jpg">
+<meta name="twitter:image" content="http://example.com/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/30f27f04-cb35-4143-a29f-80c5f2661505-11709514.jpg">
   
   <title>Lecture 06 [反走样] - Dream Fields</title>
 
@@ -263,13 +263,13 @@
 <li><p>通过傅里叶变换（时域 → 频域），将任何周期信号通过级数理论转变为正弦或余弦信号的叠加（每个正余弦信号叫做谐波），而通过刻画这些单个正余弦信号的属性（频率、振幅、相位）形成的对应关系，就形成了该信号的频谱。而原来是通过记录信号随时间变化的起伏来描述该信号（时域），现在便可以通过频谱来描述该信号（频域）。</p>
 <ul>
 <li><p>总结</p>
-<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/30f27f04-cb35-4143-a29f-80c5f2661505-11709514.jpg" srcset="/img/loading.gif" lazyload><br><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8dcc19b2-f5b0-431a-8064-45d23d07459a-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/30f27f04-cb35-4143-a29f-80c5f2661505-11709514.jpg" srcset="/img/loading.gif" lazyload><br><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8dcc19b2-f5b0-431a-8064-45d23d07459a-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>振幅频谱</p>
-<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8e2c07f0-5647-40e6-b793-bebeff4b2f2e-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8e2c07f0-5647-40e6-b793-bebeff4b2f2e-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>相位频谱</p>
-<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/f652c394-f00f-4452-9046-8d31742bee70-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/f652c394-f00f-4452-9046-8d31742bee70-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ul>
 </li>
@@ -282,7 +282,7 @@
 <li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/19763358">傅里叶分析</a></p>
 <ul>
 <li><p>相位谱和频率谱的直观理解</p>
-<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/0265e20c-1abd-4338-93c8-d8fd229492ba-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/0265e20c-1abd-4338-93c8-d8fd229492ba-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ul>
 </li>
@@ -297,12 +297,12 @@
 <li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/turbogofi/article/details/12048777?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1.control&spm=1001.2101.3001.4242">图像处理中频域(Fourier)的应用总结</a></p>
 </li>
 <li><p>图像频谱</p>
-<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/76eed36a-099d-443c-8348-cfc44d132a80-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/76eed36a-099d-443c-8348-cfc44d132a80-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ul>
 </li>
 <li><p>通过频率分析图像中的走样：通过同样的频率采样两种频率截然不同的函数，得到的采样点可以完全相同，即为走样</p>
-<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8f5ba925-a659-4fd8-926e-87eb1f77fffd-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/8f5ba925-a659-4fd8-926e-87eb1f77fffd-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>图像操作</p>
 <ul>
@@ -319,7 +319,7 @@
 <li><p>增加采样率（并不是反走样所研究的）</p>
 </li>
 <li><p>采样之前，先对信号进行模糊（或者说低通滤波，即拿掉高频信息，这样边界会看起来变得更浅，具体做法是将某个像素计算其在图形内部的覆盖面积，将该像素值进行平均覆盖），再进行采样，那么在频谱中便不容易发生混叠，可以对走样进行一定程度的改善</p>
-<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/45769713-a6c4-44b3-91f2-414194b0212d-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2021/12/27/Lecture-06-%E5%8F%8D%E8%B5%B0%E6%A0%B7/45769713-a6c4-44b3-91f2-414194b0212d-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>如何判断某个像素在三角形内部的比例？MSAA 方法，将每个像素分割为更小的像素点，计算在三角形内部的点占该像素所有点的比例即可。</li>
 </ul>
