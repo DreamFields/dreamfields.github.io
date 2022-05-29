@@ -172,6 +172,35 @@
   
   
   <entry>
+    <title>GAMES101重要公式推导与算法补充</title>
+    <link href="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/"/>
+    <url>/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Rodrigues旋转公式"><a href="#Rodrigues旋转公式" class="headerlink" title="Rodrigues旋转公式"></a>Rodrigues旋转公式</h1><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>实现某三维物体的坐标绕过原点的向量轴<strong>n</strong>（默认过原点），旋转α角度（右手定则的四指方向）的旋转矩阵为R(<strong>n</strong>,α)，其表达形式为：<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-06-17-50-47.png" alt="Rodrigues旋转公式"></p><p>该旋转矩阵左乘三维物体上的某个点（列向量、列矩阵）即可得到旋转变换后的点。</p><h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><blockquote><p>说明：字母上带有<code>→</code>表示向量，不带箭头表示该向量对应的列矩阵；字母上的<code>^</code>表示该向量的单位向量。</p></blockquote><h4 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h4><p>将<strong>S</strong>向量分解为旋转轴<strong>n</strong>方向和垂直于旋转轴方向的两个向量，其中<code>I</code>表示旋转轴的单位列矩阵<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-55-48.png"></p><h4 id="Step2"><a href="#Step2" class="headerlink" title="Step2"></a>Step2</h4><p>求出与旋转轴<strong>n</strong>和向量<strong>S</strong>所在平面垂直的向量<strong>C</strong><br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-56-11.png"></p><h4 id="Step3"><a href="#Step3" class="headerlink" title="Step3"></a>Step3</h4><p>将<strong>S</strong>在垂直于旋转轴的分量向<strong>C</strong>旋转α度<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-57-58.png"></p><h4 id="Step4"><a href="#Step4" class="headerlink" title="Step4"></a>Step4</h4><p>上一步得到的向量与<strong>S</strong>在旋转轴的分量相加，得到旋转后的向量，由于两个向量的叉乘可以写成一个矩阵乘以列向量的形式（证明略）<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-53-09.png"></p><p>整理与提取，即可得到旋转矩阵R（A为单位矩阵）：<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-07-09-58-44.png"></p><hr><h1 id="透视投影变换坐标变化证明"><a href="#透视投影变换坐标变化证明" class="headerlink" title="透视投影变换坐标变化证明"></a>透视投影变换坐标变化证明</h1><h2 id="概要-1"><a href="#概要-1" class="headerlink" title="概要"></a>概要</h2><p>透视投影是利用相似三角形原理将远处平面坐标映射到相机可见的窗口处：<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-12-39.png"></p><p>但该过程可以等价为：可以看作先将远处的平面压缩为等同于相机可见的窗口大小的平面，得到一个长方体，然后再进行正交投影得到以原点为中心的边长为2的立方体<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-14-43.png" alt="远处平面压缩"><br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-16-01.png" alt="正交投影变换"></p><p>这个压缩过程规定：近处的平面的大小和位置永远不变；远处平面的大小会被压缩，但远近（z值不变）；远处平面的中心点在压缩后也不变。那么对于近处和远处平面中间的点，其坐标是向远处平面靠近的，下面给出证明。</p><h2 id="证明过程"><a href="#证明过程" class="headerlink" title="证明过程"></a>证明过程</h2><h4 id="Step1-透视投影变换矩阵形式"><a href="#Step1-透视投影变换矩阵形式" class="headerlink" title="Step1 透视投影变换矩阵形式"></a>Step1 透视投影变换矩阵形式</h4><p>该矩阵的推导过程见<a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_04.pdf">课程PPT</a>，下面直接给出其形式：</p><p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-42-08.png"></p><h4 id="Step2-1"><a href="#Step2-1" class="headerlink" title="Step2"></a>Step2</h4><p>初始点经过变换后得到新坐标，其中z方向的新坐标为<code>f(z0)/z0</code></p><p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-43-57.png"></p><h4 id="Step3-1"><a href="#Step3-1" class="headerlink" title="Step3"></a>Step3</h4><p>判断新坐标与初始坐标的z方向的大小，记为函数<code>g(z0)</code></p><p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-08-10-45-40.png"></p><p>最终得到g(z0)始终&lt;0，即新坐标小于初始坐标，由于视角方向是-z方向，可以得到中间点是向远处平面靠近的。</p><h1 id="蒙特卡洛路径追踪算法"><a href="#蒙特卡洛路径追踪算法" class="headerlink" title="蒙特卡洛路径追踪算法"></a>蒙特卡洛路径追踪算法</h1><p><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-30-18-47-31.png" alt="示意图"></p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 着色算法</span><br><span class="hljs-built_in">shade</span>(p, wo)<br><span class="hljs-comment">// Contribution from the light source.</span><br>L_dir = <span class="hljs-number">0.0</span><br>Uniformly sample the light at x’ (pdf_light = <span class="hljs-number">1</span> / A)<br>Shoot a ray from p to x’<br>If the ray is <span class="hljs-keyword">not</span> blocked in the middle<br>L_dir = L_i * f_r * cos θ * cos θ’ / |x’ - p|^<span class="hljs-number">2</span> / pdf_light<br><br><span class="hljs-comment">// Contribution from other reflectors.</span><br>L_indir = <span class="hljs-number">0.0</span><br>Test Russian Roulette with probability P_RR<br>Uniformly sample the hemisphere toward <span class="hljs-built_in">wi</span> (pdf_hemi = <span class="hljs-number">1</span> / <span class="hljs-number">2</span>pi)<br>Trace a ray <span class="hljs-built_in">r</span>(p, wi)<br>If ray r hit a non-emitting object at q<br>L_indir = <span class="hljs-built_in">shade</span>(q, -wi) * f_r * cos θ / pdf_hemi / P_RR<br>Return L_dir + L_indir<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>CG</category>
+      
+      <category>GAMES101</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>旋转矩阵</tag>
+      
+      <tag>视图变换</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LearnOpenGL-环境配置</title>
     <link href="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
     <url>/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
@@ -181,9 +210,9 @@
     
     <categories>
       
-      <category>Configuration</category>
-      
       <category>CG</category>
+      
+      <category>Configuration</category>
       
       <category>OpenGL</category>
       
