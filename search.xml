@@ -37,52 +37,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LearnOpenGL-环境配置</title>
-    <url>/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="Step1：获取GLFW与GLAD依赖库"><a href="#Step1：获取GLFW与GLAD依赖库" class="headerlink" title="Step1：获取GLFW与GLAD依赖库"></a>Step1：获取GLFW与GLAD依赖库</h1><p>GLFW是一个专门针对OpenGL的C语言库，它提供了一些渲染物体所需的最低限度的接口。它允许用户创建OpenGL上下文，定义窗口参数以及处理用户输入。该步骤保证它恰当地创建OpenGL上下文并显示窗口。</p>
-<p>GLAD是用来管理OpenGL的函数指针的，所以在调用任何OpenGL的函数之前我们需要初始化GLAD。</p>
-<blockquote>
-<p>获取教程参考链接：</p>
-<ul>
-<li><a href="https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/">Learn OpenGL——创建窗口</a></li>
-<li><a href="https://blog.csdn.net/u012278016/article/details/105582080">openGL学习笔记七： glad库及使用</a></li>
-</ul>
-</blockquote>
-<p>按照上面的参考链接得到的文件，整理为如下结构：</p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-32-17.png" alt="目录结构"></p>
-<h1 id="Step2：创建项目并编写代码"><a href="#Step2：创建项目并编写代码" class="headerlink" title="Step2：创建项目并编写代码"></a>Step2：创建项目并编写代码</h1><p>按照以下步骤依次创建项目：</p>
-<ul>
-<li>创建空项目</li>
-</ul>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-23-54.png" alt="创建空项目"></p>
-<ul>
-<li>将<code>src/glad.c</code>加入源文件</li>
-</ul>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-30-28.png" alt="右键选择"></p>
-<ul>
-<li><p>在源文件中创建<code>main.cpp</code><br><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-35-50.png" alt="创建main.cpp"></p>
-</li>
-<li><p>编写代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;glad/glad.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;GLFW/glfw3.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-comment">/*对窗口注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用。</span><br><span class="hljs-comment">这个帧缓冲大小函数需要一个GLFWwindow作为它的第一个参数，以及两个整数表示窗口的新维度。</span><br><span class="hljs-comment">每当窗口改变大小，GLFW会调用这个函数并填充相应的参数供你处理。*/</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">framebuffer_size_callback</span><span class="hljs-params">(GLFWwindow* window, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">glViewport</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, width, height);<br>&#125;<br><br><span class="hljs-comment">/*检查用户是否按下了返回键(Esc)。如果没有按下，glfwGetKey将会返回GLFW_RELEASE。如果用户的确按下了返回键，我们将通过</span><br><span class="hljs-comment">glfwSetwindowShouldClose使用把WindowShouldClose属性设置为 true的方法关闭GLFW。</span><br><span class="hljs-comment">下一次while循环的条件检测将会失败，程序将会关闭。</span><br><span class="hljs-comment">接下来在渲染循环的每一个迭代中调用processInput</span><br><span class="hljs-comment">*/</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">processInput</span><span class="hljs-params">(GLFWwindow* window)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//glfwGetKey函数，它需要一个窗口以及一个按键作为输入，返回这个按键是否正在被按下</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">glfwGetKey</span>(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)<br>        <span class="hljs-built_in">glfwSetWindowShouldClose</span>(window, <span class="hljs-literal">true</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">glfwInit</span>();<br>    <span class="hljs-comment">// 将主版本号(Major)和次版本号(Minor)都设为3</span><br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MAJOR, <span class="hljs-number">3</span>);<br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MINOR, <span class="hljs-number">3</span>);<br>    <span class="hljs-comment">// 告诉GLFW我们使用的是核心模式(Core-profile)</span><br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);<br>    <span class="hljs-comment">//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // Mac OS X系统，你还需要加这行代码</span><br><br>    <span class="hljs-comment">// 创建窗口对象</span><br>    GLFWwindow* window = <span class="hljs-built_in">glfwCreateWindow</span>(<span class="hljs-number">800</span>, <span class="hljs-number">600</span>, <span class="hljs-string">&quot;LearnOpenGL&quot;</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);<br>    <span class="hljs-keyword">if</span> (window == <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Failed to create GLFW window&quot;</span> &lt;&lt; std::endl;<br>        <span class="hljs-built_in">glfwTerminate</span>();<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br>    <span class="hljs-comment">//通知GLFW将我们窗口的上下文设置为当前线程的主上下文</span><br>    <span class="hljs-built_in">glfwMakeContextCurrent</span>(window);<br><br>    <span class="hljs-comment">//给GLAD传入了用来加载系统相关的OpenGL函数指针地址的函数</span><br>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">gladLoadGLLoader</span>((GLADloadproc)glfwGetProcAddress))<br>    &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Failed to initialize GLAD&quot;</span> &lt;&lt; std::endl;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">//调用glViewport函数来设置窗口的维度(Dimension)</span><br>    <span class="hljs-comment">//glViewport函数前两个参数控制窗口左下角的位置。第三个和第四个参数控制渲染窗口的宽度和高度（像素）。</span><br>    <span class="hljs-comment">// 处理过的OpenGL坐标范围只为-1到1，因此我们事实上将(-1到1)范围内的坐标映射到(0, 800)和(0, 600)。</span><br>    <span class="hljs-built_in">glViewport</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">800</span>, <span class="hljs-number">600</span>);<br><br>    <span class="hljs-comment">//注册这个函数，告诉GLFW我们希望每当窗口调整大小的时候调用这个函数</span><br>    <span class="hljs-comment">//还可以将我们的函数注册到其它很多的回调函数中</span><br>    <span class="hljs-built_in">glfwSetFramebufferSizeCallback</span>(window, framebuffer_size_callback);<br><br><br>    <span class="hljs-comment">//渲染循环(Render Loop)，它能在我们让GLFW退出前一直保持运行</span><br>    <span class="hljs-comment">// glfwWindowShouldClose函数在我们每次循环的开始前检查一次GLFW是否被要求退出，如果是的话该函数返回</span><br>    <span class="hljs-comment">// true然后渲染循环便结束了，之后为我们就可以关闭应用程序了。</span><br>    <span class="hljs-keyword">while</span> (!<span class="hljs-built_in">glfwWindowShouldClose</span>(window))<br>    &#123;<br>        <span class="hljs-built_in">processInput</span>(window);<br><br>        <span class="hljs-comment">//各种渲染指令</span><br>        <span class="hljs-comment">//------------</span><br>        <span class="hljs-comment">//glClearColor来设置清空屏幕所用的颜色。当调用glClear函数，清除颜色缓冲之后，整个颜色缓冲都会被</span><br>        <span class="hljs-comment">//填充为glClearColor里所设置的颜色。</span><br>        <span class="hljs-built_in">glClearColor</span>(<span class="hljs-number">0.2f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">1.0f</span>);<br>        <span class="hljs-built_in">glClear</span>(GL_COLOR_BUFFER_BIT);<br><br>        <br>        <span class="hljs-comment">//检查并调用事件，交换缓冲</span><br>        <span class="hljs-comment">//------------------------</span><br>        <span class="hljs-comment">//glfwSwapBuffers函数会交换颜色缓冲（它是一个储存着GLFW窗口每一个像素颜色值的大缓冲），它在这一</span><br>        <span class="hljs-comment">//迭代中被用来绘制，并且将会作为输出显示在屏幕上。</span><br>        <span class="hljs-built_in">glfwSwapBuffers</span>(window);<br><br>        <span class="hljs-comment">//glfwPollEvents函数检查有没有触发什么事件（比如键盘输入、鼠标移动等）、更新窗口状态，并调用对应的</span><br>        <span class="hljs-comment">// 回调函数（可以通过回调方法手动设置）</span><br>        <span class="hljs-built_in">glfwPollEvents</span>();<br>    &#125;<br><br>    <span class="hljs-comment">//当渲染循环结束后我们需要正确释放 / 删除之前的分配的所有资源</span><br>    <span class="hljs-built_in">glfwTerminate</span>();<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="Step3：配置项目属性"><a href="#Step3：配置项目属性" class="headerlink" title="Step3：配置项目属性"></a>Step3：配置项目属性</h1><p>到了这一步，还不能正常运行，需要对项目的属性进行配置：</p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-40-16.png" alt="打开项目属性"></p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-42-19.png" alt="将include文件夹加入包含目录"></p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-02-53.png" alt="将lib文件夹加入库目录"></p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-05-50.png" alt="添加附加依赖项"></p>
-<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>配置完成之后，可以看到正常的结果为一个深绿色窗口：</p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-08-01.png" alt="运行结果"></p>
-]]></content>
-      <categories>
-        <category>CG</category>
-        <category>Configuration</category>
-        <category>OpenGL</category>
-      </categories>
-      <tags>
-        <tag>OpenGL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo + GitHub 搭建我的个人博客记录</title>
     <url>/2022/05/03/Hexo-GitHub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="💙-搭建教程"><a href="#💙-搭建教程" class="headerlink" title="💙 搭建教程"></a>💙 搭建教程</h2><p>参考了网上一些教程和官方文档：</p>
@@ -182,6 +136,52 @@
       </categories>
       <tags>
         <tag>GitHub Pages</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LearnOpenGL-环境配置</title>
+    <url>/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="Step1：获取GLFW与GLAD依赖库"><a href="#Step1：获取GLFW与GLAD依赖库" class="headerlink" title="Step1：获取GLFW与GLAD依赖库"></a>Step1：获取GLFW与GLAD依赖库</h1><p>GLFW是一个专门针对OpenGL的C语言库，它提供了一些渲染物体所需的最低限度的接口。它允许用户创建OpenGL上下文，定义窗口参数以及处理用户输入。该步骤保证它恰当地创建OpenGL上下文并显示窗口。</p>
+<p>GLAD是用来管理OpenGL的函数指针的，所以在调用任何OpenGL的函数之前我们需要初始化GLAD。</p>
+<blockquote>
+<p>获取教程参考链接：</p>
+<ul>
+<li><a href="https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/">Learn OpenGL——创建窗口</a></li>
+<li><a href="https://blog.csdn.net/u012278016/article/details/105582080">openGL学习笔记七： glad库及使用</a></li>
+</ul>
+</blockquote>
+<p>按照上面的参考链接得到的文件，整理为如下结构：</p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-32-17.png" alt="目录结构"></p>
+<h1 id="Step2：创建项目并编写代码"><a href="#Step2：创建项目并编写代码" class="headerlink" title="Step2：创建项目并编写代码"></a>Step2：创建项目并编写代码</h1><p>按照以下步骤依次创建项目：</p>
+<ul>
+<li>创建空项目</li>
+</ul>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-23-54.png" alt="创建空项目"></p>
+<ul>
+<li>将<code>src/glad.c</code>加入源文件</li>
+</ul>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-30-28.png" alt="右键选择"></p>
+<ul>
+<li><p>在源文件中创建<code>main.cpp</code><br><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-35-50.png" alt="创建main.cpp"></p>
+</li>
+<li><p>编写代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;glad/glad.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;GLFW/glfw3.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-comment">/*对窗口注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用。</span><br><span class="hljs-comment">这个帧缓冲大小函数需要一个GLFWwindow作为它的第一个参数，以及两个整数表示窗口的新维度。</span><br><span class="hljs-comment">每当窗口改变大小，GLFW会调用这个函数并填充相应的参数供你处理。*/</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">framebuffer_size_callback</span><span class="hljs-params">(GLFWwindow* window, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">glViewport</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, width, height);<br>&#125;<br><br><span class="hljs-comment">/*检查用户是否按下了返回键(Esc)。如果没有按下，glfwGetKey将会返回GLFW_RELEASE。如果用户的确按下了返回键，我们将通过</span><br><span class="hljs-comment">glfwSetwindowShouldClose使用把WindowShouldClose属性设置为 true的方法关闭GLFW。</span><br><span class="hljs-comment">下一次while循环的条件检测将会失败，程序将会关闭。</span><br><span class="hljs-comment">接下来在渲染循环的每一个迭代中调用processInput</span><br><span class="hljs-comment">*/</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">processInput</span><span class="hljs-params">(GLFWwindow* window)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//glfwGetKey函数，它需要一个窗口以及一个按键作为输入，返回这个按键是否正在被按下</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">glfwGetKey</span>(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)<br>        <span class="hljs-built_in">glfwSetWindowShouldClose</span>(window, <span class="hljs-literal">true</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">glfwInit</span>();<br>    <span class="hljs-comment">// 将主版本号(Major)和次版本号(Minor)都设为3</span><br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MAJOR, <span class="hljs-number">3</span>);<br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MINOR, <span class="hljs-number">3</span>);<br>    <span class="hljs-comment">// 告诉GLFW我们使用的是核心模式(Core-profile)</span><br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);<br>    <span class="hljs-comment">//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // Mac OS X系统，你还需要加这行代码</span><br><br>    <span class="hljs-comment">// 创建窗口对象</span><br>    GLFWwindow* window = <span class="hljs-built_in">glfwCreateWindow</span>(<span class="hljs-number">800</span>, <span class="hljs-number">600</span>, <span class="hljs-string">&quot;LearnOpenGL&quot;</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);<br>    <span class="hljs-keyword">if</span> (window == <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Failed to create GLFW window&quot;</span> &lt;&lt; std::endl;<br>        <span class="hljs-built_in">glfwTerminate</span>();<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br>    <span class="hljs-comment">//通知GLFW将我们窗口的上下文设置为当前线程的主上下文</span><br>    <span class="hljs-built_in">glfwMakeContextCurrent</span>(window);<br><br>    <span class="hljs-comment">//给GLAD传入了用来加载系统相关的OpenGL函数指针地址的函数</span><br>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">gladLoadGLLoader</span>((GLADloadproc)glfwGetProcAddress))<br>    &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Failed to initialize GLAD&quot;</span> &lt;&lt; std::endl;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">//调用glViewport函数来设置窗口的维度(Dimension)</span><br>    <span class="hljs-comment">//glViewport函数前两个参数控制窗口左下角的位置。第三个和第四个参数控制渲染窗口的宽度和高度（像素）。</span><br>    <span class="hljs-comment">// 处理过的OpenGL坐标范围只为-1到1，因此我们事实上将(-1到1)范围内的坐标映射到(0, 800)和(0, 600)。</span><br>    <span class="hljs-built_in">glViewport</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">800</span>, <span class="hljs-number">600</span>);<br><br>    <span class="hljs-comment">//注册这个函数，告诉GLFW我们希望每当窗口调整大小的时候调用这个函数</span><br>    <span class="hljs-comment">//还可以将我们的函数注册到其它很多的回调函数中</span><br>    <span class="hljs-built_in">glfwSetFramebufferSizeCallback</span>(window, framebuffer_size_callback);<br><br><br>    <span class="hljs-comment">//渲染循环(Render Loop)，它能在我们让GLFW退出前一直保持运行</span><br>    <span class="hljs-comment">// glfwWindowShouldClose函数在我们每次循环的开始前检查一次GLFW是否被要求退出，如果是的话该函数返回</span><br>    <span class="hljs-comment">// true然后渲染循环便结束了，之后为我们就可以关闭应用程序了。</span><br>    <span class="hljs-keyword">while</span> (!<span class="hljs-built_in">glfwWindowShouldClose</span>(window))<br>    &#123;<br>        <span class="hljs-built_in">processInput</span>(window);<br><br>        <span class="hljs-comment">//各种渲染指令</span><br>        <span class="hljs-comment">//------------</span><br>        <span class="hljs-comment">//glClearColor来设置清空屏幕所用的颜色。当调用glClear函数，清除颜色缓冲之后，整个颜色缓冲都会被</span><br>        <span class="hljs-comment">//填充为glClearColor里所设置的颜色。</span><br>        <span class="hljs-built_in">glClearColor</span>(<span class="hljs-number">0.2f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">1.0f</span>);<br>        <span class="hljs-built_in">glClear</span>(GL_COLOR_BUFFER_BIT);<br><br>        <br>        <span class="hljs-comment">//检查并调用事件，交换缓冲</span><br>        <span class="hljs-comment">//------------------------</span><br>        <span class="hljs-comment">//glfwSwapBuffers函数会交换颜色缓冲（它是一个储存着GLFW窗口每一个像素颜色值的大缓冲），它在这一</span><br>        <span class="hljs-comment">//迭代中被用来绘制，并且将会作为输出显示在屏幕上。</span><br>        <span class="hljs-built_in">glfwSwapBuffers</span>(window);<br><br>        <span class="hljs-comment">//glfwPollEvents函数检查有没有触发什么事件（比如键盘输入、鼠标移动等）、更新窗口状态，并调用对应的</span><br>        <span class="hljs-comment">// 回调函数（可以通过回调方法手动设置）</span><br>        <span class="hljs-built_in">glfwPollEvents</span>();<br>    &#125;<br><br>    <span class="hljs-comment">//当渲染循环结束后我们需要正确释放 / 删除之前的分配的所有资源</span><br>    <span class="hljs-built_in">glfwTerminate</span>();<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="Step3：配置项目属性"><a href="#Step3：配置项目属性" class="headerlink" title="Step3：配置项目属性"></a>Step3：配置项目属性</h1><p>到了这一步，还不能正常运行，需要对项目的属性进行配置：</p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-40-16.png" alt="打开项目属性"></p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-42-19.png" alt="将include文件夹加入包含目录"></p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-02-53.png" alt="将lib文件夹加入库目录"></p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-05-50.png" alt="添加附加依赖项"></p>
+<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>配置完成之后，可以看到正常的结果为一个深绿色窗口：</p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-08-01.png" alt="运行结果"></p>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>Configuration</category>
+        <category>OpenGL</category>
+      </categories>
+      <tags>
+        <tag>OpenGL</tag>
       </tags>
   </entry>
   <entry>
@@ -401,10 +401,10 @@
   </entry>
   <entry>
     <title>Lecture 07-09 [着色]</title>
-    <url>/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/</url>
+    <url>/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/</url>
     <content><![CDATA[<h1 id="深度缓冲与着色"><a href="#深度缓冲与着色" class="headerlink" title="深度缓冲与着色"></a><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_07.pdf">深度缓冲与着色</a></h1><ul>
 <li><p>思路与算法：在绘制最终的图像同时，绘制深度图，记录每个像素距离相机最近的深度值</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/885605b7-fa53-4251-801b-abc5e1dd54a3-11709514.jpg"><br><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/9ba89a84-9af3-45cf-86c0-1d4b80765924-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/885605b7-fa53-4251-801b-abc5e1dd54a3-11709514.jpg"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/9ba89a84-9af3-45cf-86c0-1d4b80765924-11709514.jpg"></p>
 </li>
 </ul>
 <h1 id="着色-Shading"><a href="#着色-Shading" class="headerlink" title="着色 Shading"></a>着色 Shading</h1><ul>
@@ -412,7 +412,7 @@
 </ul>
 <h3 id="漫反射"><a href="#漫反射" class="headerlink" title="漫反射"></a>漫反射</h3><ul>
 <li><p>漫反射与人眼位置无关，从各个方向看上去亮度均相同，公式中也可以反映出来。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529163944.png"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529163944.png"></p>
 </li>
 <li><p>其中，Kd 表示漫反射系数，0 为完全不反射，1 为镜面反射。可以使用一个颜色向量值来表示该点反射出的光线的颜色</p>
 </li>
@@ -420,17 +420,17 @@
 <h3 id="高光"><a href="#高光" class="headerlink" title="高光"></a><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_08.pdf">高光</a></h3><ul>
 <li><p>当眼睛的方向和镜面反射光线的方向较为接近时可以看到，即下图的 R 与 v 接近</p>
 </li>
-<li><p>Blinn-Phong 模型：将“R 与 v 接近”转换为“半程向量 h 与法向量 n 接近”<br><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171316.png"><br><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171404.png"></p>
+<li><p>Blinn-Phong 模型：将“R 与 v 接近”转换为“半程向量 h 与法向量 n 接近”<br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171316.png"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171404.png"></p>
 </li>
 <li><p>上图的指数 p 表示高光系数，原因：余弦函数对角度的容忍度较高，而期望的效果是高光集中在很小的范围内，因此对其进行指数操作。p 一般取 100~200。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171431.png"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171431.png"></p>
 </li>
 </ul>
 <p>###环境光</p>
 <ul>
 <li>来自四面八方的反射光线，极为复杂，因此假设（简化后）：环境光来自所有方向，且强度相同，颜色相同。与实际光线方向和眼睛的方向无关，设为一个常数。实际上要计算真实环境光需要用到全局光照的部分。</li>
 </ul>
-<h3 id="Blinn-Phong-反射模型"><a href="#Blinn-Phong-反射模型" class="headerlink" title="Blinn-Phong 反射模型"></a>Blinn-Phong 反射模型</h3><p>  <img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093749.png"></p>
+<h3 id="Blinn-Phong-反射模型"><a href="#Blinn-Phong-反射模型" class="headerlink" title="Blinn-Phong 反射模型"></a>Blinn-Phong 反射模型</h3><p>  <img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093749.png"></p>
 <h3 id="着色频率"><a href="#着色频率" class="headerlink" title="着色频率"></a>着色频率</h3><ul>
 <li><p>通俗理解：将着色应用到哪些点上</p>
 </li>
@@ -438,21 +438,21 @@
 <ul>
 <li><p>Flat shading（对每个三角形求一个法向量，对应只有一个颜色，对光滑表面效果较差）</p>
 </li>
-<li><p>Gouraud shading（对每个顶点求法向量，三角形内部利用插值进行着色）。顶点的法向量，可以对其相邻接的三角形的各个法向量求加权平均，权重可以设置为该三角形的面积。<br><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093930.png"></p>
+<li><p>Gouraud shading（对每个顶点求法向量，三角形内部利用插值进行着色）。顶点的法向量，可以对其相邻接的三角形的各个法向量求加权平均，权重可以设置为该三角形的面积。<br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093930.png"></p>
 </li>
 <li><p>Phong shading（对每个三角形，得到三个顶点的法向量，从而插值出三角形内部每个像素的法向量，然后对每个像素进行一次着色）</p>
 </li>
 </ul>
 </li>
 <li><p>当顶点足够多、模型足够复杂时，就可以使用比较简单的着色频率，效果可以接收。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093951.png"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093951.png"></p>
 </li>
 </ul>
 <h1 id="图形管线（实时渲染管线）"><a href="#图形管线（实时渲染管线）" class="headerlink" title="图形管线（实时渲染管线）"></a>图形管线（实时渲染管线）</h1><ul>
 <li><p>通俗理解：从场景到一张图片所经历的整个过程的不同操作</p>
 </li>
 <li><p>OpenGL 中的 Fragment（片段）可以理解为像素。该过程已经在硬件中写好，即 GPU 的渲染过程。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/d6369dca-3917-4cbf-958d-f1ca1a10e58d-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/d6369dca-3917-4cbf-958d-f1ca1a10e58d-11709514.jpg"></p>
 <ul>
 <li><p>顶点处理的作用是指对所有的顶点数据进行 Model，View，和 Projection 的变换，最终得到投影到二维平面的坐标信息(同时为了 Zbuffer 保留深度 z 值)。当然如果超出观察空间的会被剪裁掉。</p>
 </li>
@@ -461,7 +461,7 @@
 <li><p>在进行完三角形的光栅化之后，知道了哪些在三角形内的点可以被显示，那么如何确定每个像素点或者说片元(Fragement)的颜色呢？[注：片元可能比像素更小，如 MSAA 抗拒齿操作的进一步细分得到的采样点]。那自然就是着色了，也就是片元处理阶段应该做的。</p>
 </li>
 <li><p>着色部分在顶点和像素处理过程都可能发生，关键看着色频率的方法。如果是 Gouraud shading，仅在顶点进行着色；如果是 Phong shading，则会在像素生成之后进行着色。因此，着色的关键在于——顶点或者像素（片段）如何着色，该部分的程序即为着色器（定义了一个顶点或者像素该执行什么操作，且只执行一次）。在现代的 GPU 中，该套渲染管线允许某些部分是可编程的。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/c33119a5-bd24-4b62-992d-aab9af40546a-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/c33119a5-bd24-4b62-992d-aab9af40546a-11709514.jpg"></p>
 </li>
 <li><p>Framebuffer 的操作，就是将所有的像素颜色信息整合在一起，输送给显示设备加以显示。</p>
 </li>
@@ -474,19 +474,19 @@
 </ul>
 <h2 id="重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值"><a href="#重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值" class="headerlink" title="重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值"></a>重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值</h2><ul>
 <li><p>重心坐标定义在一个三角形中，如果某个点在三角形内部，这三个值（α、β、γ）均为非负，且和为 1。三个值（α、β、γ）可以用面积求得，也可以利用三个顶点的坐标公式求得。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/13eff49a-6d7e-4282-bce5-b6c645bc45b6-11709514.jpg"><br><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/fd247a7b-20a3-4364-b4f8-a5589ab5efb2-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/13eff49a-6d7e-4282-bce5-b6c645bc45b6-11709514.jpg"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/fd247a7b-20a3-4364-b4f8-a5589ab5efb2-11709514.jpg"></p>
 </li>
 <li><p>插值应该在三维物体投影到二维平面之前做，因为重心坐标不能保证投影后插值得到的属性值不变。</p>
 </li>
 </ul>
 <h2 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h2><ul>
 <li><p>如果屏幕分辨率很大（如 4k），而纹理图片分辨率很小（如 256*256），那么会出现：屏幕与纹理图片上的点并不能一一对应，得到的是非整数的纹理坐标。解决方法：</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/dc915635-f15f-467a-93cf-4c3fdb24cc8e-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/dc915635-f15f-467a-93cf-4c3fdb24cc8e-11709514.jpg"></p>
 <ul>
 <li><p>Nearest：取整，相当于屏幕的多个点（像素）对应了纹理图片的一个像素</p>
 </li>
 <li><p>Bilinear：双线性插值。红点的来源：三维物体中三角面片内部的某一点，经过插值得到一个点，再经过投影变换到屏幕上，再经过映射得到纹理坐标，即该红点。双线性插值经历了两次水平方向的插值，一次竖直方向的插值，最终得到一个平滑的纹理的像素值。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/b6a30e8c-fce6-47b6-bb14-bca0a5dfb44d-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/b6a30e8c-fce6-47b6-bb14-bca0a5dfb44d-11709514.jpg"></p>
 </li>
 <li><p>Bicubic：双三次插值，对周围的 16 个纹理坐标进行插值得到像素值。</p>
 </li>
@@ -497,24 +497,24 @@
 <li><p>超采样：一个屏幕像素点分为多个采样点来对应纹理坐标，最后取平均值（有效果，开销过大）</p>
 </li>
 <li><p>Mipmap 多级渐远纹理（利用范围查询的知识：给一个区域，立刻能够知道该区域内部纹理像素的平均值），只能做近似的正方形的范围查询。在渲染之前，提前计算纹理图的渐远纹理，存储空间仅为原图的 4&#x2F;3。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/9f87a3c3-d840-483d-b3d8-66dd5df0dfc8-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/9f87a3c3-d840-483d-b3d8-66dd5df0dfc8-11709514.jpg"></p>
 <ul>
 <li><p>关键：计算某个屏幕像素应该映射到哪个 level（记为 D）的纹理上。将一个屏幕像素的临近点映射到 level 0 的纹理图上，估计该像素覆盖的一个正方形的边长 L，求以 2 为底的对数即可得到 D。如果 L&#x3D;1，即一个屏幕像素对应 1 个原始纹理像素，利用原始纹理图即可，D&#x3D;0；如果 L&#x3D;4，即一个屏幕像素对应 4*4 个原始纹理像素，那么利用 D&#x3D;2 的纹理图即可得到对应的 1 个纹理像素。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/aacbafb2-25b5-4f68-b510-2ecf4ff175a4-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/aacbafb2-25b5-4f68-b510-2ecf4ff175a4-11709514.jpg"></p>
 </li>
 <li><p>问题 1：如果 L 不是 2 的指数，可以对 D 取整，但很有可能得到的纹理映射结果出现断层。此时利用三线性（Trilinear）插值即可——L&#x3D;3 时，分别计算 D&#x3D;1 和 D&#x3D;2 的双线性插值结果后，再计算两个结果的线性插值。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/d8ab277e-341c-4975-b72b-84428cc81159-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/d8ab277e-341c-4975-b72b-84428cc81159-11709514.jpg"></p>
 </li>
 <li><p>问题 2：过度模糊（Overblur）问题，在远处无法得到清晰的纹理映射。原因在于，屏幕上的一个像素映射到纹理坐标，可能覆盖了多个纹理像素，此时查询多级渐远纹理后只对应了一个平均的纹理像素值，就产生了模糊。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/00e56316-69c7-4f3e-9287-5c161b68d53b-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/00e56316-69c7-4f3e-9287-5c161b68d53b-11709514.jpg"></p>
 <ul>
 <li><p>解决方法</p>
 <ul>
 <li><p>各向异性过滤（Anisotropic Filtering，或 Ripmap），将纹理像素的长和宽分别压缩与同时压缩，耗费了原始纹理像素的 3 倍存储空间，那么对于上图右侧的矩形即可准确得到纹理映射。缺点在于：对于上图左侧的倾斜矩形，无法得到正确的结果。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/10a8e5e2-135b-4982-b8d5-576ae0af7c25-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/10a8e5e2-135b-4982-b8d5-576ae0af7c25-11709514.jpg"></p>
 </li>
 <li><p>EWA 过滤，把一个覆盖到纹理像素的不规则形状拆分为多个圆形，执行多级查询，耗费时间，但效果较好。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/e6846262-5bfc-4528-9477-f50b49decc05-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/e6846262-5bfc-4528-9477-f50b49decc05-11709514.jpg"></p>
 </li>
 </ul>
 </li>
@@ -529,27 +529,27 @@
 <li><p>现代计算机 GPU 中，可以把纹理理解为一块内存，以及可以在这块内存中进行范围查询，即 texture &#x3D; memory + range query (filtering)</p>
 </li>
 <li><p>环境映射（Environment Mapping）。为了实现接受环境光的效果，我们可以用一个贴图来存放环境光信息，即 环境贴图（Environment Map） 或 反射贴图（Reflection Map），在给物体着色的时候不仅采样普通纹理，也采样环境贴图，按一定比例混合这两者的颜色（例如物体材质越光滑，镜面反射效果越强）。即用纹理描述环境光的样子，从而用该纹理去渲染物体。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/df959a07-ad93-4529-b7b0-dfd17ee8b3a4-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/df959a07-ad93-4529-b7b0-dfd17ee8b3a4-11709514.jpg"></p>
 </li>
 <li><p>球面环境贴图（Spherical Environment Map）。把环境光记录到球面上，并展开，但会出现扭曲现象。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/15f78112-fa47-4662-b969-e8d3e80a3108-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/15f78112-fa47-4662-b969-e8d3e80a3108-11709514.jpg"></p>
 </li>
 <li><p>解决球面环境贴图扭曲现象的办法——立方体贴图（Cube Map）。设置一个包围盒，将球面上的点延长交于包围盒，并展开。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/82604133-9408-4d05-a820-4d8d21022015-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/82604133-9408-4d05-a820-4d8d21022015-11709514.jpg"></p>
 </li>
 <li><p>凹凸贴图（Bump Mapping）。通过改变表面各点的相对高度，使本来是平的东西看起来有凹凸的效果，是一种欺骗眼睛的技术（因为物体结构并没有发生改变）。例如这个球看起来凹凸不平，实际它的几何结构就是光滑的球，只是通过凹凸贴图改变了各像素点的法线方向，从而导致光照结果不一，产生出凹凸不平的视觉效果。即不把几何形体变复杂的情况下，可以通过应用复杂的纹理定义相对高度，从而法线会发生变化。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/f89bdc6f-1b36-45ec-b54d-364b79ed708a-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/f89bdc6f-1b36-45ec-b54d-364b79ed708a-11709514.jpg"></p>
 <ul>
 <li><p>首先，凹凸贴图是在不增加三角面片的情况下增加表面细节来实现的。黑色的线是真实的表面，黄色的线是通过凹凸贴图定义的，那么其法向量原本是 p，改变为 n</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/eaa66795-188d-4d03-94c4-89b08c1d3398-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/eaa66795-188d-4d03-94c4-89b08c1d3398-11709514.jpg"></p>
 </li>
 <li><p>下图展示的是二维情况下的法向量改变的过程：先假设某一点 p 的局部法向量 n（p），计算该点处在凹凸贴图上的切线，求其垂直向量。之后推广到三维情况即可，需要注意的是：真实模型中某一点 p 的法向量不一定是朝向 z 的，但假设在该局部是这样，计算好改变后的法向量后需要通过变换才能得到真实的改变了的法向量。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/fe60eddd-d3a7-4d04-a0eb-a5d8be7d6b05-11709514.jpg"><br><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/a8c244a4-2543-4d87-bf82-582f7b1e3bdc-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/fe60eddd-d3a7-4d04-a0eb-a5d8be7d6b05-11709514.jpg"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/a8c244a4-2543-4d87-bf82-582f7b1e3bdc-11709514.jpg"></p>
 </li>
 </ul>
 </li>
 <li><p>位移贴图（Displacement mapping），需要三角形足够细致，否则还会出现走样问题。但在 DirectX 中可以根据需要将三角形进行细分，从而避免该问题。</p>
-<p><img src="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/f189f5db-db71-4bc9-a4bf-2d0e2739a254-11709514.jpg"></p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/f189f5db-db71-4bc9-a4bf-2d0e2739a254-11709514.jpg"></p>
 </li>
 <li><p>除此之外，还有三维纹理、环境光遮蔽、医学体渲染等纹理应用。可以参考：<a href="https://www.cnblogs.com/KillerAery/p/15106770.html#%E7%BA%B9%E7%90%86%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF%EF%BC%88texture-application%EF%BC%89">纹理映射技术</a></p>
 </li>
@@ -559,6 +559,764 @@
 <li><strong>关键——人眼和光源能够同时看到该点，就不在阴影中。</strong></li>
 <li>step1：假设光源前有一个屏幕，从光源看场景，记录每个点到光源屏幕的深度，得到一张深度图</li>
 <li>step2：从人眼（相机）看物体的每个点，再投影到光源处，计算该点到光源的深度，如果等于 step1 中计算的深度，就表示不在阴影中。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES101</category>
+        <category>Theory</category>
+      </categories>
+      <tags>
+        <tag>CG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lecture_10_12_几何</title>
+    <url>/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/</url>
+    <content><![CDATA[<h1 id="几何表示"><a href="#几何表示" class="headerlink" title="几何表示"></a><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_10.pdf">几何表示</a></h1><h3 id="隐式表面（Implicit-Surface）"><a href="#隐式表面（Implicit-Surface）" class="headerlink" title="隐式表面（Implicit Surface）"></a>隐式表面（Implicit Surface）</h3><ul>
+<li><p>特点</p>
+<ul>
+<li>一个函数定义一个隐式几何 f(x,y,z)&#x3D;0。</li>
+<li>容易判断一个点是在几何体内部（f&lt;0）还是外部（f&gt;0）。</li>
+</ul>
+</li>
+<li><p>几种隐式表面</p>
+<ul>
+<li><p>代数曲面：表达式定义</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/1d525a00-51a1-4311-9a0a-c5511ee34b36-11709514.jpg"></p>
+</li>
+<li><p>Constructive Soild Geometry（CSG，隐式表示）</p>
+<ul>
+<li><p>通过几何体布尔运算合成的几何体</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/724203b0-14bb-4d95-8b4c-5fedec0b7c68-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>距离函数（Distance Function，隐式表示）</p>
+<ul>
+<li><p>输入空间中的任意一个点，输出与这个点最近的几何体距离（有向距离，可正可负），得到各个几何体的距离函数后，将距离函数融合，再恢复为原来的物体，即可得到复杂的几何体。</p>
+</li>
+<li><p>Distance Function 的插值会有着几何融合（blend）的效果（与一般的插值效果很不一样）</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/b6007f53-bb73-452b-9d49-bbd91c462908-11709514.jpg"></p>
+</li>
+<li><p>一个例子：A 状态被一个物体遮挡 1&#x2F;3，B 状态被一个物体遮挡 2&#x2F;3，那么想要得到中间状态，即被物体遮挡了 1&#x2F;2，该如何做？求有向距离函数 SDF（Signed Distance Function），即求正方形内任意点到被遮挡的 1&#x2F;3 边界的最短距离，形成距离函数。这里采用最简单的 SDF &#x3D; SDF(A)+SDF(B)来举例，最终得到的 SDF 为零的点的集合即为 blend 之后曲面，对该例子来说，就是两道阴影之间中点的一条线。对于几何体混合效果自然不可能像这里简单的两个距离相加就可以得到了，该效果具体实现是找出任一个点到两个几何体表面距离中的最短距离再减去一个变量作为该点最终的 SDF。<a href="https://www.youtube.com/watch?v=Cp5WWtMoeKg">Coding Adventure:Ray Marching</a></p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/9c9044d0-4aab-4222-ac69-7a66307be559-11709514.jpg"></p>
+</li>
+<li><p>水平集（Level Set Methods）：水平集则是一种用来表示 Distance Function 的存储结构，网格存储近似函数值，坐标通过网格之间的插值可以得到函数输出。从水平集中可以得到函数值为 0 的位置，对应的就是物体表面。</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/571c869d-3c37-4431-aed9-2ef9453d281f-11709514.jpg"></p>
+</li>
+<li><p>水平集也可以定义在三维中，如该纹理图定义的是组织的密度大小，取出该图中所有密度等于某个值的位置，得到某个密度下的物体表面。</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/ee44b40f-ef1a-4846-9831-61dcbaf391ac-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>分型几何(Fractals，隐式表示)</p>
+<ul>
+<li>分型几何是指许许多多自相似的形体最终所组成的几何形状。</li>
+<li>如雪花是一个六边形，放大之后会发现每一个边上又是一个六边形，再放大六边形边上的六边形边上又是六边形，类似于递归。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="显式表面（Explicit-Surface）"><a href="#显式表面（Explicit-Surface）" class="headerlink" title="显式表面（Explicit Surface）"></a>显式表面（Explicit Surface）</h3><ul>
+<li><p>特点</p>
+<ul>
+<li><p>低维参数映射成隐式函数的高维参数。</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/f0e97131-f635-4513-a75b-4c8a15123da1-11709514.jpg"></p>
+</li>
+<li><p>相对容易采样，因为低维参数所需参数数量相对少了,可采样面积覆盖率更大。</p>
+</li>
+<li><p>不容易判断点在几何体内部&#x2F;外部（需要将多维参数解算成低维参数，这一步相当麻烦）。</p>
+</li>
+</ul>
+</li>
+<li><p>几种显式表面</p>
+<ul>
+<li><p>点云：很多点构成的曲面，直接有着所有点的信息。点云通常是经过扫描物体之后的原始输出结果，常常会转化为多边形网格</p>
+</li>
+<li><p>多边形网格(Polygon Mesh)</p>
+<ul>
+<li><p>通过定义各个多边形面的顶点以及顶点之间的连接关系就可以得到许许多多的三角形面或是四边形面，再通过这些面来近似表现出我们想要的模型效果。</p>
+</li>
+<li><p>一个立方体的模型数据</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/c982d66d-9a6e-4811-8a77-002152fafc36-11709514.jpg"></p>
+<ul>
+<li>3-10 行定义了立方体的 8 个顶点信息。</li>
+<li>12-25 行定义了这些顶点的纹理坐标信息(每个面 4 个点，共 6 个面所以最多有 24 种不同的纹理坐标信息，这里有一些纹理对于不同面上的点是公用的)。</li>
+<li>27-34 行定义了 6 个面的法线信息，为什么有 8 个是因为建模软件输出的精度问题不必在意，其中有两个是重复的。</li>
+<li>36-47 行，f 代表一个面，其中 x&#x2F;x&#x2F;x 的第一位表示是哪个顶点，第二位表示该顶点纹理坐标是第几个，第三位表示法线信息是第几个。 3 个 x&#x2F;x&#x2F;x 表示 3 个顶点的信息构成一个三角形面。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>贝塞尔曲线与曲面</p>
+<ul>
+<li><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_11.pdf">课件</a></li>
+<li><a href="https://blog.csdn.net/qq_38065509/article/details/106127805">参考笔记</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="曲面细分-Mesh-subdivision-与曲面简化-Mesh-Smplication"><a href="#曲面细分-Mesh-subdivision-与曲面简化-Mesh-Smplication" class="headerlink" title="曲面细分(Mesh subdivision)与曲面简化(Mesh Smplication)"></a>曲面细分(Mesh subdivision)与曲面简化(Mesh Smplication)</h1><ul>
+<li><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_12.pdf">课件</a></li>
+<li><a href="https://blog.csdn.net/qq_38065509/article/details/106154299">参考笔记</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES101</category>
+        <category>Theory</category>
+      </categories>
+      <tags>
+        <tag>CG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lecture_13_14_光线追踪</title>
+    <url>/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/</url>
+    <content><![CDATA[<h1 id="光栅化与光线追踪"><a href="#光栅化与光线追踪" class="headerlink" title="光栅化与光线追踪"></a>光栅化与光线追踪</h1><ul>
+<li><p>光栅化主要用于实时渲染（速度快），光追主要用于离线渲染（速度慢）。</p>
+</li>
+<li><p>光栅化不能解决的问题</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/05a9ebe9-d09b-4a7b-8f0a-76924abd7de6-11709514.jpg"></p>
+</li>
+</ul>
+<h1 id="光线追踪原理"><a href="#光线追踪原理" class="headerlink" title="光线追踪原理"></a>光线追踪原理</h1><h4 id="基本假设"><a href="#基本假设" class="headerlink" title="基本假设"></a>基本假设</h4><ul>
+<li>光线一定沿着直线传播</li>
+<li>光线之间无法碰撞</li>
+<li>光线路径可逆，即从 A 发出的到 B 的光线，一定也可以从 B 发出到 A（中途可发生反射和折射）</li>
+</ul>
+<h4 id="光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）"><a href="#光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）" class="headerlink" title="光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）"></a>光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）</h4><ul>
+<li><p>Ray Casting。从人眼或摄像机向近投影平面上的每一个像素点发射一条光线，判断与场景物体的最近交点（其实是做了深度测试）</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/6cd29b8d-4eb0-4a8f-b424-751d1127ca85-11709514.jpg"></p>
+</li>
+<li><p>阴影判断。接着连接该交点和光源，只要判断这条连线之间是否有物体存在就可以知道该交点是否在阴影之中（比 shadow mapping 那一套简单了许多）。</p>
+</li>
+<li><p>着色，写入像素值。根据各种着色模型（如 Blinn-Phong)。</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/4aef80f5-3e83-4d63-bd90-4697b7068480-11709514.jpg"></p>
+</li>
+<li><p>注意：</p>
+<ul>
+<li>明暗效果仅仅由第一次相交的物体表面法向方向、材质、视点和光照方向、以及光照强度等因素共同决定。</li>
+<li>光线投射并不考虑 第二层 以及更深层次的光线，因此 不具有阴影、反射 、折射 等效果。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Whitted-Style-光线追踪"><a href="#Whitted-Style-光线追踪" class="headerlink" title="(Whitted-Style) 光线追踪"></a>(Whitted-Style) 光线追踪</h4><ul>
+<li><p>Recursive (Whitted-Style) Ray Tracing。在考虑 Ray Casting 的基础上，该条光线第一个与圆球物体相交，假设该圆球是一个玻璃球，那么便会发生镜面反射和折射。同时反射与折射出去的光线会可能与场景中的物体再次碰撞，发生第二次折射与反射。计算这些光线与物体的最近交点。</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/4016976d-f6b0-4f90-90a1-318bfd876cfd-11709514.jpg"><br><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/4a35ccd5-5c41-4918-b933-6be146bec18e-11709514.jpg"></p>
+</li>
+<li><p>着色。将这些所有交点与光源连接，称这些线为 shadow rays（因为可以用来检测阴影），计算这些所有点的局部光。将其按照光线能量权重累加(该做法与递归过程等价，读者可以看看伪代码思考一下)，最终得到近投影平面上该像素点的颜色。</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/f0a8be5f-bfea-4601-888d-56d20708dae3-11709514.jpg"></p>
+</li>
+<li><p>总结：递归的光线追踪算法</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/8e9ce952-9c18-4177-a269-5f8b098a1a12-11709514.jpg"></p>
+</li>
+</ul>
+<h4 id="Whitted-Style-光线追踪注意点"><a href="#Whitted-Style-光线追踪注意点" class="headerlink" title="(Whitted-Style) 光线追踪注意点"></a>(Whitted-Style) 光线追踪注意点</h4><ul>
+<li>整体过程是一个递归的过程，因此需要一定的递归终止条件，可以是：递归深度-在光线弹射一定次数后停止；光线的贡献-在光线的贡献衰减到足够小时停止。</li>
+<li>光线在每次反射和折射之后都有能量损耗的，由系数决定，因此越往后的折射和反射光贡献的能量越小，这也是为什么在上文中提到根据光线能量权重求和。e.g. 反射系数为 0.7，那么第一次反射折损 30%，第二次反射折损 1-（70%x70%），依次类推。</li>
+<li>如果反射或折射光线没有碰撞到物体，一般直接返回一个背景色。</li>
+</ul>
+<h1 id="细节实现（参考文章）"><a href="#细节实现（参考文章）" class="headerlink" title="细节实现（参考文章）"></a>细节实现（<a href="https://blog.csdn.net/qq_38065509/article/details/106299336">参考文章</a>）</h1><ul>
+<li><p>1.光线求交</p>
+<ul>
+<li>与隐式表面求交</li>
+<li>与显式表面求交（对于某个封闭物体，如果光线与物体有奇数个交点，那么光线一定在物体内；偶数在外）</li>
+<li>光线追踪加速（<a href="https://blog.csdn.net/qq_38065509/article/details/106396844">参考文章</a>）</li>
+</ul>
+</li>
+<li><p>2.光线反射</p>
+</li>
+<li><p>3.光线折射</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES101</category>
+        <category>Theory</category>
+      </categories>
+      <tags>
+        <tag>CG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lecture_14_16_基于物理的渲染</title>
+    <url>/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/</url>
+    <content><![CDATA[<h1 id="基础知识（参考文章）"><a href="#基础知识（参考文章）" class="headerlink" title="基础知识（参考文章）"></a><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_14.pdf">基础知识</a>（<a href="https://blog.csdn.net/qq_38065509/article/details/106496354">参考文章</a>）</h1><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li><p>辐射强度(Radiant intensity)</p>
+<ul>
+<li><p>从光源发出的每单位立体角上的 power（这里的 power 指单位时间的能量，相当于辐射功率，可以理解为亮度）。其大小不会随着 r 的增加而衰减，因为 r 变大的同时，立体角不变，辐射面积会以 r 平方的比例增加。</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/bee9f66a-a901-4a99-b9ce-1638c030985b-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>irradiance</p>
+<ul>
+<li><p>指每单位照射面积所接收到的(入射的）power</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/7be45c81-184e-45d9-b30e-f232bfe564e4-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>radiance</p>
+<ul>
+<li><p>发射的、反射的、折射的、接收的光线在每单位立体角、每单位垂直面积上的 power，同时指定了光的方向与照射到的表面所接受到的亮度。</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/14e4b53a-59e9-47f6-9787-d005ad130dc9-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>辨析</p>
+<ul>
+<li><p>由公式可以看出，radiance 可认为是：每单位立体角上的 irradiance；每单位投影面积上的 intensity。</p>
+</li>
+<li><p>radiance 可以分为入射的和出射的</p>
+<ul>
+<li><p>入射 radiance：每单位立体角上的接收的 irradiance</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/14c77d6a-bc94-4767-899b-a4f51f603727-11709514.jpg"></p>
+</li>
+<li><p>出射 radiance：每单位投影面积发射的 intensity</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/f4fb15f9-3c35-4094-89be-51867b54cff4-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>讨论比较重要的 radiance 和 irradiance 的关联</p>
+<ul>
+<li><p>整理</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/9911c752-ea4f-449e-bfab-78178e42d848-11709514.jpg"></p>
+</li>
+<li><p>E ( p ) 就是点 p 的 irradiance，其物理含义是点 p 上每单位照射面积的 power，而 L (p,ω)指入射光每立体角，每垂直面积的 power。因此积分式子右边的 cosθ 解释了面积上定义的差异，而对 dω 积分，则是相当于对所有不同角度的入射光线做一个求和（这里的 H 平方是指的点 p 对应的整个半球面方向），那么该积分式子的物理含义便是：一个点(微分面积元)所接收到的亮度（irradiance)，由所有不同方向的入射光线亮度(radiance)共同贡献得到。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="BRDF"><a href="#BRDF" class="headerlink" title="BRDF"></a>BRDF</h3><ul>
+<li><p>参考文章：<a href="https://zhuanlan.zhihu.com/p/21376124">基于物理着色：BRDF</a></p>
+</li>
+<li><p>光线反射的理解角度：一个点(微分面积元)在接受到一定方向上的亮度(dE(ωi ))之后，再向不同方向把能量辐射出去(dLr(ωr))。</p>
+</li>
+<li><p>Bidirectional Reflectance Distribution Function 双向反射分布函数，定义了从单位面积上，吸收了某个方向的入射光线后，向某个方向射出的光线的比例。</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/5c3b82bd-4e2f-4b79-9a9a-06fc28c486eb-11709514.jpg"></p>
+</li>
+<li><p>不同物体表面材质自然会把一定方向上的入射亮度反射到不同的方向的光线上，如理想光滑表面会把入射光线完全反射到镜面反射方向，其它方向则完全没有。如理想粗糙表面会把入射光线均匀的反射到所有方向。因此所谓 BRDF 就是描述这样一个从不同方向入射之后，反射光线分布情况的函数。</p>
+</li>
+<li><p>性质</p>
+<ul>
+<li><p>非负性。线性：表面上某一点的全部反射辐射度可以简单地表示为各 BRDF 反射辐射度之和。</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/1ae5d3d2-febe-4957-99c0-879e0f810411-11709514.jpg"></p>
+</li>
+<li><p>可逆性：交换入射光和反射光的角色，并不会改变 BRDF 的值。能量守恒：入射光的能量与出射光的总能量应该相等。</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/10c6a83f-98c9-4905-9b4d-2c8de8d8f077-11709514.jpg"></p>
+</li>
+<li><p>各向同性与各向异性。如果是前者，其结果只与相对的方位角有关</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/4563ba9e-4f72-4449-93ab-4aaac53e6046-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>Measuring BRDFs</p>
+</li>
+</ul>
+<h3 id="渲染方程"><a href="#渲染方程" class="headerlink" title="渲染方程"></a>渲染方程</h3><ul>
+<li><p>由 BRDF 得到反射方程，描述的含义是：某个方向的反射光线，取决于从该点对应的半球面的所有方向（立体角）吸收的亮度 radiance。</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/c717f6bc-0008-425c-98d7-08fe187503e0-11709514.jpg"></p>
+</li>
+<li><p>当然实际情况中可能不会考虑整个半球面方向的入射光线，如只有若干个点光源或面光源，则只把光源进行求和或积分（此时暂时不考虑非光源的光线，如其他反射光等）即可。</p>
+</li>
+</ul>
+<h1 id="蒙特卡洛路径追踪（参考文章）"><a href="#蒙特卡洛路径追踪（参考文章）" class="headerlink" title="蒙特卡洛路径追踪（参考文章）"></a><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_16.pdf">蒙特卡洛路径追踪</a>（<a href="https://blog.csdn.net/qq_38065509/article/details/106619170">参考文章</a>）</h1><ul>
+<li><p><a href="https://www.zhihu.com/topic/19675767/hot">蒙特卡洛积分推导和性质</a></p>
+</li>
+<li><p>(Whitted-Style) 光线追踪的问题</p>
+<ul>
+<li><p>1.在磨砂材质上的表现不应该像镜面反射一样</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/43fcb693-bee4-4700-aa00-c01f8edfcfca-11709514.jpg"></p>
+</li>
+<li><p>2.对于漫反射材质之间并反射光线，左图是直接光照，右图是全局光照。</p>
+<p><img src="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/432fb941-5c7a-40ab-8950-01589225bf6c-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p><a href="https://dreamfields.github.io/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E8%B7%AF%E5%BE%84%E8%BF%BD%E8%B8%AA%E7%AE%97%E6%B3%95">蒙特卡洛路径追踪算法</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES101</category>
+        <category>Theory</category>
+      </categories>
+      <tags>
+        <tag>CG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lecture_17_材质</title>
+    <url>/2022/02/08/Lecture-17-%E6%9D%90%E8%B4%A8/</url>
+    <content><![CDATA[<h1 id="Lecture-17-材质"><a href="#Lecture-17-材质" class="headerlink" title="Lecture 17 材质"></a>Lecture 17 材质</h1><ul>
+<li><p>关键：<strong>Material &#x3D;&#x3D; BRDF</strong></p>
+</li>
+<li><p>漫反射材质</p>
+<ul>
+<li><p>BRDF 为常数</p>
+<p><img src="/2022/02/08/Lecture-17-%E6%9D%90%E8%B4%A8/61523346-a46c-42bf-8dc9-5a7ad888102a-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>BSDF 是一个统称，表示散射（包括 BRDF 反射和 BTDF 折射）</p>
+</li>
+<li><p>菲涅尔项反映了光线有多少发生反射，有多少发生折射</p>
+<p><img src="/2022/02/08/Lecture-17-%E6%9D%90%E8%B4%A8/3117aae5-18c9-4c31-82e9-3f39d06cbfa2-11709514.jpg"></p>
+<ul>
+<li><p>绝缘体</p>
+<p><img src="/2022/02/08/Lecture-17-%E6%9D%90%E8%B4%A8/c243f9f5-911c-473c-83ed-a65dce7fff0a-11709514.jpg"></p>
+</li>
+<li><p>导体</p>
+<p><img src="/2022/02/08/Lecture-17-%E6%9D%90%E8%B4%A8/88bbb316-7d73-4174-880f-9d47601e99d8-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p><a href="https://blog.csdn.net/qq_38065509/article/details/107042250#2__26">微表面材质</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES101</category>
+        <category>Theory</category>
+      </categories>
+      <tags>
+        <tag>CG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lecture_18_高级光线传播与材质</title>
+    <url>/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/</url>
+    <content><![CDATA[<h1 id="Lecture-18-高级光线传播和材质"><a href="#Lecture-18-高级光线传播和材质" class="headerlink" title="Lecture 18 高级光线传播和材质"></a>Lecture 18 <a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_18.pdf">高级光线传播和材质</a></h1><h1 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h1><ul>
+<li><p>无偏（Unbiased ）——估计量的期望等于真实值的期望；有偏则相反。</p>
+</li>
+<li><p>一致（Consistent）——随着样本容量的增加，估计量的序列在概率上收敛于 ​​​​​​，即估计值趋近于真实值。</p>
+</li>
+<li><p>区别：无偏描述的有限样本关于真实值的关系；一致性描述的大数样本与真实值的关系。</p>
+</li>
+<li><p>渲染上的简单理解：得到的画面结果只要有一点点模糊就是有偏；虽然画面有点模糊，但是样本足够多就能最后收敛到不模糊的结果，就是一致</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/0e1d5d22-926e-448f-bae0-9f45d78f1d9d-11709514.jpg"></p>
+</li>
+</ul>
+<h1 id="高级光线传播（Advanced-Light-Transport）"><a href="#高级光线传播（Advanced-Light-Transport）" class="headerlink" title="高级光线传播（Advanced Light Transport）"></a>高级光线传播（Advanced Light Transport）</h1><h3 id="无偏光线传播方法（Unbiased-light-transport-methods）"><a href="#无偏光线传播方法（Unbiased-light-transport-methods）" class="headerlink" title="无偏光线传播方法（Unbiased light transport methods）"></a>无偏光线传播方法（Unbiased light transport methods）</h3><ul>
+<li><p>双向路径追踪 Bidirectional path tracing (BDPT)</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/3b61c87a-1998-43cb-90cd-51265b748305-11709514.jpg"></p>
+<ul>
+<li><p>基本思想：</p>
+<ul>
+<li>对每个像素点进行多次采样</li>
+<li>每个采样点对应：一条视点子路径（eye path）​​​​​​​​​ 和光源子路径（light path）​​​​​​​​​​​​​​​​​ 上的顶点连接起来（连接时需要测试可见性），以快速产生很多路径</li>
+<li>计算每一条完整路径的贡献。在场景中，没有被物体拦截的每一条路径都会影响通过像素的估计通量或平均辐射。</li>
+</ul>
+</li>
+<li><p>优点：能够产生一些传统路径追踪难以采样到的光路，是特别有效的渲染场景的间接照明方法。</p>
+</li>
+<li><p>对比：下图中，光源向上打在了天花板，以右侧墙壁上的某一点为例（漫反射材质），如果应用普通路径追踪，从人眼（相机）发出的光线经过漫反射可能会继续打到左边墙壁上，关键在于普通路径追踪不好控制光线打到能量集中的区域；而应用 BDPT 后，从光源会产生多条光路，与右侧从人眼（相机）打出的子路径连接，就可以得到一条较高能量的光线。</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/cfa2a869-1e6a-4971-827d-9b4913d319d9-11709514.jpg"></p>
+</li>
+<li><p>缺点：一个严重的效率问题——每个采样点对应的多条完整路径中的大部分完整路径的贡献可能是 0。</p>
+</li>
+</ul>
+</li>
+<li><p>Metropolis 光线传播 Metropolis light transport (MLT)</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/64b35910-c212-4720-8fb8-c3ac284a0a6c-11709514.jpg"></p>
+<ul>
+<li><p>基本思想：利用统计学上的一个工具——马尔科夫链，其本身的定义可以理解为：假设某一时刻状态转移的概率只依赖于它的前一个状态，MLT 利用该工具，就可以在已有的一条较为复杂的路径的基础上，在原本路径的周围产生更多相似的路径，因此适用于做困难的复杂的路径追踪，即增加更多有意义的路径。</p>
+</li>
+<li><p>优点：给定足够时间，马尔科夫链的蒙特卡洛方法可以生成以任意函数的形状为 PDF（概率密度函数，probability density function）的样本，而统计学上的一个概念——采样的 PDF 和要积分的函数形状越相似，采样误差就越低</p>
+</li>
+<li><p>对比：左图的场景，其复杂性在于光照只从半开的门缝中通过，场景大部分由间接光照亮；右图是 Caustics 现象（由于光线聚焦产生了一系列非常强的图案，俗称“水光”，波光粼粼），其复杂性在于这种路径为 SDS 路径——人眼（相机）发出的光线要透过水波（Specular 折射材质）并达到水底（Diffuse 漫反射材质）进行聚焦，最后聚焦到一定的线上，再透过水波（Specular 折射材质）到达光源。</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/03df7821-daec-496c-be59-5811237e0dc1-11709514.jpg"></p>
+</li>
+<li><p>缺点</p>
+<ul>
+<li>很难从理论上判断其收敛速度（普通的路径追踪会有采样数与收敛速度的一个理论关系）</li>
+<li>所有的操作都是局部的，因此各个像素之间互不影响，导致各个像素收敛速度不一致，图片效果会很“脏”</li>
+<li>由于以上原因，该方法不适用于渲染动画——上一帧与下一帧各自有些像素收敛速度不同，图像抖动剧烈</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="有偏光线传播方法（Biased-light-transport-methods）"><a href="#有偏光线传播方法（Biased-light-transport-methods）" class="headerlink" title="有偏光线传播方法（Biased light transport methods）"></a>有偏光线传播方法（Biased light transport methods）</h3><ul>
+<li><p>光子映射（Photon mapping）</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/04ac80f7-5301-4453-9f8b-a8354f532671-11709514.jpg"></p>
+<ul>
+<li><p>特点：特别适合渲染 caustics 和 Specular-Diffuse-Specular（SDS）</p>
+</li>
+<li><p>实现方法（其中一种）</p>
+<ul>
+<li><p>Stage1——photon tracing：从光源出发辐射出光子，在路径上发生反射折射等，直到光子打到 diffuse 漫反射材质的物体上就停下，将所有光子记录在 diffuse 物体上</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/dcfa9c3b-579f-4679-9c4e-4badcfe94dff-11709514.jpg"></p>
+</li>
+<li><p>Stage2——photon collection (final gathering) ：从人眼（相机）出发，在路径上发生反射折射等，直到打到 diffuse 的物体上</p>
+</li>
+<li><p>Stage3——local density estimation</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/beec61df-7c54-4c0a-9007-38ab5ecda6d7-11709514.jpg"></p>
+<ul>
+<li><p>思想：这一步建立在观察的基础上，越亮的地方光子应该越密集。</p>
+</li>
+<li><p>具体做法：① 对于任何的一个着色点，取其周围最近的 N 个光子（Nearest Neighbor 问题，将所有光子组织成自上而下的加速结构模式如 KD-Tree 来解）；② 计算 N 个光子所占据面积，计算光子密度（N 光子数&#x2F;所占面积）</p>
+</li>
+<li><p>分析：为何光子映射是一个有偏的方法？</p>
+<ul>
+<li><p>正确的计算密度的方法应该是取一个很小的面积，计算里面的光子数，再用光子数&#x2F;面积，即 ​​​​​，而我们的计算方法是去确定一个 N，通过 ​​​​​​​​​​​​​​​​​ 来估计。结论——只有 ​​ 无限小时结果才是正确的。如果发射的光子数越多，取一个着色点相同数量的 N 个光子，所占的面积就更小（更加集中），结果就会更准确。因此当发射的总光子数 Q 趋近于无穷时，得到的画面就是完全正确的了。​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/d102ed83-6157-4dcc-a29b-087aa17b28f5-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Vertex connection and merging (VCM)</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/c8731dc6-6bd1-4aa9-84d0-10f1dfb2f6c7-11709514.jpg"></p>
+<ul>
+<li>结合了双向路径追踪和光子映射。上图中，左边的 path ​​​​​​​​​​​​​​​ 和右边的 path ​​​​​​​​​ 的两个端点即为接近，落在一个极小的区域中，这两根光线不能连接，也不浪费这样的光线，利用光子映射把能融合的光子融合起来。</li>
+</ul>
+</li>
+</ul>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p><a href="http://www.iliyan.com/publications/VertexMerging/comparison/">Light transport simulation with vertex connection and merging（SIGGRAPH Asia 2012）</a></p>
+<hr>
+<h3 id="实时辐射度算法-Instant-radiosity-VPL-x2F-many-light-methods）"><a href="#实时辐射度算法-Instant-radiosity-VPL-x2F-many-light-methods）" class="headerlink" title="实时辐射度算法 Instant radiosity (VPL &#x2F; many light methods）"></a>实时辐射度算法 Instant radiosity (VPL &#x2F; many light methods）</h3><ul>
+<li><p>基本思想：已经被照亮的面都可以看作是一个光源，再让其来照亮其它物体</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/b5704fd0-fe51-435f-af11-6c8664d251cb-11709514.jpg"></p>
+</li>
+<li><p>做法：从第一个真正的光源开始，向四周射出多个光源子路径（light sub-paths），假设每个光源子路径的终点都是一个虚拟光源（VPL，visual point light）；用这些 VPL 再照射其他地方；当摄像机看向一个着色点的时候，就研究所有的 VPL 对该着色点的影响，这样就用直接光照的方法完成了二次弹射的效果</p>
+</li>
+<li><p>优点：快速并且通常对漫反射场景的结果比较好</p>
+</li>
+<li><p>缺点：当 VPLs 非常接近着色点的时候，会产生亮点（右图）；不能处理 glossy 的材质</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/786e7555-b8c1-49fd-a3b6-a043257309fc-11709514.jpg"></p>
+</li>
+</ul>
+<h1 id="高级外观建模（Advanced-Appearance-Modeling）"><a href="#高级外观建模（Advanced-Appearance-Modeling）" class="headerlink" title="高级外观建模（Advanced Appearance Modeling）"></a>高级外观建模（Advanced Appearance Modeling）</h1><h3 id="非表面模型-Non-surface-models"><a href="#非表面模型-Non-surface-models" class="headerlink" title="非表面模型 Non-surface models"></a>非表面模型 Non-surface models</h3><ul>
+<li><p>散射介质 Participating media：雾、云…当光通过散射介质时，任何一点可以(部分)被吸收和被散射（外散射、内散射等）。视线在物体里任意方向任意距离传播，在每个着点对光源进行着色。</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/bb6291b4-8a4a-4f36-b9e2-81bd3414373b-11709514.jpg"><br><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/47179d0a-55b0-452b-a3c6-2d2fb3b23232-11709514.jpg"></p>
+<ul>
+<li><p>使用相位函数（Phase Function）来描述参与介质中任意点的光散射角分布</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/9d64210e-9b28-43a5-9403-91444694646e-11709514.jpg"></p>
+</li>
+<li><p>如何渲染</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/71ea911e-4b30-4002-b8e6-9ac10f2e4dd7-11709514.jpg"></p>
+<ul>
+<li>光线进入散射介质中，随机选择一个方向来弹射。</li>
+<li>随机选择一个距离直行，其行进距离由该介质的吸收能力</li>
+<li>对于每一个“着色点”，把它连接到光源。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Hair &#x2F; fur &#x2F; fiber (BCSDF)</p>
+<ul>
+<li><p>Hair Appearance 考虑光线如何与一个曲线作用而不是一个面，效果较好的一个模型 Marschner Model，该模型把头发当成玻璃圆柱，考虑了以下三种类型的光线：</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/eeb3e434-d91d-4e78-be3b-73f649edc8d7-11709514.jpg"></p>
+<ul>
+<li><p>R：直接反射的光。</p>
+</li>
+<li><p>TT：传进去再传出去的光。</p>
+</li>
+<li><p>TRT：光线进到头发里面，在头发的内壁发生一次反射再回去。（R: reflection, T: transmission 透射）</p>
+</li>
+<li><p>得到的效果如下</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/b7ed2d54-9a2b-4cea-a450-891ff71a7d5f-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>Fur Appearance：人和动物毛发都具有三层结构皮质（Cortex）、髓质（Medulla）、角质层（Cuticle），如下图所示，但动物的髓质（Medulla）比人大很多，导致不能用人的头发模型来渲染动物毛发。</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/e93e0629-bf15-4267-9523-e034339aa8b3-11709514.jpg"></p>
+<ul>
+<li><p>有人就构造了另外一种模型——双层圆柱模型 Double Cylinder Model，就是将 Cortex 也描述出来。</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/2a38130b-19f5-4640-bc2a-0da1e9e745c5-11709514.jpg"></p>
+</li>
+<li><p>双层圆柱模型考虑了 5 种光线：除了原来的 Marschner Model 中的 ​​​​​​​​ 三种光线外（没有穿过髓质），又添加了 ​​​​ 和 ​​​​​（​​​​​​ 传入毛发之后穿过了髓质）</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/623db9d9-de9f-49e9-ad01-082b4cdef296-11709514.jpg"></p>
+</li>
+<li><p>得到的效果如下</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/da00e757-d54e-40fe-ac81-4c452b4b1852-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>颗粒材质 Granular material</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/e93ed417-491c-498c-ac3a-fd06d59d7e50-11709514.jpg"></p>
+<ul>
+<li><p>以一个沙堆城堡为例，为了避免渲染所有的颗粒，可以进行适当简化，将一个场景中整个的颗粒模型分为多个微小的单元，每个单元由不同比例的微粒来组成，最后拿去渲染。</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/dd2c6601-243d-4311-a048-20cab7d1516f-11709514.jpg"><br><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/184fbecc-463c-44ab-acd0-4a9cbaadb41c-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="表面模型-Surface-models"><a href="#表面模型-Surface-models" class="headerlink" title="表面模型 Surface models"></a>表面模型 Surface models</h3><ul>
+<li><p>半透明材质 Translucent material (BSSRDF)</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/59f0c42c-dd88-4a61-818d-692cbc626493-11709514.jpg"></p>
+<ul>
+<li><p>反映到物理过程：光线沿一个点进入了一个表面，在表面下进行大量的散射，并从另外一个表面钻出，光线并没有在内部被吸收——这种散射方式被定义为次表面散射（Subsurface Scattering）</p>
+</li>
+<li><p>如何理解次表面散射？</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/b5e5164d-cbdf-4681-b68f-b544eaa8835e-11709514.jpg"></p>
+<ul>
+<li><p>直观描述：由光线从不同的点射出而不是从不同的点进入所引起的许多表面的视觉特征</p>
+</li>
+<li><p>数学描述：可以认为是双向反射分布函数 BRDF（Bidirectional Reflectance Distribution Function）的延申</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/a01655a3-5c85-40c8-842d-29c0694cdefb-11709514.jpg"></p>
+<ul>
+<li><p>公式上看反射方程：</p>
+<ul>
+<li>BRDF 的反射方程：​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​</li>
+<li>BSSDRF 的反射方程：​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​</li>
+<li>BRDF 规定了：光线达到了该点，并从该点出来向各个不同的方向去，所有的所用都发生在了一个点上，在渲染方程中积分区域为所有方向为正的方向（大小为半球的立体角）</li>
+<li>BSSRDF 规定了：光线从哪个点进来，从哪个方向进来，从哪个点出去，从哪个方向出去，在渲染方程中为二重积分，积分区域为整个立体角（原因：某个入射点 ​​​ 可能有从其它点进入介质的光线从 ​​​ 射出）和面积（原因：所有的作用不再是一个点，而是一个面）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>近似方法——<a href="https://graphics.stanford.edu/papers/bssrdf/bssrdf.pdf">Dipole Approximation 方法</a></p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/2fc2148d-c9a4-4e15-86d9-8b2f906ee29d-11709514.jpg"></p>
+<ul>
+<li><p>由于计算量过大，可以将次表面散射最终的效果看作是——光实际从左上角照射过来，次表面散射就好像表面内部有一个光源，表面上方也有一个光源的结果（为了物理上的真实），然后用这两个光源去照亮着色点这一块儿得到的效果。举个 🌰：手机灯光透过手掌</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/af8d6a30-4e25-4fb6-8b28-3723792c79a8-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>一个有趣的网站：<a href="https://cgelves.com/10-most-realistic-human-3d-models-that-will-wow-you/?v=7516fd43adaa">10 Most Realistic Human 3D Models that will WOW You - CG Elves</a></p>
+</li>
+</ul>
+</li>
+<li><p>布料 Cloth</p>
+<ul>
+<li><p>概述</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/6d79f23e-f16a-4e81-a2ca-49d7a76a8e5e-11709514.jpg"></p>
+<ul>
+<li>布料是一系列缠绕的纤维构成的。</li>
+<li>缠绕有两级：纤维（Fiber）第一次缠绕会成为股（Ply），股（Ply）缠绕会成为线（Yarn）</li>
+</ul>
+</li>
+<li><p>渲染布料的三种方式</p>
+<ul>
+<li><p>把布料当作表面来渲染——给定编制图案，计算其总体表现；使用 BRDF 来渲染；但是对于天鹅绒，其纤维向各个方向进行分布，因此用手去滑过天鹅绒就会发现表面发生变化，所以根本不是一个平面，当作表面来渲染并不合理。</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/b912ea58-7f6e-464d-89a2-6017af6fa7fe-11709514.jpg"><br><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/b4ef5611-c547-454c-b84e-e8ec8b2d9921-11709514.jpg"></p>
+</li>
+<li><p>把布料当作散射介质（空间中分布的体积）来渲染——把单个纤维和它们分布的性质转化为散射参数，然后把它们当作散射介质来渲染，就好像在渲染云、雾一样（计算量 ​​​​​​​​)</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/2f8b5bcf-05ae-4cfc-9cf4-006e9a099ec3-11709514.jpg"></p>
+</li>
+<li><p>把布料当作真实的纤维来渲染——即明确的渲染每一根纤维（最暴力的做法）</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/7cd9bb84-9f44-4cd6-bebb-18eb094558c5-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Detailed material (non-statistical BRDF)</p>
+<ul>
+<li><p>背景：渲染出来的太过“完美”，而真实的世界中充满着各种各样的细节，而细节很难通过渲染表现出来。</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/00c8100e-bcb1-4039-b580-cc6786dce8c1-11709514.jpg"></p>
+</li>
+<li><p>重提微表面模型——最重要的是其法线分布，而我们描述分布时通常运用的是简单的分布函数，如正态分布、高斯等，自然得到的结果没有太多细节</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/168872e9-9829-489b-9ab4-f64be0498cbc-11709514.jpg"></p>
+<ul>
+<li><p>Statistical NDF vs. Actual NDF</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/1043efbe-72eb-408b-ab1e-7823c6b3ba0e-11709514.jpg"></p>
+</li>
+<li><p>实际效果对比：左图是细节的法线贴图得到的结果，右图是原始的采样 2h 得到，按照 996 工作制大约 20 天才能得到想要的结果</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/146e5cc4-bd7e-464c-a43a-67dcab7bf03c-11709514.jpg"></p>
+</li>
+<li><p>渲染如此困难的原因在于：认为每一个小的微表面是一个镜面，通过从光源的不断反射，只有非常少的一部分会被反射到相机</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/e53cdb4c-1ce9-4f66-a252-bc297f8c8430-11709514.jpg"></p>
+</li>
+<li><p>解决方法</p>
+<ul>
+<li><p>将一个小的范围内的微表面拿出来，计算其法线分布然后替换光滑的法线分布，用在微表面模型里。</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/96469551-4c38-4183-b975-a1441affa98d-11709514.jpg"></p>
+</li>
+<li><p>一个像素可以覆盖不同大小的微表面，对于比较大的范围会得到统计学规律，而对于比较小的微表面得到的就比较有特点。</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/4f6c4d6d-98fc-4218-bc8f-b6b443d3380d-11709514.jpg"></p>
+</li>
+<li><p>不同类型的法线贴图会得到不同的法线分布。左上：各向同性法线；右上：各向异性法线；左下：离散的亮片；右下：纹路类型法线</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/3f6c0422-5476-42cc-87d8-f3f369a739cc-11709514.jpg"></p>
+</li>
+<li><p>效果</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/2d0770b9-b04c-4cac-b808-e1ab3a5b6833-11709514.jpg"><br><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/e92442c6-d0bd-4d2f-81d2-fb21ea2ce62c-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>深入探索</p>
+<ul>
+<li><p>有趣的是，事情还没有结束，当我们考虑细节的时候，如果一个物体表面的大小极小，小到和光的波长相当的时候，就不能再用几何学来计算了，此时光不再沿直线传播。举个 🌰：</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/76d450de-1574-4a24-9bf1-0546bd747194-11709514.jpg"></p>
+</li>
+<li><p>波动光学下的法线分布，可以发现：波动光学的 BRDF 与几何相似，但是相对而言比较不连续，原因在于光的干涉效应，使得有些地方接收不到光子，有些地方持续接收光子，可以联想物理上的双缝干涉实验来理解。</p>
+<p><img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/170cf257-6e25-41d2-996d-384586f639dc-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="程序化生成外观-Procedural-appearance"><a href="#程序化生成外观-Procedural-appearance" class="headerlink" title="程序化生成外观 Procedural appearance"></a>程序化生成外观 Procedural appearance</h3><p>  <img src="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/e06f6671-6469-4295-96f0-b2ac05e38bf7-11709514.jpg"></p>
+<ul>
+<li>背景：一个模型的外观通过纹理定义，模型内部并不存在纹理细节。</li>
+<li>3D noise（噪声函数） 可以直接通过噪声函数来计算细节，即每次通过模型的一点，来查询该点所对应的纹理，使用这种方法可以看到被切割或断裂的内部纹理，相当于——这个纹理贴图已经不再是 2D，而是 3D。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES101</category>
+        <category>Theory</category>
+      </categories>
+      <tags>
+        <tag>CG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lecture_19_相机与棱镜</title>
+    <url>/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/</url>
+    <content><![CDATA[<h1 id="Lecture-19-相机、棱镜"><a href="#Lecture-19-相机、棱镜" class="headerlink" title="Lecture 19 相机、棱镜"></a>Lecture 19 <a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_19.pdf">相机、棱镜</a></h1><hr>
+<h1 id="成像"><a href="#成像" class="headerlink" title="成像"></a>成像</h1><ul>
+<li>光栅化&#x2F;光线追踪——合成方式成像，生成自然界没有的物体；</li>
+<li>照相机——捕捉成像</li>
+</ul>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/f237a651-e24f-44d9-b6c5-f640e5570e24-11709514.jpg"></p>
+<h1 id="Field-of-View（FOV）视场"><a href="#Field-of-View（FOV）视场" class="headerlink" title="Field of View（FOV）视场"></a>Field of View（FOV）视场</h1><ul>
+<li><p>视场用来描述拍摄的范围，​​​​​​​​​​​​​​​​​​​，h：高度，f：焦距。</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/1ef1ceec-8dad-444c-8733-16d1d158ce7e-11709514.jpg"></p>
+</li>
+<li><p>对视场的影响因素</p>
+<ul>
+<li><p>焦距（Focal length）对视场（FOV）的影响：当传感器大小一定时，FOV 随着焦距增加而减少。通常在定义视场时，用以 35mm 格式的胶片为基准（35mm-format film，36 × 24 mm )的焦距来定义视场</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/3d56e3ad-73d4-4e63-969d-856f5767b8a3-11709514.jpg"></p>
+</li>
+<li><p>传感器大小对视场的影响：传感器越小，视场越小</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/1b6514f4-eb6d-4123-89e7-534af20b17a7-11709514.jpg"></p>
+</li>
+<li><p>注意：在渲染中，传感器（Sensor）负责记录最后每个像素接受到的 Irradiance（指每单位照射面积所接收到的或者说入射的 power）有多大，最后的胶片（Film）决定最后图片的存储格式</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Exposure-曝光"><a href="#Exposure-曝光" class="headerlink" title="Exposure 曝光"></a>Exposure 曝光</h1><h3 id="曝光定义为-H，其计算公式：​​​​​"><a href="#曝光定义为-H，其计算公式：​​​​​" class="headerlink" title="曝光定义为 H，其计算公式：​​​​​"></a>曝光定义为 H，其计算公式：​​​​​</h3><ul>
+<li>T（曝光时间 Time）：由快门（shuttle）控制有多少光进来</li>
+<li>E（Irradiance）由传感器上一个单位区域接收光的能量和镜头的光圈（aperture，通俗理解用来遮挡光线用的）和焦距控制。</li>
+<li>可以看出曝光记录的是总体时间的能量</li>
+</ul>
+<h3 id="曝光的影响因素"><a href="#曝光的影响因素" class="headerlink" title="曝光的影响因素"></a>曝光的影响因素</h3><ul>
+<li><p>光圈大小 Aperture size：仿生学设计，模拟瞳孔，通过打开和关闭 apeture 改变 f-stop</p>
+<ul>
+<li>其中，镜头的 f-stop（也被叫做 f-number）写作 FN 或 F&#x2F;N，大小为焦距除以光圈的直径</li>
+</ul>
+</li>
+<li><p>快门速度 Shuttle speed：改变 sensors 的曝光时间即每个像素接收光的时间，快门越快曝光越少。快门这个元件类似于一个窗帘，它的打开是有一个过程的</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/9e68ee4c-5921-48aa-9097-dffd53bab599-11709514.jpg"></p>
+<ul>
+<li><p>运动模糊的形成：在快门打开的这段时间内，高速运动的物体已经发生了位移，中间的过程都会被记录下来。（Slow Speed vs. Fast Speed）</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/c230f084-aabe-4282-ae52-fb6d785e0eda-11709514.jpg"></p>
+</li>
+<li><p>运动模糊不一定是坏事，从人的感知角度它可以形容速度快；从采样角度，它也可以进行反走样。</p>
+</li>
+<li><p>高速摄影 High-Speed Photography ：每秒拍更多的照片，也导致快门时间很少（短曝光时间）。</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/960507f7-c1bf-4b9d-85d1-a36fffdf2090-11709514.jpg"></p>
+</li>
+<li><p>延时摄影 Long-Exposure Photography</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/5f33b5a1-60aa-40fe-ac50-1127ba8b230f-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>感光度 ISO gain：是一个后期处理，更改传感器值和数字图像值之间的倍率，但是 ISO 在简单放大信号的同时会放大噪声</p>
+</li>
+</ul>
+<h1 id="Thin-Lens-Approximation-薄透镜近似"><a href="#Thin-Lens-Approximation-薄透镜近似" class="headerlink" title="Thin Lens Approximation 薄透镜近似"></a>Thin Lens Approximation 薄透镜近似</h1><ul>
+<li><p>真正的透镜非常复杂，需要一个简单的方法描述。</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/ac55d814-1cdc-4ddc-85d6-b370c96e2183-11709514.jpg"></p>
+</li>
+<li><p>研究对象：Ideal Thin Lens - Focal Point 理想化薄透镜</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/d2183d6f-884c-4bad-b644-e2ceffb9e0af-11709514.jpg"></p>
+<ul>
+<li><p>所有进入透镜的平行光一定过焦点。</p>
+</li>
+<li><p>过交点的在透镜后面一定是平行光。</p>
+</li>
+<li><p>认为焦距可以被随意改变（利用透镜组）。</p>
+</li>
+<li><p>The Thin Lens Equation 薄透镜公式（利用相似三角形推导）</p>
+<ul>
+<li><p>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/0501aa85-a115-4539-a179-b924ecccfd18-11709514.jpg"><br><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/3c7b4ad4-9558-436e-b763-5b8dadf9bf0e-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Defocus-Blur"><a href="#Defocus-Blur" class="headerlink" title="Defocus Blur"></a>Defocus Blur</h3><ul>
+<li><p>Computing Cicle of Confusion(CoC) Size</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/5c3c1668-a6c4-45b8-8f4f-970b78c08a24-11709514.jpg"></p>
+<ul>
+<li><p>Object 远离 Focal Plane，聚焦后的点不在 Sensor Plane 上，而是在它前面聚焦，然后光线在聚焦点继续直线传播，到 Sensor Plane 上就变成了一个圆，这个圆就是 Cicle of Confusion(CoC)。因为其它很多点也可以透过透镜聚焦到同一个圆上</p>
+</li>
+<li><p>CoC 的计算公式如下，其中 A 是光圈直径，C 是 CoC 的直径。</p>
+<ul>
+<li>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​</li>
+<li>可以看出：Circle of Confusion 与光圈大小成正比，所以看到的东西是否模糊与光圈的大小有关。</li>
+<li>将上面的公式与 F-Number 联系起来就得到如下公式：</li>
+<li>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​</li>
+</ul>
+</li>
+<li><p>CoC 告诉我们，看到的图片是否模糊，取决于光圈大小，左图光圈大小 A&#x3D;f&#x2F;1.4，右图 A&#x3D;f&#x2F;22</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/5f97764e-c15a-40e0-bda2-9f4752ef3430-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Ray-Tracing-Ideal-Thin-Lenses"><a href="#Ray-Tracing-Ideal-Thin-Lenses" class="headerlink" title="Ray Tracing Ideal Thin Lenses"></a>Ray Tracing Ideal Thin Lenses</h3><ul>
+<li><p>小孔成像——从相机透过一个像素连线，无景深效果</p>
+</li>
+<li><p>模拟薄棱镜，可以产生景深效果，具体做法：</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/dd7fc1c2-80e0-4b57-bb25-d252bafda41e-11709514.jpg"></p>
+<ul>
+<li><p>建立场景</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/27296038-35c2-40fe-bed9-9455070875fa-11709514.jpg"></p>
+<ul>
+<li>先定义 Sensor 的大小（成像平面大小），然后定义透镜的属性，即焦距和光圈的大小。</li>
+<li>定义透镜和关注平面的距离 ​​​（物距）。</li>
+<li>根据透镜方程计算相应的深度 ​​​（相距）。</li>
+</ul>
+</li>
+<li><p>渲染</p>
+<ul>
+<li>对于每个在 sensor 上的像素 ​​</li>
+<li>在 lens plane 上取样随机一点 ​​​</li>
+<li>根据透镜的属性可以计算通过透镜的光线会打到 ​​​​</li>
+<li>计算光线 ​​​​​​​​​​​​​​​​​​​ 的 radiance（发射的、反射的、折射的、接收的光线在每单位立体角、每单位垂直面积上的 power，同时指定了光的方向与照射到的表面所接受到的亮度。），最后记录在 ​​ 上</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Depth-of-Field-景深"><a href="#Depth-of-Field-景深" class="headerlink" title="Depth of Field 景深"></a>Depth of Field 景深</h3><ul>
+<li><p>光圈大小的不同会影响模糊的范围，景深就是在场景内对应的 CoC 足够小的距离范围，在这个范围内，CoC 的大小小于或等于一个像素的大小，就可以认为这一部分深度内的场景是锐利的，非模糊的。</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/8e8f339b-c3ac-47d3-a1fc-ab900c04b6fe-11709514.jpg"></p>
+</li>
+<li><p>DOF 就是 Depth of Field，指成像清晰的一段范围。要做的事情：将 ​​​​​​​ 与焦距联系起来</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/b795aa66-3cf2-40f6-a091-fa8e98562310-11709514.jpg"></p>
+</li>
+<li><p>最终可以得到以下结论（<a href="http://graphics.stanford.edu/courses/cs178/applets/dof.html">一个在线网站</a>）</p>
+<p><img src="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/9777f2e6-480a-4f9d-ba3a-5b7e017933b9-11709514.jpg"></p>
+</li>
 </ul>
 ]]></content>
       <categories>

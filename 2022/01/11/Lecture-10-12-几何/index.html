@@ -1,0 +1,554 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="木夕">
+  <meta name="keywords" content="">
+  <meta name="description" content="几何表示隐式表面（Implicit Surface） 特点  一个函数定义一个隐式几何 f(x,y,z)&#x3D;0。 容易判断一个点是在几何体内部（f&lt;0）还是外部（f&gt;0）。   几种隐式表面  代数曲面：表达式定义   Constructive Soild Geometry（CSG，隐式表示）  通过几何体布尔运算合成的几何体     距离函数（Distance Functio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lecture_10_12_几何">
+<meta property="og:url" content="http://example.com/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/index.html">
+<meta property="og:site_name" content="Dream Fields">
+<meta property="og:description" content="几何表示隐式表面（Implicit Surface） 特点  一个函数定义一个隐式几何 f(x,y,z)&#x3D;0。 容易判断一个点是在几何体内部（f&lt;0）还是外部（f&gt;0）。   几种隐式表面  代数曲面：表达式定义   Constructive Soild Geometry（CSG，隐式表示）  通过几何体布尔运算合成的几何体     距离函数（Distance Functio">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/1d525a00-51a1-4311-9a0a-c5511ee34b36-11709514.jpg">
+<meta property="og:image" content="http://example.com/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/724203b0-14bb-4d95-8b4c-5fedec0b7c68-11709514.jpg">
+<meta property="og:image" content="http://example.com/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/b6007f53-bb73-452b-9d49-bbd91c462908-11709514.jpg">
+<meta property="og:image" content="http://example.com/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/9c9044d0-4aab-4222-ac69-7a66307be559-11709514.jpg">
+<meta property="og:image" content="http://example.com/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/571c869d-3c37-4431-aed9-2ef9453d281f-11709514.jpg">
+<meta property="og:image" content="http://example.com/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/ee44b40f-ef1a-4846-9831-61dcbaf391ac-11709514.jpg">
+<meta property="og:image" content="http://example.com/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/f0e97131-f635-4513-a75b-4c8a15123da1-11709514.jpg">
+<meta property="og:image" content="http://example.com/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/c982d66d-9a6e-4811-8a77-002152fafc36-11709514.jpg">
+<meta property="article:published_time" content="2022-01-11T09:20:50.000Z">
+<meta property="article:modified_time" content="2022-05-31T10:01:45.262Z">
+<meta property="article:author" content="木夕">
+<meta property="article:tag" content="CG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/1d525a00-51a1-4311-9a0a-c5511ee34b36-11709514.jpg">
+  
+  <title>Lecture_10_12_几何 - Dream Fields</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"♥","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Dream Fields</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/blog.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Lecture_10_12_几何">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-11 17:20" pubdate>
+        2022年1月11日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      5 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Lecture_10_12_几何</h1>
+            
+            <div class="markdown-body">
+              <h1 id="几何表示"><a href="#几何表示" class="headerlink" title="几何表示"></a><a target="_blank" rel="noopener" href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_10.pdf">几何表示</a></h1><h3 id="隐式表面（Implicit-Surface）"><a href="#隐式表面（Implicit-Surface）" class="headerlink" title="隐式表面（Implicit Surface）"></a>隐式表面（Implicit Surface）</h3><ul>
+<li><p>特点</p>
+<ul>
+<li>一个函数定义一个隐式几何 f(x,y,z)&#x3D;0。</li>
+<li>容易判断一个点是在几何体内部（f&lt;0）还是外部（f&gt;0）。</li>
+</ul>
+</li>
+<li><p>几种隐式表面</p>
+<ul>
+<li><p>代数曲面：表达式定义</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/1d525a00-51a1-4311-9a0a-c5511ee34b36-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>Constructive Soild Geometry（CSG，隐式表示）</p>
+<ul>
+<li><p>通过几何体布尔运算合成的几何体</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/724203b0-14bb-4d95-8b4c-5fedec0b7c68-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+</li>
+<li><p>距离函数（Distance Function，隐式表示）</p>
+<ul>
+<li><p>输入空间中的任意一个点，输出与这个点最近的几何体距离（有向距离，可正可负），得到各个几何体的距离函数后，将距离函数融合，再恢复为原来的物体，即可得到复杂的几何体。</p>
+</li>
+<li><p>Distance Function 的插值会有着几何融合（blend）的效果（与一般的插值效果很不一样）</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/b6007f53-bb73-452b-9d49-bbd91c462908-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>一个例子：A 状态被一个物体遮挡 1&#x2F;3，B 状态被一个物体遮挡 2&#x2F;3，那么想要得到中间状态，即被物体遮挡了 1&#x2F;2，该如何做？求有向距离函数 SDF（Signed Distance Function），即求正方形内任意点到被遮挡的 1&#x2F;3 边界的最短距离，形成距离函数。这里采用最简单的 SDF &#x3D; SDF(A)+SDF(B)来举例，最终得到的 SDF 为零的点的集合即为 blend 之后曲面，对该例子来说，就是两道阴影之间中点的一条线。对于几何体混合效果自然不可能像这里简单的两个距离相加就可以得到了，该效果具体实现是找出任一个点到两个几何体表面距离中的最短距离再减去一个变量作为该点最终的 SDF。<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Cp5WWtMoeKg">Coding Adventure:Ray Marching</a></p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/9c9044d0-4aab-4222-ac69-7a66307be559-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>水平集（Level Set Methods）：水平集则是一种用来表示 Distance Function 的存储结构，网格存储近似函数值，坐标通过网格之间的插值可以得到函数输出。从水平集中可以得到函数值为 0 的位置，对应的就是物体表面。</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/571c869d-3c37-4431-aed9-2ef9453d281f-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>水平集也可以定义在三维中，如该纹理图定义的是组织的密度大小，取出该图中所有密度等于某个值的位置，得到某个密度下的物体表面。</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/ee44b40f-ef1a-4846-9831-61dcbaf391ac-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+</li>
+<li><p>分型几何(Fractals，隐式表示)</p>
+<ul>
+<li>分型几何是指许许多多自相似的形体最终所组成的几何形状。</li>
+<li>如雪花是一个六边形，放大之后会发现每一个边上又是一个六边形，再放大六边形边上的六边形边上又是六边形，类似于递归。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="显式表面（Explicit-Surface）"><a href="#显式表面（Explicit-Surface）" class="headerlink" title="显式表面（Explicit Surface）"></a>显式表面（Explicit Surface）</h3><ul>
+<li><p>特点</p>
+<ul>
+<li><p>低维参数映射成隐式函数的高维参数。</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/f0e97131-f635-4513-a75b-4c8a15123da1-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>相对容易采样，因为低维参数所需参数数量相对少了,可采样面积覆盖率更大。</p>
+</li>
+<li><p>不容易判断点在几何体内部&#x2F;外部（需要将多维参数解算成低维参数，这一步相当麻烦）。</p>
+</li>
+</ul>
+</li>
+<li><p>几种显式表面</p>
+<ul>
+<li><p>点云：很多点构成的曲面，直接有着所有点的信息。点云通常是经过扫描物体之后的原始输出结果，常常会转化为多边形网格</p>
+</li>
+<li><p>多边形网格(Polygon Mesh)</p>
+<ul>
+<li><p>通过定义各个多边形面的顶点以及顶点之间的连接关系就可以得到许许多多的三角形面或是四边形面，再通过这些面来近似表现出我们想要的模型效果。</p>
+</li>
+<li><p>一个立方体的模型数据</p>
+<p><img src="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/c982d66d-9a6e-4811-8a77-002152fafc36-11709514.jpg" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>3-10 行定义了立方体的 8 个顶点信息。</li>
+<li>12-25 行定义了这些顶点的纹理坐标信息(每个面 4 个点，共 6 个面所以最多有 24 种不同的纹理坐标信息，这里有一些纹理对于不同面上的点是公用的)。</li>
+<li>27-34 行定义了 6 个面的法线信息，为什么有 8 个是因为建模软件输出的精度问题不必在意，其中有两个是重复的。</li>
+<li>36-47 行，f 代表一个面，其中 x&#x2F;x&#x2F;x 的第一位表示是哪个顶点，第二位表示该顶点纹理坐标是第几个，第三位表示法线信息是第几个。 3 个 x&#x2F;x&#x2F;x 表示 3 个顶点的信息构成一个三角形面。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>贝塞尔曲线与曲面</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_11.pdf">课件</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38065509/article/details/106127805">参考笔记</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="曲面细分-Mesh-subdivision-与曲面简化-Mesh-Smplication"><a href="#曲面细分-Mesh-subdivision-与曲面简化-Mesh-Smplication" class="headerlink" title="曲面细分(Mesh subdivision)与曲面简化(Mesh Smplication)"></a>曲面细分(Mesh subdivision)与曲面简化(Mesh Smplication)</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_12.pdf">课件</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38065509/article/details/106154299">参考笔记</a></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/CG/">CG</a>
+                    
+                      <a class="hover-with-bg" href="/categories/CG/GAMES101/">GAMES101</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Theory/">Theory</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/CG/">CG</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lecture_13_14_光线追踪</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/">
+                        <span class="hidden-mobile">Lecture 07-09 [着色]</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+<!--
+ * @Author: Meng Tian
+ * @Date: 2022-01-20 15:32:09
+ * @Descripttion: Do not edit
+-->
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

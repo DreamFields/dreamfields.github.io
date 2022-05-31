@@ -190,75 +190,6 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/" target="_self">
-          Lecture 07-09 [着色]
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/05/24/Lecture-07-09-%E7%9D%80%E8%89%B2/" target="_self">
-          
-          
-            
-          
-          深度缓冲与着色
-思路与算法：在绘制最终的图像同时，绘制深度图，记录每个像素距离相机最近的深度值
-
-
-
-着色 Shading
-对不同的物体应用不同的材质的过程（不同的材质就是不同的着色方法）
-
-漫反射
-漫反射与人眼位置无关，从各个方向看上去亮度均相同，公式中也可以反映出来。
-
-
-其中，Kd 表示漫反射系数，0 为完全不反射，1 为镜面反射。可以使用一个颜色向量值来表示该点反射出的光线的颜色
-
-
-高光
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-05-24 22:05" pubdate>
-              2022-05-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/CG/">CG</a>
-            
-              <a href="/categories/CG/GAMES101/">GAMES101</a>
-            
-              <a href="/categories/Theory/">Theory</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/CG/">CG</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
         <a href="/2022/05/03/Hexo-GitHub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_self">
           Hexo + GitHub 搭建我的个人博客记录
         </a>
@@ -306,6 +237,491 @@ Hexo文档
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/GitHub-Pages/">GitHub Pages</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/" target="_self">
+          Lecture_19_相机与棱镜
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/14/Lecture-19-%E7%9B%B8%E6%9C%BA%E4%B8%8E%E6%A3%B1%E9%95%9C/" target="_self">
+          
+          
+            
+          
+          Lecture 19 相机、棱镜
+成像
+光栅化&#x2F;光线追踪——合成方式成像，生成自然界没有的物体；
+照相机——捕捉成像
+
+
+Field of View（FOV）视场
+视场用来描述拍摄的范围，​​​​​​​​​​​​​​​​​​​，h：高度，f：焦距。
+
+
+对视场的影响因素
+
+焦距（Focal length）对视场（FOV）的影响：当传感器大小一定时，FOV 随着焦距增加而减少。通常在定义视
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-14 22:50" pubdate>
+              2022-02-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CG/">CG</a>
+            
+              <a href="/categories/CG/GAMES101/">GAMES101</a>
+            
+              <a href="/categories/Theory/">Theory</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CG/">CG</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/" target="_self">
+          Lecture_18_高级光线传播与材质
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/12/Lecture-18-%E9%AB%98%E7%BA%A7%E5%85%89%E7%BA%BF%E4%BC%A0%E6%92%AD%E4%B8%8E%E6%9D%90%E8%B4%A8/" target="_self">
+          
+          
+            
+          
+          Lecture 18 高级光线传播和材质复习
+无偏（Unbiased ）——估计量的期望等于真实值的期望；有偏则相反。
+
+一致（Consistent）——随着样本容量的增加，估计量的序列在概率上收敛于 ​​​​​​，即估计值趋近于真实值。
+
+区别：无偏描述的有限样本关于真实值的关系；一致性描述的大数样本与真实值的关系。
+
+渲染上的简单理解：得到的画面结果只要有一点点模糊就是有偏；虽然画面有点模糊，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-12 21:56" pubdate>
+              2022-02-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CG/">CG</a>
+            
+              <a href="/categories/CG/GAMES101/">GAMES101</a>
+            
+              <a href="/categories/Theory/">Theory</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CG/">CG</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/08/Lecture-17-%E6%9D%90%E8%B4%A8/" target="_self">
+          Lecture_17_材质
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/08/Lecture-17-%E6%9D%90%E8%B4%A8/" target="_self">
+          
+          
+            
+          
+          Lecture 17 材质
+关键：Material &#x3D;&#x3D; BRDF
+
+漫反射材质
+
+BRDF 为常数
+
+
+
+
+BSDF 是一个统称，表示散射（包括 BRDF 反射和 BTDF 折射）
+
+菲涅尔项反映了光线有多少发生反射，有多少发生折射
+
+
+绝缘体
+
+
+导体
+
+
+
+
+微表面材质
+
+
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-08 21:47" pubdate>
+              2022-02-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CG/">CG</a>
+            
+              <a href="/categories/CG/GAMES101/">GAMES101</a>
+            
+              <a href="/categories/Theory/">Theory</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CG/">CG</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/" target="_self">
+          Lecture_14_16_基于物理的渲染
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/26/Lecture-14-16-%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E7%9A%84%E6%B8%B2%E6%9F%93/" target="_self">
+          
+          
+            
+          
+          基础知识（参考文章）基本概念
+辐射强度(Radiant intensity)
+
+从光源发出的每单位立体角上的 power（这里的 power 指单位时间的能量，相当于辐射功率，可以理解为亮度）。其大小不会随着 r 的增加而衰减，因为 r 变大的同时，立体角不变，辐射面积会以 r 平方的比例增加。
+
+
+
+
+irradiance
+
+指每单位照射面积所接收到的(入射的）power
+
+
+
+
+radianc
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-26 17:28" pubdate>
+              2022-01-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CG/">CG</a>
+            
+              <a href="/categories/CG/GAMES101/">GAMES101</a>
+            
+              <a href="/categories/Theory/">Theory</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CG/">CG</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/" target="_self">
+          Lecture_13_14_光线追踪
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/" target="_self">
+          
+          
+            
+          
+          光栅化与光线追踪
+光栅化主要用于实时渲染（速度快），光追主要用于离线渲染（速度慢）。
+
+光栅化不能解决的问题
+
+
+
+光线追踪原理基本假设
+光线一定沿着直线传播
+光线之间无法碰撞
+光线路径可逆，即从 A 发出的到 B 的光线，一定也可以从 B 发出到 A（中途可发生反射和折射）
+
+光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）
+Ray Casting。从人眼或摄像机向近投影平面上的每一个像
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-20 22:24" pubdate>
+              2022-01-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CG/">CG</a>
+            
+              <a href="/categories/CG/GAMES101/">GAMES101</a>
+            
+              <a href="/categories/Theory/">Theory</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CG/">CG</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/" target="_self">
+          Lecture_10_12_几何
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/" target="_self">
+          
+          
+            
+          
+          几何表示隐式表面（Implicit Surface）
+特点
+
+一个函数定义一个隐式几何 f(x,y,z)&#x3D;0。
+容易判断一个点是在几何体内部（f&lt;0）还是外部（f&gt;0）。
+
+
+几种隐式表面
+
+代数曲面：表达式定义
+
+
+Constructive Soild Geometry（CSG，隐式表示）
+
+通过几何体布尔运算合成的几何体
+
+
+
+
+距离函数（Distance Functio
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-11 17:20" pubdate>
+              2022-01-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CG/">CG</a>
+            
+              <a href="/categories/CG/GAMES101/">GAMES101</a>
+            
+              <a href="/categories/Theory/">Theory</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CG/">CG</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/" target="_self">
+          Lecture 07-09 [着色]
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/" target="_self">
+          
+          
+            
+          
+          深度缓冲与着色
+思路与算法：在绘制最终的图像同时，绘制深度图，记录每个像素距离相机最近的深度值
+
+
+
+着色 Shading
+对不同的物体应用不同的材质的过程（不同的材质就是不同的着色方法）
+
+漫反射
+漫反射与人眼位置无关，从各个方向看上去亮度均相同，公式中也可以反映出来。
+
+
+其中，Kd 表示漫反射系数，0 为完全不反射，1 为镜面反射。可以使用一个颜色向量值来表示该点反射出的光线的颜色
+
+
+高光
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-01-06 22:05" pubdate>
+              2022-01-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/CG/">CG</a>
+            
+              <a href="/categories/CG/GAMES101/">GAMES101</a>
+            
+              <a href="/categories/Theory/">Theory</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CG/">CG</a>
             
           </div>
         
@@ -435,378 +851,6 @@ Rodrigues 旋转公式：实现某三维物体的坐标绕过原点的向量轴 
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/CG/">CG</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/12/24/Lecture-02-03-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80&amp;%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/" target="_self">
-          Lecture 02-03 [线性代数基础&amp;线性变换]
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/12/24/Lecture-02-03-%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80&amp;%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2/" target="_self">
-          
-          
-            
-          
-          线性代数基础
-叉乘计算公式
-
-
-任意向量在三维坐标中的分解
-
-
-向量与矩阵的联系
-
-
-
-线性变换
-基本概念
-
-如果 AAT&#x3D;E（E 为单位矩阵，AT 表示“矩阵 A 的转置矩阵”）或 ATA&#x3D;E，则 n 阶实矩阵 A 称为正交矩阵
-设 A 是一个 n 阶矩阵，若存在另一个 n 阶矩阵 B，使得： AB&#x3D;BA&#x3D;E ，则称方阵 A 可逆，并称方阵 B 是 A 的
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-24 20:43" pubdate>
-              2021-12-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/CG/">CG</a>
-            
-              <a href="/categories/CG/GAMES101/">GAMES101</a>
-            
-              <a href="/categories/Theory/">Theory</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/CG/">CG</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/12/06/%E5%89%8D%E7%AB%AF%E8%A7%84%E8%8C%83/" target="_self">
-          前端规范
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/12/06/%E5%89%8D%E7%AB%AF%E8%A7%84%E8%8C%83/" target="_self">
-          
-          
-            
-          
-          🔵代码编辑器: 使用 vscode编辑器使用vscode，代码的规范基本都要依赖于 vscode的插件
-这里需要使用的插件有:
-ESLint
-koroFileHeader 
-Prettier - Code formatter
-
-可选插件
-Chinese (Simplified) Language Pack for Visual Studio Code  (中文插件)
-GitLens — Git 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-06 19:30" pubdate>
-              2021-12-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Front-end/">Front-end</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-            
-              <a href="/tags/%E8%A7%84%E8%8C%83/">规范</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/" target="_self">
-          GAMES101重要公式推导与算法补充
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/" target="_self">
-          
-          
-            
-          
-          Rodrigues旋转公式概要实现某三维物体的坐标绕过原点的向量轴n（默认过原点），旋转α角度（右手定则的四指方向）的旋转矩阵为R(n,α)，其表达形式为：
-该旋转矩阵左乘三维物体上的某个点（列向量、列矩阵）即可得到旋转变换后的点。
-推导过程
-说明：字母上带有→表示向量，不带箭头表示该向量对应的列矩阵；字母上的^表示该向量的单位向量。
-
-Step1将S向量分解为旋转轴n方向和垂直于旋转轴方向的两个
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-06 11:26" pubdate>
-              2021-08-06
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/CG/">CG</a>
-            
-              <a href="/categories/CG/GAMES101/">GAMES101</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/">旋转矩阵</a>
-            
-              <a href="/tags/%E8%A7%86%E5%9B%BE%E5%8F%98%E6%8D%A2/">视图变换</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_self">
-          LearnOpenGL-环境配置
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_self">
-          
-          
-            
-          
-          Step1：获取GLFW与GLAD依赖库GLFW是一个专门针对OpenGL的C语言库，它提供了一些渲染物体所需的最低限度的接口。它允许用户创建OpenGL上下文，定义窗口参数以及处理用户输入。该步骤保证它恰当地创建OpenGL上下文并显示窗口。
-GLAD是用来管理OpenGL的函数指针的，所以在调用任何OpenGL的函数之前我们需要初始化GLAD。
-
-获取教程参考链接：
-
-Learn OpenGL
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-02 11:50" pubdate>
-              2021-08-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/CG/">CG</a>
-            
-              <a href="/categories/Configuration/">Configuration</a>
-            
-              <a href="/categories/CG/OpenGL/">OpenGL</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/OpenGL/">OpenGL</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/07/23/dwv%E5%8F%8A%E5%85%B6React%E5%AE%9E%E8%B7%B5%E7%AE%80%E8%A6%81%E5%AD%A6%E4%B9%A0/" target="_self">
-          DWV及其React实践简要学习
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/07/23/dwv%E5%8F%8A%E5%85%B6React%E5%AE%9E%E8%B7%B5%E7%AE%80%E8%A6%81%E5%AD%A6%E4%B9%A0/" target="_self">
-          
-          
-            
-          
-          DWV简介
-DWV (DICOM Web Viewer) is an open source zero footprint medical image viewer.
-
-DWV是一款开源的Web端DICOM医学影像查看器，这是其 官方文档。
-从其架构上来看：
-拆分为两个过程：一是load，对DICOM数据的加载；二是view，对视图的渲染，包括图层控制（视图层-对图片渲染展示、绘制层-利用Konv
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-23 16:53" pubdate>
-              2021-07-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Front-end/">Front-end</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/React/">React</a>
-            
-              <a href="/tags/DWV/">DWV</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/" target="_self">
-          链接合集
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/" target="_self">
-          
-          
-            
-          
-          📗 工具介绍
-yarn的介绍及workspace的使用
-Monorepo 是什么，为什么大家都在用？
-Monorepo实战
-
-🎈 文档链接
-Yarn
-webpack
-Lerna
-
-💙 参考教程VS Code —— C++开发
-开发环境配置详细教程
-配置文件说明
-插件CodeRunner运行C++代码时中文乱码问题的解决
-安装和使用C++线性代数库eigen（Windows，MinGW，VS 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-09 09:56" pubdate>
-              2021-07-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Link-collect/">Link-collect</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/webpack/">webpack</a>
-            
-              <a href="/tags/Monorepo/">Monorepo</a>
-            
-              <a href="/tags/C/">C++</a>
             
           </div>
         
