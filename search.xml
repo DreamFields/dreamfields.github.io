@@ -571,6 +571,76 @@
       </tags>
   </entry>
   <entry>
+    <title>Lecture_13_14_光线追踪</title>
+    <url>/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/</url>
+    <content><![CDATA[<h1 id="光栅化与光线追踪"><a href="#光栅化与光线追踪" class="headerlink" title="光栅化与光线追踪"></a>光栅化与光线追踪</h1><ul>
+<li><p>光栅化主要用于实时渲染（速度快），光追主要用于离线渲染（速度慢）。</p>
+</li>
+<li><p>光栅化不能解决的问题</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/05a9ebe9-d09b-4a7b-8f0a-76924abd7de6-11709514.jpg"></p>
+</li>
+</ul>
+<h1 id="光线追踪原理"><a href="#光线追踪原理" class="headerlink" title="光线追踪原理"></a>光线追踪原理</h1><h4 id="基本假设"><a href="#基本假设" class="headerlink" title="基本假设"></a>基本假设</h4><ul>
+<li>光线一定沿着直线传播</li>
+<li>光线之间无法碰撞</li>
+<li>光线路径可逆，即从 A 发出的到 B 的光线，一定也可以从 B 发出到 A（中途可发生反射和折射）</li>
+</ul>
+<h4 id="光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）"><a href="#光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）" class="headerlink" title="光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）"></a>光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）</h4><ul>
+<li><p>Ray Casting。从人眼或摄像机向近投影平面上的每一个像素点发射一条光线，判断与场景物体的最近交点（其实是做了深度测试）</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/6cd29b8d-4eb0-4a8f-b424-751d1127ca85-11709514.jpg"></p>
+</li>
+<li><p>阴影判断。接着连接该交点和光源，只要判断这条连线之间是否有物体存在就可以知道该交点是否在阴影之中（比 shadow mapping 那一套简单了许多）。</p>
+</li>
+<li><p>着色，写入像素值。根据各种着色模型（如 Blinn-Phong)。</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/4aef80f5-3e83-4d63-bd90-4697b7068480-11709514.jpg"></p>
+</li>
+<li><p>注意：</p>
+<ul>
+<li>明暗效果仅仅由第一次相交的物体表面法向方向、材质、视点和光照方向、以及光照强度等因素共同决定。</li>
+<li>光线投射并不考虑 第二层 以及更深层次的光线，因此 不具有阴影、反射 、折射 等效果。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Whitted-Style-光线追踪"><a href="#Whitted-Style-光线追踪" class="headerlink" title="(Whitted-Style) 光线追踪"></a>(Whitted-Style) 光线追踪</h4><ul>
+<li><p>Recursive (Whitted-Style) Ray Tracing。在考虑 Ray Casting 的基础上，该条光线第一个与圆球物体相交，假设该圆球是一个玻璃球，那么便会发生镜面反射和折射。同时反射与折射出去的光线会可能与场景中的物体再次碰撞，发生第二次折射与反射。计算这些光线与物体的最近交点。</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/4016976d-f6b0-4f90-90a1-318bfd876cfd-11709514.jpg"><br><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/4a35ccd5-5c41-4918-b933-6be146bec18e-11709514.jpg"></p>
+</li>
+<li><p>着色。将这些所有交点与光源连接，称这些线为 shadow rays（因为可以用来检测阴影），计算这些所有点的局部光。将其按照光线能量权重累加(该做法与递归过程等价，读者可以看看伪代码思考一下)，最终得到近投影平面上该像素点的颜色。</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/f0a8be5f-bfea-4601-888d-56d20708dae3-11709514.jpg"></p>
+</li>
+<li><p>总结：递归的光线追踪算法</p>
+<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/8e9ce952-9c18-4177-a269-5f8b098a1a12-11709514.jpg"></p>
+</li>
+</ul>
+<h4 id="Whitted-Style-光线追踪注意点"><a href="#Whitted-Style-光线追踪注意点" class="headerlink" title="(Whitted-Style) 光线追踪注意点"></a>(Whitted-Style) 光线追踪注意点</h4><ul>
+<li>整体过程是一个递归的过程，因此需要一定的递归终止条件，可以是：递归深度-在光线弹射一定次数后停止；光线的贡献-在光线的贡献衰减到足够小时停止。</li>
+<li>光线在每次反射和折射之后都有能量损耗的，由系数决定，因此越往后的折射和反射光贡献的能量越小，这也是为什么在上文中提到根据光线能量权重求和。e.g. 反射系数为 0.7，那么第一次反射折损 30%，第二次反射折损 1-（70%x70%），依次类推。</li>
+<li>如果反射或折射光线没有碰撞到物体，一般直接返回一个背景色。</li>
+</ul>
+<h1 id="细节实现（参考文章）"><a href="#细节实现（参考文章）" class="headerlink" title="细节实现（参考文章）"></a>细节实现（<a href="https://blog.csdn.net/qq_38065509/article/details/106299336">参考文章</a>）</h1><ul>
+<li><p>1.光线求交</p>
+<ul>
+<li>与隐式表面求交</li>
+<li>与显式表面求交（对于某个封闭物体，如果光线与物体有奇数个交点，那么光线一定在物体内；偶数在外）</li>
+<li>光线追踪加速（<a href="https://blog.csdn.net/qq_38065509/article/details/106396844">参考文章</a>）</li>
+</ul>
+</li>
+<li><p>2.光线反射</p>
+</li>
+<li><p>3.光线折射</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES101</category>
+        <category>Theory</category>
+      </categories>
+      <tags>
+        <tag>CG</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Lecture_10_12_几何</title>
     <url>/2022/01/11/Lecture-10-12-%E5%87%A0%E4%BD%95/</url>
     <content><![CDATA[<h1 id="几何表示"><a href="#几何表示" class="headerlink" title="几何表示"></a><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_10.pdf">几何表示</a></h1><h3 id="隐式表面（Implicit-Surface）"><a href="#隐式表面（Implicit-Surface）" class="headerlink" title="隐式表面（Implicit Surface）"></a>隐式表面（Implicit Surface）</h3><ul>
@@ -662,76 +732,6 @@
 <h1 id="曲面细分-Mesh-subdivision-与曲面简化-Mesh-Smplication"><a href="#曲面细分-Mesh-subdivision-与曲面简化-Mesh-Smplication" class="headerlink" title="曲面细分(Mesh subdivision)与曲面简化(Mesh Smplication)"></a>曲面细分(Mesh subdivision)与曲面简化(Mesh Smplication)</h1><ul>
 <li><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_12.pdf">课件</a></li>
 <li><a href="https://blog.csdn.net/qq_38065509/article/details/106154299">参考笔记</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>CG</category>
-        <category>GAMES101</category>
-        <category>Theory</category>
-      </categories>
-      <tags>
-        <tag>CG</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lecture_13_14_光线追踪</title>
-    <url>/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/</url>
-    <content><![CDATA[<h1 id="光栅化与光线追踪"><a href="#光栅化与光线追踪" class="headerlink" title="光栅化与光线追踪"></a>光栅化与光线追踪</h1><ul>
-<li><p>光栅化主要用于实时渲染（速度快），光追主要用于离线渲染（速度慢）。</p>
-</li>
-<li><p>光栅化不能解决的问题</p>
-<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/05a9ebe9-d09b-4a7b-8f0a-76924abd7de6-11709514.jpg"></p>
-</li>
-</ul>
-<h1 id="光线追踪原理"><a href="#光线追踪原理" class="headerlink" title="光线追踪原理"></a>光线追踪原理</h1><h4 id="基本假设"><a href="#基本假设" class="headerlink" title="基本假设"></a>基本假设</h4><ul>
-<li>光线一定沿着直线传播</li>
-<li>光线之间无法碰撞</li>
-<li>光线路径可逆，即从 A 发出的到 B 的光线，一定也可以从 B 发出到 A（中途可发生反射和折射）</li>
-</ul>
-<h4 id="光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）"><a href="#光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）" class="headerlink" title="光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）"></a>光线投射过程（只考虑光线的一次投射，并未考虑反射和折射）</h4><ul>
-<li><p>Ray Casting。从人眼或摄像机向近投影平面上的每一个像素点发射一条光线，判断与场景物体的最近交点（其实是做了深度测试）</p>
-<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/6cd29b8d-4eb0-4a8f-b424-751d1127ca85-11709514.jpg"></p>
-</li>
-<li><p>阴影判断。接着连接该交点和光源，只要判断这条连线之间是否有物体存在就可以知道该交点是否在阴影之中（比 shadow mapping 那一套简单了许多）。</p>
-</li>
-<li><p>着色，写入像素值。根据各种着色模型（如 Blinn-Phong)。</p>
-<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/4aef80f5-3e83-4d63-bd90-4697b7068480-11709514.jpg"></p>
-</li>
-<li><p>注意：</p>
-<ul>
-<li>明暗效果仅仅由第一次相交的物体表面法向方向、材质、视点和光照方向、以及光照强度等因素共同决定。</li>
-<li>光线投射并不考虑 第二层 以及更深层次的光线，因此 不具有阴影、反射 、折射 等效果。</li>
-</ul>
-</li>
-</ul>
-<h4 id="Whitted-Style-光线追踪"><a href="#Whitted-Style-光线追踪" class="headerlink" title="(Whitted-Style) 光线追踪"></a>(Whitted-Style) 光线追踪</h4><ul>
-<li><p>Recursive (Whitted-Style) Ray Tracing。在考虑 Ray Casting 的基础上，该条光线第一个与圆球物体相交，假设该圆球是一个玻璃球，那么便会发生镜面反射和折射。同时反射与折射出去的光线会可能与场景中的物体再次碰撞，发生第二次折射与反射。计算这些光线与物体的最近交点。</p>
-<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/4016976d-f6b0-4f90-90a1-318bfd876cfd-11709514.jpg"><br><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/4a35ccd5-5c41-4918-b933-6be146bec18e-11709514.jpg"></p>
-</li>
-<li><p>着色。将这些所有交点与光源连接，称这些线为 shadow rays（因为可以用来检测阴影），计算这些所有点的局部光。将其按照光线能量权重累加(该做法与递归过程等价，读者可以看看伪代码思考一下)，最终得到近投影平面上该像素点的颜色。</p>
-<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/f0a8be5f-bfea-4601-888d-56d20708dae3-11709514.jpg"></p>
-</li>
-<li><p>总结：递归的光线追踪算法</p>
-<p><img src="/2022/01/20/Lecture-13-14-%E5%85%89%E7%BA%BF%E8%BF%BD%E8%B8%AA/8e9ce952-9c18-4177-a269-5f8b098a1a12-11709514.jpg"></p>
-</li>
-</ul>
-<h4 id="Whitted-Style-光线追踪注意点"><a href="#Whitted-Style-光线追踪注意点" class="headerlink" title="(Whitted-Style) 光线追踪注意点"></a>(Whitted-Style) 光线追踪注意点</h4><ul>
-<li>整体过程是一个递归的过程，因此需要一定的递归终止条件，可以是：递归深度-在光线弹射一定次数后停止；光线的贡献-在光线的贡献衰减到足够小时停止。</li>
-<li>光线在每次反射和折射之后都有能量损耗的，由系数决定，因此越往后的折射和反射光贡献的能量越小，这也是为什么在上文中提到根据光线能量权重求和。e.g. 反射系数为 0.7，那么第一次反射折损 30%，第二次反射折损 1-（70%x70%），依次类推。</li>
-<li>如果反射或折射光线没有碰撞到物体，一般直接返回一个背景色。</li>
-</ul>
-<h1 id="细节实现（参考文章）"><a href="#细节实现（参考文章）" class="headerlink" title="细节实现（参考文章）"></a>细节实现（<a href="https://blog.csdn.net/qq_38065509/article/details/106299336">参考文章</a>）</h1><ul>
-<li><p>1.光线求交</p>
-<ul>
-<li>与隐式表面求交</li>
-<li>与显式表面求交（对于某个封闭物体，如果光线与物体有奇数个交点，那么光线一定在物体内；偶数在外）</li>
-<li>光线追踪加速（<a href="https://blog.csdn.net/qq_38065509/article/details/106396844">参考文章</a>）</li>
-</ul>
-</li>
-<li><p>2.光线反射</p>
-</li>
-<li><p>3.光线折射</p>
-</li>
 </ul>
 ]]></content>
       <categories>
