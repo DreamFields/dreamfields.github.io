@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>01-现代游戏引擎导论</title>
+    <link href="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/"/>
+    <url>/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/</url>
+    
+    <content type="html"><![CDATA[<h1 id="01-现代游戏引擎导论"><a href="#01-现代游戏引擎导论" class="headerlink" title="01_现代游戏引擎导论"></a>01_现代游戏引擎导论</h1><h1 id="为什么要学游戏引擎？"><a href="#为什么要学游戏引擎？" class="headerlink" title="为什么要学游戏引擎？"></a>为什么要学游戏引擎？</h1><p>应用领域——虚拟数字人、影视动画、军事模拟、数字孪生</p><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled.png" alt="Untitled"></p><p><a href="https://zhuanlan.zhihu.com/p/468194499">元宇宙-虚拟数字人概述</a></p><h1 id="游戏引擎历史"><a href="#游戏引擎历史" class="headerlink" title="游戏引擎历史"></a>游戏引擎历史</h1><h2 id="早期游戏时代"><a href="#早期游戏时代" class="headerlink" title="早期游戏时代"></a>早期游戏时代</h2><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%201.png" alt="Untitled"></p><p>早期时候的游戏非常简单，常见的游戏机包括任天堂的“红白机”，彼时做游戏面临的最大问题是<strong>如何把复杂元素放入非常小的存储空间中</strong>，常见做法包括复用贴图，比如将云彩贴图变化颜色后复用成草丛贴图等。在这期间，也涌现了《魂斗罗》、《马里奥》、《坦克大战》等知名 IP。</p><h2 id="第一个游戏引擎"><a href="#第一个游戏引擎" class="headerlink" title="第一个游戏引擎"></a><strong>第一个游戏引擎</strong></h2><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/20220722143642.png">  </p><p>提到游戏引擎，就不得不提到游戏引擎之父<strong>John D. Carmack，</strong>他与另一个游戏软件天才 John Romero 共同开发出了全球首款第一人称射击游戏《德军总部 3D》_（Wolfenstein 3D，1992）_，他将游戏中能够复用的核心功能分离出来，产生了游戏引擎雏形。</p><p>John Carmack 开发的第二款游戏——《毁灭战士》_（Doom）_，将该游戏分离的功能制作成为游戏引擎，才有了另一款游戏《魅影术士》_（Shadow Caster）_。但真正的游戏引擎还没到来，直到《雷神之锤》<em>（Quake）</em>问世。</p><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%204.png" alt="Untitled"></p><p>《雷神之锤》由 id Software 开发的第一人称射击游戏，是<strong>第一个系统研究联网对战下如何进行网络同步的游戏</strong>，最早的版本发布于 1996 年 5 月 31 日。雷神之锤引擎<em>（Quake engine，又称 Q1 引擎）</em>是《雷神之锤》一代游戏的核心，也被用来制作其他的第一人称射击游戏，比如《半条命》（<em>Half-life</em><br>）和《荣誉勋章》（<em>Medal of Honor）。Quake engine</em>是第一个实现即时 3D 的游戏引擎，该引擎提供了实时 3D 渲染，并通过 OpenGL 支持 3D 加速，给游戏画面带来了质的飞跃。</p><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%205.png" alt="Untitled"></p><p>早期计算机硬件中没有显卡，但图形运算涉及大量矩阵、向量运算，非常适合并行计算，此时就来到了游戏发展的转折点——<strong>显卡</strong>诞生。游戏引擎的发展非常依赖于硬件的发展，例如从<strong>PlayStation 1</strong><br>到<strong>PlayStation 5</strong>其算力提升 20 万倍，算力的增长导致游戏质量急速提升。</p><h2 id="现代游戏引擎"><a href="#现代游戏引擎" class="headerlink" title="现代游戏引擎"></a>现代游戏引擎</h2><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%206.png" alt="Untitled"></p><p>目前市面上的游戏引擎可分为三种：商业引擎<em>（Commercial Engine）</em>、自研引擎<em>（In-house Engine）</em>以及免费引擎<em>（Free Engine）</em>。商业引擎主要包括 UE、Unity 等引擎，自研引擎为各大游戏公司内部使用的引擎，包括大名鼎鼎的寒霜引擎<em>（Frostbite Engine）</em>，大多数免费引擎通常只适用于轻量级作品，与商业和自研引擎差距较大。</p><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%207.png" alt="Untitled"></p><p>除此以外，针对特定功能模块还产生了细分功能的各类引擎。随着游戏行业的不断发展，开发者意识到物理计算等比较复杂，早期游戏都会自行实现物理碰撞等，但计算越来越复杂时，为了减少开发中不必要消耗，出现了专门用于处理物理计算的模块。在此基础上，出现了各种各样的中间件供游戏开发者使用。例如 SpeedTree，可为动画、建筑以及视频游戏和要求实时模拟的实时生成虚拟植物。</p><h3 id="什么是游戏引擎？"><a href="#什么是游戏引擎？" class="headerlink" title="什么是游戏引擎？"></a>什么是游戏引擎？</h3><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%208.png" alt="Untitled"></p><ul><li>构建“黑客帝国”的技术基础</li><li>创造力工具</li><li>复杂性的艺术</li></ul><p>游戏引擎作为<strong>构建虚拟世界的底层框架</strong>，对于创作者（艺术家、设计师），游戏引擎需要提供工具链，使其成为<strong>人类创意或者想象力的生产力工具</strong>。对于编程者，可扩展 API 接口无需修改核心即可定义游戏可玩性<em>（gameplay）</em>。对于工作室，游戏引擎需要提供可协作性，使得开发者能够合作完成不同工作。游戏引擎体量非常复杂、庞大，很好地展现了<strong>复杂性系统的艺术-系统复杂之美</strong>，但也带来了版本迭代兼容性问题。</p><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%209.png" alt="Untitled"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>CG</category>
+      
+      <category>GAMES104</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CG</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>寻找凸包问题</title>
     <link href="/2022/05/19/%E5%AF%BB%E6%89%BE%E5%87%B8%E5%8C%85%E9%97%AE%E9%A2%98/"/>
     <url>/2022/05/19/%E5%AF%BB%E6%89%BE%E5%87%B8%E5%8C%85%E9%97%AE%E9%A2%98/</url>

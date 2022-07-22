@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>01-现代游戏引擎导论</title>
+    <url>/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/</url>
+    <content><![CDATA[<h1 id="01-现代游戏引擎导论"><a href="#01-现代游戏引擎导论" class="headerlink" title="01_现代游戏引擎导论"></a>01_现代游戏引擎导论</h1><h1 id="为什么要学游戏引擎？"><a href="#为什么要学游戏引擎？" class="headerlink" title="为什么要学游戏引擎？"></a>为什么要学游戏引擎？</h1><p>应用领域——虚拟数字人、影视动画、军事模拟、数字孪生</p>
+<p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled.png" alt="Untitled"></p>
+<p><a href="https://zhuanlan.zhihu.com/p/468194499">元宇宙-虚拟数字人概述</a></p>
+<h1 id="游戏引擎历史"><a href="#游戏引擎历史" class="headerlink" title="游戏引擎历史"></a>游戏引擎历史</h1><h2 id="早期游戏时代"><a href="#早期游戏时代" class="headerlink" title="早期游戏时代"></a>早期游戏时代</h2><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%201.png" alt="Untitled"></p>
+<p>早期时候的游戏非常简单，常见的游戏机包括任天堂的“红白机”，彼时做游戏面临的最大问题是<strong>如何把复杂元素放入非常小的存储空间中</strong>，常见做法包括复用贴图，比如将云彩贴图变化颜色后复用成草丛贴图等。在这期间，也涌现了《魂斗罗》、《马里奥》、《坦克大战》等知名 IP。</p>
+<h2 id="第一个游戏引擎"><a href="#第一个游戏引擎" class="headerlink" title="第一个游戏引擎"></a><strong>第一个游戏引擎</strong></h2><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/20220722143642.png">  </p>
+<p>提到游戏引擎，就不得不提到游戏引擎之父<strong>John D. Carmack，</strong>他与另一个游戏软件天才 John Romero 共同开发出了全球首款第一人称射击游戏《德军总部 3D》_（Wolfenstein 3D，1992）_，他将游戏中能够复用的核心功能分离出来，产生了游戏引擎雏形。</p>
+<p>John Carmack 开发的第二款游戏——《毁灭战士》_（Doom）_，将该游戏分离的功能制作成为游戏引擎，才有了另一款游戏《魅影术士》_（Shadow Caster）_。但真正的游戏引擎还没到来，直到《雷神之锤》<em>（Quake）</em>问世。</p>
+<p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%204.png" alt="Untitled"></p>
+<p>《雷神之锤》由 id Software 开发的第一人称射击游戏，是<strong>第一个系统研究联网对战下如何进行网络同步的游戏</strong>，最早的版本发布于 1996 年 5 月 31 日。雷神之锤引擎<em>（Quake engine，又称 Q1 引擎）</em>是《雷神之锤》一代游戏的核心，也被用来制作其他的第一人称射击游戏，比如《半条命》（<em>Half-life</em><br>）和《荣誉勋章》（<em>Medal of Honor）。Quake engine</em>是第一个实现即时 3D 的游戏引擎，该引擎提供了实时 3D 渲染，并通过 OpenGL 支持 3D 加速，给游戏画面带来了质的飞跃。</p>
+<p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%205.png" alt="Untitled"></p>
+<p>早期计算机硬件中没有显卡，但图形运算涉及大量矩阵、向量运算，非常适合并行计算，此时就来到了游戏发展的转折点——<strong>显卡</strong>诞生。游戏引擎的发展非常依赖于硬件的发展，例如从<strong>PlayStation 1</strong><br>到<strong>PlayStation 5</strong>其算力提升 20 万倍，算力的增长导致游戏质量急速提升。</p>
+<h2 id="现代游戏引擎"><a href="#现代游戏引擎" class="headerlink" title="现代游戏引擎"></a>现代游戏引擎</h2><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%206.png" alt="Untitled"></p>
+<p>目前市面上的游戏引擎可分为三种：商业引擎<em>（Commercial Engine）</em>、自研引擎<em>（In-house Engine）</em>以及免费引擎<em>（Free Engine）</em>。商业引擎主要包括 UE、Unity 等引擎，自研引擎为各大游戏公司内部使用的引擎，包括大名鼎鼎的寒霜引擎<em>（Frostbite Engine）</em>，大多数免费引擎通常只适用于轻量级作品，与商业和自研引擎差距较大。</p>
+<p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%207.png" alt="Untitled"></p>
+<p>除此以外，针对特定功能模块还产生了细分功能的各类引擎。随着游戏行业的不断发展，开发者意识到物理计算等比较复杂，早期游戏都会自行实现物理碰撞等，但计算越来越复杂时，为了减少开发中不必要消耗，出现了专门用于处理物理计算的模块。在此基础上，出现了各种各样的中间件供游戏开发者使用。例如 SpeedTree，可为动画、建筑以及视频游戏和要求实时模拟的实时生成虚拟植物。</p>
+<h3 id="什么是游戏引擎？"><a href="#什么是游戏引擎？" class="headerlink" title="什么是游戏引擎？"></a>什么是游戏引擎？</h3><p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%208.png" alt="Untitled"></p>
+<ul>
+<li>构建“黑客帝国”的技术基础</li>
+<li>创造力工具</li>
+<li>复杂性的艺术</li>
+</ul>
+<p>游戏引擎作为<strong>构建虚拟世界的底层框架</strong>，对于创作者（艺术家、设计师），游戏引擎需要提供工具链，使其成为<strong>人类创意或者想象力的生产力工具</strong>。对于编程者，可扩展 API 接口无需修改核心即可定义游戏可玩性<em>（gameplay）</em>。对于工作室，游戏引擎需要提供可协作性，使得开发者能够合作完成不同工作。游戏引擎体量非常复杂、庞大，很好地展现了<strong>复杂性系统的艺术-系统复杂之美</strong>，但也带来了版本迭代兼容性问题。</p>
+<p><img src="/2022/07/20/01-%E7%8E%B0%E4%BB%A3%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%E5%AF%BC%E8%AE%BA/Untitled%209.png" alt="Untitled"></p>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES104</category>
+      </categories>
+      <tags>
+        <tag>CG</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GAMES101重要公式推导与算法补充</title>
     <url>/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/</url>
     <content><![CDATA[<h1 id="Rodrigues旋转公式"><a href="#Rodrigues旋转公式" class="headerlink" title="Rodrigues旋转公式"></a>Rodrigues旋转公式</h1><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>实现某三维物体的坐标绕过原点的向量轴<strong>n</strong>（默认过原点），旋转α角度（右手定则的四指方向）的旋转矩阵为R(<strong>n</strong>,α)，其表达形式为：<br><img src="/2021/08/06/GAMES101%E9%87%8D%E8%A6%81%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC%E8%A1%A5%E5%85%85/2021-08-06-17-50-47.png" alt="Rodrigues旋转公式"></p>
@@ -34,6 +70,52 @@
       <tags>
         <tag>旋转矩阵</tag>
         <tag>视图变换</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LearnOpenGL-环境配置</title>
+    <url>/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="Step1：获取GLFW与GLAD依赖库"><a href="#Step1：获取GLFW与GLAD依赖库" class="headerlink" title="Step1：获取GLFW与GLAD依赖库"></a>Step1：获取GLFW与GLAD依赖库</h1><p>GLFW是一个专门针对OpenGL的C语言库，它提供了一些渲染物体所需的最低限度的接口。它允许用户创建OpenGL上下文，定义窗口参数以及处理用户输入。该步骤保证它恰当地创建OpenGL上下文并显示窗口。</p>
+<p>GLAD是用来管理OpenGL的函数指针的，所以在调用任何OpenGL的函数之前我们需要初始化GLAD。</p>
+<blockquote>
+<p>获取教程参考链接：</p>
+<ul>
+<li><a href="https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/">Learn OpenGL——创建窗口</a></li>
+<li><a href="https://blog.csdn.net/u012278016/article/details/105582080">openGL学习笔记七： glad库及使用</a></li>
+</ul>
+</blockquote>
+<p>按照上面的参考链接得到的文件，整理为如下结构：</p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-32-17.png" alt="目录结构"></p>
+<h1 id="Step2：创建项目并编写代码"><a href="#Step2：创建项目并编写代码" class="headerlink" title="Step2：创建项目并编写代码"></a>Step2：创建项目并编写代码</h1><p>按照以下步骤依次创建项目：</p>
+<ul>
+<li>创建空项目</li>
+</ul>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-23-54.png" alt="创建空项目"></p>
+<ul>
+<li>将<code>src/glad.c</code>加入源文件</li>
+</ul>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-30-28.png" alt="右键选择"></p>
+<ul>
+<li><p>在源文件中创建<code>main.cpp</code><br><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-35-50.png" alt="创建main.cpp"></p>
+</li>
+<li><p>编写代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;glad/glad.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;GLFW/glfw3.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-comment">/*对窗口注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用。</span><br><span class="hljs-comment">这个帧缓冲大小函数需要一个GLFWwindow作为它的第一个参数，以及两个整数表示窗口的新维度。</span><br><span class="hljs-comment">每当窗口改变大小，GLFW会调用这个函数并填充相应的参数供你处理。*/</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">framebuffer_size_callback</span><span class="hljs-params">(GLFWwindow* window, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">glViewport</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, width, height);<br>&#125;<br><br><span class="hljs-comment">/*检查用户是否按下了返回键(Esc)。如果没有按下，glfwGetKey将会返回GLFW_RELEASE。如果用户的确按下了返回键，我们将通过</span><br><span class="hljs-comment">glfwSetwindowShouldClose使用把WindowShouldClose属性设置为 true的方法关闭GLFW。</span><br><span class="hljs-comment">下一次while循环的条件检测将会失败，程序将会关闭。</span><br><span class="hljs-comment">接下来在渲染循环的每一个迭代中调用processInput</span><br><span class="hljs-comment">*/</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">processInput</span><span class="hljs-params">(GLFWwindow* window)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//glfwGetKey函数，它需要一个窗口以及一个按键作为输入，返回这个按键是否正在被按下</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">glfwGetKey</span>(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)<br>        <span class="hljs-built_in">glfwSetWindowShouldClose</span>(window, <span class="hljs-literal">true</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">glfwInit</span>();<br>    <span class="hljs-comment">// 将主版本号(Major)和次版本号(Minor)都设为3</span><br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MAJOR, <span class="hljs-number">3</span>);<br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MINOR, <span class="hljs-number">3</span>);<br>    <span class="hljs-comment">// 告诉GLFW我们使用的是核心模式(Core-profile)</span><br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);<br>    <span class="hljs-comment">//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // Mac OS X系统，你还需要加这行代码</span><br><br>    <span class="hljs-comment">// 创建窗口对象</span><br>    GLFWwindow* window = <span class="hljs-built_in">glfwCreateWindow</span>(<span class="hljs-number">800</span>, <span class="hljs-number">600</span>, <span class="hljs-string">&quot;LearnOpenGL&quot;</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);<br>    <span class="hljs-keyword">if</span> (window == <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Failed to create GLFW window&quot;</span> &lt;&lt; std::endl;<br>        <span class="hljs-built_in">glfwTerminate</span>();<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br>    <span class="hljs-comment">//通知GLFW将我们窗口的上下文设置为当前线程的主上下文</span><br>    <span class="hljs-built_in">glfwMakeContextCurrent</span>(window);<br><br>    <span class="hljs-comment">//给GLAD传入了用来加载系统相关的OpenGL函数指针地址的函数</span><br>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">gladLoadGLLoader</span>((GLADloadproc)glfwGetProcAddress))<br>    &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Failed to initialize GLAD&quot;</span> &lt;&lt; std::endl;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">//调用glViewport函数来设置窗口的维度(Dimension)</span><br>    <span class="hljs-comment">//glViewport函数前两个参数控制窗口左下角的位置。第三个和第四个参数控制渲染窗口的宽度和高度（像素）。</span><br>    <span class="hljs-comment">// 处理过的OpenGL坐标范围只为-1到1，因此我们事实上将(-1到1)范围内的坐标映射到(0, 800)和(0, 600)。</span><br>    <span class="hljs-built_in">glViewport</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">800</span>, <span class="hljs-number">600</span>);<br><br>    <span class="hljs-comment">//注册这个函数，告诉GLFW我们希望每当窗口调整大小的时候调用这个函数</span><br>    <span class="hljs-comment">//还可以将我们的函数注册到其它很多的回调函数中</span><br>    <span class="hljs-built_in">glfwSetFramebufferSizeCallback</span>(window, framebuffer_size_callback);<br><br><br>    <span class="hljs-comment">//渲染循环(Render Loop)，它能在我们让GLFW退出前一直保持运行</span><br>    <span class="hljs-comment">// glfwWindowShouldClose函数在我们每次循环的开始前检查一次GLFW是否被要求退出，如果是的话该函数返回</span><br>    <span class="hljs-comment">// true然后渲染循环便结束了，之后为我们就可以关闭应用程序了。</span><br>    <span class="hljs-keyword">while</span> (!<span class="hljs-built_in">glfwWindowShouldClose</span>(window))<br>    &#123;<br>        <span class="hljs-built_in">processInput</span>(window);<br><br>        <span class="hljs-comment">//各种渲染指令</span><br>        <span class="hljs-comment">//------------</span><br>        <span class="hljs-comment">//glClearColor来设置清空屏幕所用的颜色。当调用glClear函数，清除颜色缓冲之后，整个颜色缓冲都会被</span><br>        <span class="hljs-comment">//填充为glClearColor里所设置的颜色。</span><br>        <span class="hljs-built_in">glClearColor</span>(<span class="hljs-number">0.2f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">1.0f</span>);<br>        <span class="hljs-built_in">glClear</span>(GL_COLOR_BUFFER_BIT);<br><br>        <br>        <span class="hljs-comment">//检查并调用事件，交换缓冲</span><br>        <span class="hljs-comment">//------------------------</span><br>        <span class="hljs-comment">//glfwSwapBuffers函数会交换颜色缓冲（它是一个储存着GLFW窗口每一个像素颜色值的大缓冲），它在这一</span><br>        <span class="hljs-comment">//迭代中被用来绘制，并且将会作为输出显示在屏幕上。</span><br>        <span class="hljs-built_in">glfwSwapBuffers</span>(window);<br><br>        <span class="hljs-comment">//glfwPollEvents函数检查有没有触发什么事件（比如键盘输入、鼠标移动等）、更新窗口状态，并调用对应的</span><br>        <span class="hljs-comment">// 回调函数（可以通过回调方法手动设置）</span><br>        <span class="hljs-built_in">glfwPollEvents</span>();<br>    &#125;<br><br>    <span class="hljs-comment">//当渲染循环结束后我们需要正确释放 / 删除之前的分配的所有资源</span><br>    <span class="hljs-built_in">glfwTerminate</span>();<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="Step3：配置项目属性"><a href="#Step3：配置项目属性" class="headerlink" title="Step3：配置项目属性"></a>Step3：配置项目属性</h1><p>到了这一步，还不能正常运行，需要对项目的属性进行配置：</p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-40-16.png" alt="打开项目属性"></p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-42-19.png" alt="将include文件夹加入包含目录"></p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-02-53.png" alt="将lib文件夹加入库目录"></p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-05-50.png" alt="添加附加依赖项"></p>
+<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>配置完成之后，可以看到正常的结果为一个深绿色窗口：</p>
+<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-08-01.png" alt="运行结果"></p>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>Configuration</category>
+        <category>OpenGL</category>
+      </categories>
+      <tags>
+        <tag>OpenGL</tag>
       </tags>
   </entry>
   <entry>
@@ -136,52 +218,6 @@
       </categories>
       <tags>
         <tag>GitHub Pages</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LearnOpenGL-环境配置</title>
-    <url>/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="Step1：获取GLFW与GLAD依赖库"><a href="#Step1：获取GLFW与GLAD依赖库" class="headerlink" title="Step1：获取GLFW与GLAD依赖库"></a>Step1：获取GLFW与GLAD依赖库</h1><p>GLFW是一个专门针对OpenGL的C语言库，它提供了一些渲染物体所需的最低限度的接口。它允许用户创建OpenGL上下文，定义窗口参数以及处理用户输入。该步骤保证它恰当地创建OpenGL上下文并显示窗口。</p>
-<p>GLAD是用来管理OpenGL的函数指针的，所以在调用任何OpenGL的函数之前我们需要初始化GLAD。</p>
-<blockquote>
-<p>获取教程参考链接：</p>
-<ul>
-<li><a href="https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/">Learn OpenGL——创建窗口</a></li>
-<li><a href="https://blog.csdn.net/u012278016/article/details/105582080">openGL学习笔记七： glad库及使用</a></li>
-</ul>
-</blockquote>
-<p>按照上面的参考链接得到的文件，整理为如下结构：</p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-32-17.png" alt="目录结构"></p>
-<h1 id="Step2：创建项目并编写代码"><a href="#Step2：创建项目并编写代码" class="headerlink" title="Step2：创建项目并编写代码"></a>Step2：创建项目并编写代码</h1><p>按照以下步骤依次创建项目：</p>
-<ul>
-<li>创建空项目</li>
-</ul>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-23-54.png" alt="创建空项目"></p>
-<ul>
-<li>将<code>src/glad.c</code>加入源文件</li>
-</ul>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-30-28.png" alt="右键选择"></p>
-<ul>
-<li><p>在源文件中创建<code>main.cpp</code><br><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-35-50.png" alt="创建main.cpp"></p>
-</li>
-<li><p>编写代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;glad/glad.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;GLFW/glfw3.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-comment">/*对窗口注册一个回调函数(Callback Function)，它会在每次窗口大小被调整的时候被调用。</span><br><span class="hljs-comment">这个帧缓冲大小函数需要一个GLFWwindow作为它的第一个参数，以及两个整数表示窗口的新维度。</span><br><span class="hljs-comment">每当窗口改变大小，GLFW会调用这个函数并填充相应的参数供你处理。*/</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">framebuffer_size_callback</span><span class="hljs-params">(GLFWwindow* window, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">glViewport</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, width, height);<br>&#125;<br><br><span class="hljs-comment">/*检查用户是否按下了返回键(Esc)。如果没有按下，glfwGetKey将会返回GLFW_RELEASE。如果用户的确按下了返回键，我们将通过</span><br><span class="hljs-comment">glfwSetwindowShouldClose使用把WindowShouldClose属性设置为 true的方法关闭GLFW。</span><br><span class="hljs-comment">下一次while循环的条件检测将会失败，程序将会关闭。</span><br><span class="hljs-comment">接下来在渲染循环的每一个迭代中调用processInput</span><br><span class="hljs-comment">*/</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">processInput</span><span class="hljs-params">(GLFWwindow* window)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//glfwGetKey函数，它需要一个窗口以及一个按键作为输入，返回这个按键是否正在被按下</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">glfwGetKey</span>(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)<br>        <span class="hljs-built_in">glfwSetWindowShouldClose</span>(window, <span class="hljs-literal">true</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">glfwInit</span>();<br>    <span class="hljs-comment">// 将主版本号(Major)和次版本号(Minor)都设为3</span><br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MAJOR, <span class="hljs-number">3</span>);<br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_CONTEXT_VERSION_MINOR, <span class="hljs-number">3</span>);<br>    <span class="hljs-comment">// 告诉GLFW我们使用的是核心模式(Core-profile)</span><br>    <span class="hljs-built_in">glfwWindowHint</span>(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);<br>    <span class="hljs-comment">//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // Mac OS X系统，你还需要加这行代码</span><br><br>    <span class="hljs-comment">// 创建窗口对象</span><br>    GLFWwindow* window = <span class="hljs-built_in">glfwCreateWindow</span>(<span class="hljs-number">800</span>, <span class="hljs-number">600</span>, <span class="hljs-string">&quot;LearnOpenGL&quot;</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);<br>    <span class="hljs-keyword">if</span> (window == <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Failed to create GLFW window&quot;</span> &lt;&lt; std::endl;<br>        <span class="hljs-built_in">glfwTerminate</span>();<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br>    <span class="hljs-comment">//通知GLFW将我们窗口的上下文设置为当前线程的主上下文</span><br>    <span class="hljs-built_in">glfwMakeContextCurrent</span>(window);<br><br>    <span class="hljs-comment">//给GLAD传入了用来加载系统相关的OpenGL函数指针地址的函数</span><br>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">gladLoadGLLoader</span>((GLADloadproc)glfwGetProcAddress))<br>    &#123;<br>        std::cout &lt;&lt; <span class="hljs-string">&quot;Failed to initialize GLAD&quot;</span> &lt;&lt; std::endl;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">//调用glViewport函数来设置窗口的维度(Dimension)</span><br>    <span class="hljs-comment">//glViewport函数前两个参数控制窗口左下角的位置。第三个和第四个参数控制渲染窗口的宽度和高度（像素）。</span><br>    <span class="hljs-comment">// 处理过的OpenGL坐标范围只为-1到1，因此我们事实上将(-1到1)范围内的坐标映射到(0, 800)和(0, 600)。</span><br>    <span class="hljs-built_in">glViewport</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">800</span>, <span class="hljs-number">600</span>);<br><br>    <span class="hljs-comment">//注册这个函数，告诉GLFW我们希望每当窗口调整大小的时候调用这个函数</span><br>    <span class="hljs-comment">//还可以将我们的函数注册到其它很多的回调函数中</span><br>    <span class="hljs-built_in">glfwSetFramebufferSizeCallback</span>(window, framebuffer_size_callback);<br><br><br>    <span class="hljs-comment">//渲染循环(Render Loop)，它能在我们让GLFW退出前一直保持运行</span><br>    <span class="hljs-comment">// glfwWindowShouldClose函数在我们每次循环的开始前检查一次GLFW是否被要求退出，如果是的话该函数返回</span><br>    <span class="hljs-comment">// true然后渲染循环便结束了，之后为我们就可以关闭应用程序了。</span><br>    <span class="hljs-keyword">while</span> (!<span class="hljs-built_in">glfwWindowShouldClose</span>(window))<br>    &#123;<br>        <span class="hljs-built_in">processInput</span>(window);<br><br>        <span class="hljs-comment">//各种渲染指令</span><br>        <span class="hljs-comment">//------------</span><br>        <span class="hljs-comment">//glClearColor来设置清空屏幕所用的颜色。当调用glClear函数，清除颜色缓冲之后，整个颜色缓冲都会被</span><br>        <span class="hljs-comment">//填充为glClearColor里所设置的颜色。</span><br>        <span class="hljs-built_in">glClearColor</span>(<span class="hljs-number">0.2f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">0.3f</span>, <span class="hljs-number">1.0f</span>);<br>        <span class="hljs-built_in">glClear</span>(GL_COLOR_BUFFER_BIT);<br><br>        <br>        <span class="hljs-comment">//检查并调用事件，交换缓冲</span><br>        <span class="hljs-comment">//------------------------</span><br>        <span class="hljs-comment">//glfwSwapBuffers函数会交换颜色缓冲（它是一个储存着GLFW窗口每一个像素颜色值的大缓冲），它在这一</span><br>        <span class="hljs-comment">//迭代中被用来绘制，并且将会作为输出显示在屏幕上。</span><br>        <span class="hljs-built_in">glfwSwapBuffers</span>(window);<br><br>        <span class="hljs-comment">//glfwPollEvents函数检查有没有触发什么事件（比如键盘输入、鼠标移动等）、更新窗口状态，并调用对应的</span><br>        <span class="hljs-comment">// 回调函数（可以通过回调方法手动设置）</span><br>        <span class="hljs-built_in">glfwPollEvents</span>();<br>    &#125;<br><br>    <span class="hljs-comment">//当渲染循环结束后我们需要正确释放 / 删除之前的分配的所有资源</span><br>    <span class="hljs-built_in">glfwTerminate</span>();<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="Step3：配置项目属性"><a href="#Step3：配置项目属性" class="headerlink" title="Step3：配置项目属性"></a>Step3：配置项目属性</h1><p>到了这一步，还不能正常运行，需要对项目的属性进行配置：</p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-40-16.png" alt="打开项目属性"></p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-11-42-19.png" alt="将include文件夹加入包含目录"></p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-02-53.png" alt="将lib文件夹加入库目录"></p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-05-50.png" alt="添加附加依赖项"></p>
-<h1 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h1><p>配置完成之后，可以看到正常的结果为一个深绿色窗口：</p>
-<p><img src="/2021/08/02/LearnOpenGL-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2021-08-03-23-08-01.png" alt="运行结果"></p>
-]]></content>
-      <categories>
-        <category>CG</category>
-        <category>Configuration</category>
-        <category>OpenGL</category>
-      </categories>
-      <tags>
-        <tag>OpenGL</tag>
       </tags>
   </entry>
   <entry>
@@ -296,177 +332,6 @@
 </li>
 </ul>
 </li>
-</ul>
-]]></content>
-      <categories>
-        <category>CG</category>
-        <category>GAMES101</category>
-        <category>Theory</category>
-      </categories>
-      <tags>
-        <tag>CG</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Lecture 07-09 [着色]</title>
-    <url>/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/</url>
-    <content><![CDATA[<h1 id="深度缓冲与着色"><a href="#深度缓冲与着色" class="headerlink" title="深度缓冲与着色"></a><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_07.pdf">深度缓冲与着色</a></h1><ul>
-<li><p>思路与算法：在绘制最终的图像同时，绘制深度图，记录每个像素距离相机最近的深度值</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/885605b7-fa53-4251-801b-abc5e1dd54a3-11709514.jpg"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/9ba89a84-9af3-45cf-86c0-1d4b80765924-11709514.jpg"></p>
-</li>
-</ul>
-<h1 id="着色-Shading"><a href="#着色-Shading" class="headerlink" title="着色 Shading"></a>着色 Shading</h1><ul>
-<li><strong>对不同的物体应用不同的材质的过程（不同的材质就是不同的着色方法）</strong></li>
-</ul>
-<h3 id="漫反射"><a href="#漫反射" class="headerlink" title="漫反射"></a>漫反射</h3><ul>
-<li><p>漫反射与人眼位置无关，从各个方向看上去亮度均相同，公式中也可以反映出来。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529163944.png"></p>
-</li>
-<li><p>其中，Kd 表示漫反射系数，0 为完全不反射，1 为镜面反射。可以使用一个颜色向量值来表示该点反射出的光线的颜色</p>
-</li>
-</ul>
-<h3 id="高光"><a href="#高光" class="headerlink" title="高光"></a><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_08.pdf">高光</a></h3><ul>
-<li><p>当眼睛的方向和镜面反射光线的方向较为接近时可以看到，即下图的 R 与 v 接近</p>
-</li>
-<li><p>Blinn-Phong 模型：将“R 与 v 接近”转换为“半程向量 h 与法向量 n 接近”<br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171316.png"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171404.png"></p>
-</li>
-<li><p>上图的指数 p 表示高光系数，原因：余弦函数对角度的容忍度较高，而期望的效果是高光集中在很小的范围内，因此对其进行指数操作。p 一般取 100~200。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171431.png"></p>
-</li>
-</ul>
-<p>###环境光</p>
-<ul>
-<li>来自四面八方的反射光线，极为复杂，因此假设（简化后）：环境光来自所有方向，且强度相同，颜色相同。与实际光线方向和眼睛的方向无关，设为一个常数。实际上要计算真实环境光需要用到全局光照的部分。</li>
-</ul>
-<h3 id="Blinn-Phong-反射模型"><a href="#Blinn-Phong-反射模型" class="headerlink" title="Blinn-Phong 反射模型"></a>Blinn-Phong 反射模型</h3><p>  <img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093749.png"></p>
-<h3 id="着色频率"><a href="#着色频率" class="headerlink" title="着色频率"></a>着色频率</h3><ul>
-<li><p>通俗理解：将着色应用到哪些点上</p>
-</li>
-<li><p>着色频率的分类</p>
-<ul>
-<li><p>Flat shading（对每个三角形求一个法向量，对应只有一个颜色，对光滑表面效果较差）</p>
-</li>
-<li><p>Gouraud shading（对每个顶点求法向量，三角形内部利用插值进行着色）。顶点的法向量，可以对其相邻接的三角形的各个法向量求加权平均，权重可以设置为该三角形的面积。<br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093930.png"></p>
-</li>
-<li><p>Phong shading（对每个三角形，得到三个顶点的法向量，从而插值出三角形内部每个像素的法向量，然后对每个像素进行一次着色）</p>
-</li>
-</ul>
-</li>
-<li><p>当顶点足够多、模型足够复杂时，就可以使用比较简单的着色频率，效果可以接收。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093951.png"></p>
-</li>
-</ul>
-<h1 id="图形管线（实时渲染管线）"><a href="#图形管线（实时渲染管线）" class="headerlink" title="图形管线（实时渲染管线）"></a>图形管线（实时渲染管线）</h1><ul>
-<li><p>通俗理解：从场景到一张图片所经历的整个过程的不同操作</p>
-</li>
-<li><p>OpenGL 中的 Fragment（片段）可以理解为像素。该过程已经在硬件中写好，即 GPU 的渲染过程。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/d6369dca-3917-4cbf-958d-f1ca1a10e58d-11709514.jpg"></p>
-<ul>
-<li><p>顶点处理的作用是指对所有的顶点数据进行 Model，View，和 Projection 的变换，最终得到投影到二维平面的坐标信息(同时为了 Zbuffer 保留深度 z 值)。当然如果超出观察空间的会被剪裁掉。</p>
-</li>
-<li><p>三角形处理就是将所有的顶点按照原几何信息，变成三角面，每个面由 3 个顶点组成。得到了许许多多个三角形之后，接下来的操作自然就是三角形光栅化。</p>
-</li>
-<li><p>在进行完三角形的光栅化之后，知道了哪些在三角形内的点可以被显示，那么如何确定每个像素点或者说片元(Fragement)的颜色呢？[注：片元可能比像素更小，如 MSAA 抗拒齿操作的进一步细分得到的采样点]。那自然就是着色了，也就是片元处理阶段应该做的。</p>
-</li>
-<li><p>着色部分在顶点和像素处理过程都可能发生，关键看着色频率的方法。如果是 Gouraud shading，仅在顶点进行着色；如果是 Phong shading，则会在像素生成之后进行着色。因此，着色的关键在于——顶点或者像素（片段）如何着色，该部分的程序即为着色器（定义了一个顶点或者像素该执行什么操作，且只执行一次）。在现代的 GPU 中，该套渲染管线允许某些部分是可编程的。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/c33119a5-bd24-4b62-992d-aab9af40546a-11709514.jpg"></p>
-</li>
-<li><p>Framebuffer 的操作，就是将所有的像素颜色信息整合在一起，输送给显示设备加以显示。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h1><h2 id="规定"><a href="#规定" class="headerlink" title="规定"></a>规定</h2><ul>
-<li>假设三维物体中的坐标可以映射到二维纹理图片的坐标（参数化）</li>
-<li>对于二维的纹理图片（不考虑像素和长宽），其 u、v 均在（0，1）范围内</li>
-</ul>
-<h2 id="重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值"><a href="#重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值" class="headerlink" title="重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值"></a>重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值</h2><ul>
-<li><p>重心坐标定义在一个三角形中，如果某个点在三角形内部，这三个值（α、β、γ）均为非负，且和为 1。三个值（α、β、γ）可以用面积求得，也可以利用三个顶点的坐标公式求得。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/13eff49a-6d7e-4282-bce5-b6c645bc45b6-11709514.jpg"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/fd247a7b-20a3-4364-b4f8-a5589ab5efb2-11709514.jpg"></p>
-</li>
-<li><p>插值应该在三维物体投影到二维平面之前做，因为重心坐标不能保证投影后插值得到的属性值不变。</p>
-</li>
-</ul>
-<h2 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h2><ul>
-<li><p>如果屏幕分辨率很大（如 4k），而纹理图片分辨率很小（如 256*256），那么会出现：屏幕与纹理图片上的点并不能一一对应，得到的是非整数的纹理坐标。解决方法：</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/dc915635-f15f-467a-93cf-4c3fdb24cc8e-11709514.jpg"></p>
-<ul>
-<li><p>Nearest：取整，相当于屏幕的多个点（像素）对应了纹理图片的一个像素</p>
-</li>
-<li><p>Bilinear：双线性插值。红点的来源：三维物体中三角面片内部的某一点，经过插值得到一个点，再经过投影变换到屏幕上，再经过映射得到纹理坐标，即该红点。双线性插值经历了两次水平方向的插值，一次竖直方向的插值，最终得到一个平滑的纹理的像素值。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/b6a30e8c-fce6-47b6-bb14-bca0a5dfb44d-11709514.jpg"></p>
-</li>
-<li><p>Bicubic：双三次插值，对周围的 16 个纹理坐标进行插值得到像素值。</p>
-</li>
-</ul>
-</li>
-<li><p>相反，如果屏幕分辨率很小，而纹理图片分辨率很大，那么会出现一个屏幕像素点对应了多个纹理像素点，即覆盖了大块的包含图案变化的纹理区域，便出现走样（屏幕的采样频率跟不上纹理的变化频率）。解决方法：</p>
-<ul>
-<li><p>超采样：一个屏幕像素点分为多个采样点来对应纹理坐标，最后取平均值（有效果，开销过大）</p>
-</li>
-<li><p>Mipmap 多级渐远纹理（利用范围查询的知识：给一个区域，立刻能够知道该区域内部纹理像素的平均值），只能做近似的正方形的范围查询。在渲染之前，提前计算纹理图的渐远纹理，存储空间仅为原图的 4&#x2F;3。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/9f87a3c3-d840-483d-b3d8-66dd5df0dfc8-11709514.jpg"></p>
-<ul>
-<li><p>关键：计算某个屏幕像素应该映射到哪个 level（记为 D）的纹理上。将一个屏幕像素的临近点映射到 level 0 的纹理图上，估计该像素覆盖的一个正方形的边长 L，求以 2 为底的对数即可得到 D。如果 L&#x3D;1，即一个屏幕像素对应 1 个原始纹理像素，利用原始纹理图即可，D&#x3D;0；如果 L&#x3D;4，即一个屏幕像素对应 4*4 个原始纹理像素，那么利用 D&#x3D;2 的纹理图即可得到对应的 1 个纹理像素。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/aacbafb2-25b5-4f68-b510-2ecf4ff175a4-11709514.jpg"></p>
-</li>
-<li><p>问题 1：如果 L 不是 2 的指数，可以对 D 取整，但很有可能得到的纹理映射结果出现断层。此时利用三线性（Trilinear）插值即可——L&#x3D;3 时，分别计算 D&#x3D;1 和 D&#x3D;2 的双线性插值结果后，再计算两个结果的线性插值。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/d8ab277e-341c-4975-b72b-84428cc81159-11709514.jpg"></p>
-</li>
-<li><p>问题 2：过度模糊（Overblur）问题，在远处无法得到清晰的纹理映射。原因在于，屏幕上的一个像素映射到纹理坐标，可能覆盖了多个纹理像素，此时查询多级渐远纹理后只对应了一个平均的纹理像素值，就产生了模糊。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/00e56316-69c7-4f3e-9287-5c161b68d53b-11709514.jpg"></p>
-<ul>
-<li><p>解决方法</p>
-<ul>
-<li><p>各向异性过滤（Anisotropic Filtering，或 Ripmap），将纹理像素的长和宽分别压缩与同时压缩，耗费了原始纹理像素的 3 倍存储空间，那么对于上图右侧的矩形即可准确得到纹理映射。缺点在于：对于上图左侧的倾斜矩形，无法得到正确的结果。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/10a8e5e2-135b-4982-b8d5-576ae0af7c25-11709514.jpg"></p>
-</li>
-<li><p>EWA 过滤，把一个覆盖到纹理像素的不规则形状拆分为多个圆形，执行多级查询，耗费时间，但效果较好。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/e6846262-5bfc-4528-9477-f50b49decc05-11709514.jpg"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="纹理应用技术"><a href="#纹理应用技术" class="headerlink" title="纹理应用技术"></a>纹理应用技术</h2><ul>
-<li><p>现代计算机 GPU 中，可以把纹理理解为一块内存，以及可以在这块内存中进行范围查询，即 texture &#x3D; memory + range query (filtering)</p>
-</li>
-<li><p>环境映射（Environment Mapping）。为了实现接受环境光的效果，我们可以用一个贴图来存放环境光信息，即 环境贴图（Environment Map） 或 反射贴图（Reflection Map），在给物体着色的时候不仅采样普通纹理，也采样环境贴图，按一定比例混合这两者的颜色（例如物体材质越光滑，镜面反射效果越强）。即用纹理描述环境光的样子，从而用该纹理去渲染物体。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/df959a07-ad93-4529-b7b0-dfd17ee8b3a4-11709514.jpg"></p>
-</li>
-<li><p>球面环境贴图（Spherical Environment Map）。把环境光记录到球面上，并展开，但会出现扭曲现象。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/15f78112-fa47-4662-b969-e8d3e80a3108-11709514.jpg"></p>
-</li>
-<li><p>解决球面环境贴图扭曲现象的办法——立方体贴图（Cube Map）。设置一个包围盒，将球面上的点延长交于包围盒，并展开。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/82604133-9408-4d05-a820-4d8d21022015-11709514.jpg"></p>
-</li>
-<li><p>凹凸贴图（Bump Mapping）。通过改变表面各点的相对高度，使本来是平的东西看起来有凹凸的效果，是一种欺骗眼睛的技术（因为物体结构并没有发生改变）。例如这个球看起来凹凸不平，实际它的几何结构就是光滑的球，只是通过凹凸贴图改变了各像素点的法线方向，从而导致光照结果不一，产生出凹凸不平的视觉效果。即不把几何形体变复杂的情况下，可以通过应用复杂的纹理定义相对高度，从而法线会发生变化。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/f89bdc6f-1b36-45ec-b54d-364b79ed708a-11709514.jpg"></p>
-<ul>
-<li><p>首先，凹凸贴图是在不增加三角面片的情况下增加表面细节来实现的。黑色的线是真实的表面，黄色的线是通过凹凸贴图定义的，那么其法向量原本是 p，改变为 n</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/eaa66795-188d-4d03-94c4-89b08c1d3398-11709514.jpg"></p>
-</li>
-<li><p>下图展示的是二维情况下的法向量改变的过程：先假设某一点 p 的局部法向量 n（p），计算该点处在凹凸贴图上的切线，求其垂直向量。之后推广到三维情况即可，需要注意的是：真实模型中某一点 p 的法向量不一定是朝向 z 的，但假设在该局部是这样，计算好改变后的法向量后需要通过变换才能得到真实的改变了的法向量。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/fe60eddd-d3a7-4d04-a0eb-a5d8be7d6b05-11709514.jpg"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/a8c244a4-2543-4d87-bf82-582f7b1e3bdc-11709514.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>位移贴图（Displacement mapping），需要三角形足够细致，否则还会出现走样问题。但在 DirectX 中可以根据需要将三角形进行细分，从而避免该问题。</p>
-<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/f189f5db-db71-4bc9-a4bf-2d0e2739a254-11709514.jpg"></p>
-</li>
-<li><p>除此之外，还有三维纹理、环境光遮蔽、医学体渲染等纹理应用。可以参考：<a href="https://www.cnblogs.com/KillerAery/p/15106770.html#%E7%BA%B9%E7%90%86%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF%EF%BC%88texture-application%EF%BC%89">纹理映射技术</a></p>
-</li>
-</ul>
-<h1 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h1><ul>
-<li>这里考虑点光源产生的阴影，只有两种情况：在阴影中和不在阴影中（硬阴影）。如果是软阴影，则光源一定有大小。</li>
-<li><strong>关键——人眼和光源能够同时看到该点，就不在阴影中。</strong></li>
-<li>step1：假设光源前有一个屏幕，从光源看场景，记录每个点到光源屏幕的深度，得到一张深度图</li>
-<li>step2：从人眼（相机）看物体的每个点，再投影到光源处，计算该点到光源的深度，如果等于 step1 中计算的深度，就表示不在阴影中。</li>
 </ul>
 ]]></content>
       <categories>
@@ -732,6 +597,177 @@
 </li>
 <li><p>3.光线折射</p>
 </li>
+</ul>
+]]></content>
+      <categories>
+        <category>CG</category>
+        <category>GAMES101</category>
+        <category>Theory</category>
+      </categories>
+      <tags>
+        <tag>CG</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lecture 07-09 [着色]</title>
+    <url>/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/</url>
+    <content><![CDATA[<h1 id="深度缓冲与着色"><a href="#深度缓冲与着色" class="headerlink" title="深度缓冲与着色"></a><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_07.pdf">深度缓冲与着色</a></h1><ul>
+<li><p>思路与算法：在绘制最终的图像同时，绘制深度图，记录每个像素距离相机最近的深度值</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/885605b7-fa53-4251-801b-abc5e1dd54a3-11709514.jpg"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/9ba89a84-9af3-45cf-86c0-1d4b80765924-11709514.jpg"></p>
+</li>
+</ul>
+<h1 id="着色-Shading"><a href="#着色-Shading" class="headerlink" title="着色 Shading"></a>着色 Shading</h1><ul>
+<li><strong>对不同的物体应用不同的材质的过程（不同的材质就是不同的着色方法）</strong></li>
+</ul>
+<h3 id="漫反射"><a href="#漫反射" class="headerlink" title="漫反射"></a>漫反射</h3><ul>
+<li><p>漫反射与人眼位置无关，从各个方向看上去亮度均相同，公式中也可以反映出来。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529163944.png"></p>
+</li>
+<li><p>其中，Kd 表示漫反射系数，0 为完全不反射，1 为镜面反射。可以使用一个颜色向量值来表示该点反射出的光线的颜色</p>
+</li>
+</ul>
+<h3 id="高光"><a href="#高光" class="headerlink" title="高光"></a><a href="https://sites.cs.ucsb.edu/~lingqi/teaching/resources/GAMES101_Lecture_08.pdf">高光</a></h3><ul>
+<li><p>当眼睛的方向和镜面反射光线的方向较为接近时可以看到，即下图的 R 与 v 接近</p>
+</li>
+<li><p>Blinn-Phong 模型：将“R 与 v 接近”转换为“半程向量 h 与法向量 n 接近”<br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171316.png"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171404.png"></p>
+</li>
+<li><p>上图的指数 p 表示高光系数，原因：余弦函数对角度的容忍度较高，而期望的效果是高光集中在很小的范围内，因此对其进行指数操作。p 一般取 100~200。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220529171431.png"></p>
+</li>
+</ul>
+<p>###环境光</p>
+<ul>
+<li>来自四面八方的反射光线，极为复杂，因此假设（简化后）：环境光来自所有方向，且强度相同，颜色相同。与实际光线方向和眼睛的方向无关，设为一个常数。实际上要计算真实环境光需要用到全局光照的部分。</li>
+</ul>
+<h3 id="Blinn-Phong-反射模型"><a href="#Blinn-Phong-反射模型" class="headerlink" title="Blinn-Phong 反射模型"></a>Blinn-Phong 反射模型</h3><p>  <img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093749.png"></p>
+<h3 id="着色频率"><a href="#着色频率" class="headerlink" title="着色频率"></a>着色频率</h3><ul>
+<li><p>通俗理解：将着色应用到哪些点上</p>
+</li>
+<li><p>着色频率的分类</p>
+<ul>
+<li><p>Flat shading（对每个三角形求一个法向量，对应只有一个颜色，对光滑表面效果较差）</p>
+</li>
+<li><p>Gouraud shading（对每个顶点求法向量，三角形内部利用插值进行着色）。顶点的法向量，可以对其相邻接的三角形的各个法向量求加权平均，权重可以设置为该三角形的面积。<br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093930.png"></p>
+</li>
+<li><p>Phong shading（对每个三角形，得到三个顶点的法向量，从而插值出三角形内部每个像素的法向量，然后对每个像素进行一次着色）</p>
+</li>
+</ul>
+</li>
+<li><p>当顶点足够多、模型足够复杂时，就可以使用比较简单的着色频率，效果可以接收。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/20220530093951.png"></p>
+</li>
+</ul>
+<h1 id="图形管线（实时渲染管线）"><a href="#图形管线（实时渲染管线）" class="headerlink" title="图形管线（实时渲染管线）"></a>图形管线（实时渲染管线）</h1><ul>
+<li><p>通俗理解：从场景到一张图片所经历的整个过程的不同操作</p>
+</li>
+<li><p>OpenGL 中的 Fragment（片段）可以理解为像素。该过程已经在硬件中写好，即 GPU 的渲染过程。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/d6369dca-3917-4cbf-958d-f1ca1a10e58d-11709514.jpg"></p>
+<ul>
+<li><p>顶点处理的作用是指对所有的顶点数据进行 Model，View，和 Projection 的变换，最终得到投影到二维平面的坐标信息(同时为了 Zbuffer 保留深度 z 值)。当然如果超出观察空间的会被剪裁掉。</p>
+</li>
+<li><p>三角形处理就是将所有的顶点按照原几何信息，变成三角面，每个面由 3 个顶点组成。得到了许许多多个三角形之后，接下来的操作自然就是三角形光栅化。</p>
+</li>
+<li><p>在进行完三角形的光栅化之后，知道了哪些在三角形内的点可以被显示，那么如何确定每个像素点或者说片元(Fragement)的颜色呢？[注：片元可能比像素更小，如 MSAA 抗拒齿操作的进一步细分得到的采样点]。那自然就是着色了，也就是片元处理阶段应该做的。</p>
+</li>
+<li><p>着色部分在顶点和像素处理过程都可能发生，关键看着色频率的方法。如果是 Gouraud shading，仅在顶点进行着色；如果是 Phong shading，则会在像素生成之后进行着色。因此，着色的关键在于——顶点或者像素（片段）如何着色，该部分的程序即为着色器（定义了一个顶点或者像素该执行什么操作，且只执行一次）。在现代的 GPU 中，该套渲染管线允许某些部分是可编程的。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/c33119a5-bd24-4b62-992d-aab9af40546a-11709514.jpg"></p>
+</li>
+<li><p>Framebuffer 的操作，就是将所有的像素颜色信息整合在一起，输送给显示设备加以显示。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="纹理"><a href="#纹理" class="headerlink" title="纹理"></a>纹理</h1><h2 id="规定"><a href="#规定" class="headerlink" title="规定"></a>规定</h2><ul>
+<li>假设三维物体中的坐标可以映射到二维纹理图片的坐标（参数化）</li>
+<li>对于二维的纹理图片（不考虑像素和长宽），其 u、v 均在（0，1）范围内</li>
+</ul>
+<h2 id="重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值"><a href="#重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值" class="headerlink" title="重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值"></a>重心坐标：针对顶点的任意属性（如纹理坐标、颜色、法向量、深度等）做三角形内部的插值</h2><ul>
+<li><p>重心坐标定义在一个三角形中，如果某个点在三角形内部，这三个值（α、β、γ）均为非负，且和为 1。三个值（α、β、γ）可以用面积求得，也可以利用三个顶点的坐标公式求得。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/13eff49a-6d7e-4282-bce5-b6c645bc45b6-11709514.jpg"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/fd247a7b-20a3-4364-b4f8-a5589ab5efb2-11709514.jpg"></p>
+</li>
+<li><p>插值应该在三维物体投影到二维平面之前做，因为重心坐标不能保证投影后插值得到的属性值不变。</p>
+</li>
+</ul>
+<h2 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h2><ul>
+<li><p>如果屏幕分辨率很大（如 4k），而纹理图片分辨率很小（如 256*256），那么会出现：屏幕与纹理图片上的点并不能一一对应，得到的是非整数的纹理坐标。解决方法：</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/dc915635-f15f-467a-93cf-4c3fdb24cc8e-11709514.jpg"></p>
+<ul>
+<li><p>Nearest：取整，相当于屏幕的多个点（像素）对应了纹理图片的一个像素</p>
+</li>
+<li><p>Bilinear：双线性插值。红点的来源：三维物体中三角面片内部的某一点，经过插值得到一个点，再经过投影变换到屏幕上，再经过映射得到纹理坐标，即该红点。双线性插值经历了两次水平方向的插值，一次竖直方向的插值，最终得到一个平滑的纹理的像素值。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/b6a30e8c-fce6-47b6-bb14-bca0a5dfb44d-11709514.jpg"></p>
+</li>
+<li><p>Bicubic：双三次插值，对周围的 16 个纹理坐标进行插值得到像素值。</p>
+</li>
+</ul>
+</li>
+<li><p>相反，如果屏幕分辨率很小，而纹理图片分辨率很大，那么会出现一个屏幕像素点对应了多个纹理像素点，即覆盖了大块的包含图案变化的纹理区域，便出现走样（屏幕的采样频率跟不上纹理的变化频率）。解决方法：</p>
+<ul>
+<li><p>超采样：一个屏幕像素点分为多个采样点来对应纹理坐标，最后取平均值（有效果，开销过大）</p>
+</li>
+<li><p>Mipmap 多级渐远纹理（利用范围查询的知识：给一个区域，立刻能够知道该区域内部纹理像素的平均值），只能做近似的正方形的范围查询。在渲染之前，提前计算纹理图的渐远纹理，存储空间仅为原图的 4&#x2F;3。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/9f87a3c3-d840-483d-b3d8-66dd5df0dfc8-11709514.jpg"></p>
+<ul>
+<li><p>关键：计算某个屏幕像素应该映射到哪个 level（记为 D）的纹理上。将一个屏幕像素的临近点映射到 level 0 的纹理图上，估计该像素覆盖的一个正方形的边长 L，求以 2 为底的对数即可得到 D。如果 L&#x3D;1，即一个屏幕像素对应 1 个原始纹理像素，利用原始纹理图即可，D&#x3D;0；如果 L&#x3D;4，即一个屏幕像素对应 4*4 个原始纹理像素，那么利用 D&#x3D;2 的纹理图即可得到对应的 1 个纹理像素。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/aacbafb2-25b5-4f68-b510-2ecf4ff175a4-11709514.jpg"></p>
+</li>
+<li><p>问题 1：如果 L 不是 2 的指数，可以对 D 取整，但很有可能得到的纹理映射结果出现断层。此时利用三线性（Trilinear）插值即可——L&#x3D;3 时，分别计算 D&#x3D;1 和 D&#x3D;2 的双线性插值结果后，再计算两个结果的线性插值。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/d8ab277e-341c-4975-b72b-84428cc81159-11709514.jpg"></p>
+</li>
+<li><p>问题 2：过度模糊（Overblur）问题，在远处无法得到清晰的纹理映射。原因在于，屏幕上的一个像素映射到纹理坐标，可能覆盖了多个纹理像素，此时查询多级渐远纹理后只对应了一个平均的纹理像素值，就产生了模糊。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/00e56316-69c7-4f3e-9287-5c161b68d53b-11709514.jpg"></p>
+<ul>
+<li><p>解决方法</p>
+<ul>
+<li><p>各向异性过滤（Anisotropic Filtering，或 Ripmap），将纹理像素的长和宽分别压缩与同时压缩，耗费了原始纹理像素的 3 倍存储空间，那么对于上图右侧的矩形即可准确得到纹理映射。缺点在于：对于上图左侧的倾斜矩形，无法得到正确的结果。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/10a8e5e2-135b-4982-b8d5-576ae0af7c25-11709514.jpg"></p>
+</li>
+<li><p>EWA 过滤，把一个覆盖到纹理像素的不规则形状拆分为多个圆形，执行多级查询，耗费时间，但效果较好。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/e6846262-5bfc-4528-9477-f50b49decc05-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="纹理应用技术"><a href="#纹理应用技术" class="headerlink" title="纹理应用技术"></a>纹理应用技术</h2><ul>
+<li><p>现代计算机 GPU 中，可以把纹理理解为一块内存，以及可以在这块内存中进行范围查询，即 texture &#x3D; memory + range query (filtering)</p>
+</li>
+<li><p>环境映射（Environment Mapping）。为了实现接受环境光的效果，我们可以用一个贴图来存放环境光信息，即 环境贴图（Environment Map） 或 反射贴图（Reflection Map），在给物体着色的时候不仅采样普通纹理，也采样环境贴图，按一定比例混合这两者的颜色（例如物体材质越光滑，镜面反射效果越强）。即用纹理描述环境光的样子，从而用该纹理去渲染物体。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/df959a07-ad93-4529-b7b0-dfd17ee8b3a4-11709514.jpg"></p>
+</li>
+<li><p>球面环境贴图（Spherical Environment Map）。把环境光记录到球面上，并展开，但会出现扭曲现象。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/15f78112-fa47-4662-b969-e8d3e80a3108-11709514.jpg"></p>
+</li>
+<li><p>解决球面环境贴图扭曲现象的办法——立方体贴图（Cube Map）。设置一个包围盒，将球面上的点延长交于包围盒，并展开。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/82604133-9408-4d05-a820-4d8d21022015-11709514.jpg"></p>
+</li>
+<li><p>凹凸贴图（Bump Mapping）。通过改变表面各点的相对高度，使本来是平的东西看起来有凹凸的效果，是一种欺骗眼睛的技术（因为物体结构并没有发生改变）。例如这个球看起来凹凸不平，实际它的几何结构就是光滑的球，只是通过凹凸贴图改变了各像素点的法线方向，从而导致光照结果不一，产生出凹凸不平的视觉效果。即不把几何形体变复杂的情况下，可以通过应用复杂的纹理定义相对高度，从而法线会发生变化。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/f89bdc6f-1b36-45ec-b54d-364b79ed708a-11709514.jpg"></p>
+<ul>
+<li><p>首先，凹凸贴图是在不增加三角面片的情况下增加表面细节来实现的。黑色的线是真实的表面，黄色的线是通过凹凸贴图定义的，那么其法向量原本是 p，改变为 n</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/eaa66795-188d-4d03-94c4-89b08c1d3398-11709514.jpg"></p>
+</li>
+<li><p>下图展示的是二维情况下的法向量改变的过程：先假设某一点 p 的局部法向量 n（p），计算该点处在凹凸贴图上的切线，求其垂直向量。之后推广到三维情况即可，需要注意的是：真实模型中某一点 p 的法向量不一定是朝向 z 的，但假设在该局部是这样，计算好改变后的法向量后需要通过变换才能得到真实的改变了的法向量。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/fe60eddd-d3a7-4d04-a0eb-a5d8be7d6b05-11709514.jpg"><br><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/a8c244a4-2543-4d87-bf82-582f7b1e3bdc-11709514.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>位移贴图（Displacement mapping），需要三角形足够细致，否则还会出现走样问题。但在 DirectX 中可以根据需要将三角形进行细分，从而避免该问题。</p>
+<p><img src="/2022/01/06/Lecture-07-09-%E7%9D%80%E8%89%B2/f189f5db-db71-4bc9-a4bf-2d0e2739a254-11709514.jpg"></p>
+</li>
+<li><p>除此之外，还有三维纹理、环境光遮蔽、医学体渲染等纹理应用。可以参考：<a href="https://www.cnblogs.com/KillerAery/p/15106770.html#%E7%BA%B9%E7%90%86%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF%EF%BC%88texture-application%EF%BC%89">纹理映射技术</a></p>
+</li>
+</ul>
+<h1 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h1><ul>
+<li>这里考虑点光源产生的阴影，只有两种情况：在阴影中和不在阴影中（硬阴影）。如果是软阴影，则光源一定有大小。</li>
+<li><strong>关键——人眼和光源能够同时看到该点，就不在阴影中。</strong></li>
+<li>step1：假设光源前有一个屏幕，从光源看场景，记录每个点到光源屏幕的深度，得到一张深度图</li>
+<li>step2：从人眼（相机）看物体的每个点，再投影到光源处，计算该点到光源的深度，如果等于 step1 中计算的深度，就表示不在阴影中。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1373,6 +1409,57 @@
       </tags>
   </entry>
   <entry>
+    <title>创建并发布一个react组件到npm</title>
+    <url>/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/</url>
+    <content><![CDATA[<blockquote>
+<p>参考链接与官方文档：</p>
+<ol>
+<li><a href="https://segmentfault.com/a/1190000018079170">教程——发布 react 组件到 npm 上</a></li>
+<li><a href="https://webpack.docschina.org/configuration">webpack中文文档</a></li>
+<li><a href="https://www.npmjs.com/package/webpack-dev-server#browser-support">NPM: webpack-dev-server</a></li>
+<li><a href="https://blog.csdn.net/woshiwangdaye/article/details/105182357">Github 徽章shields使用教程</a></li>
+<li><a href="https://docs.npmjs.com/cli/v7/configuring-npm/package-json">NPM的 package.json 配置官网</a></li>
+<li><a href="https://semver.org/lang/zh-CN/">包的版本控制规范</a></li>
+</ol>
+</blockquote>
+<h2 id="🔵-问题与解决"><a href="#🔵-问题与解决" class="headerlink" title="🔵 问题与解决"></a>🔵 问题与解决</h2><h4 id="1-包版本兼容问题"><a href="#1-包版本兼容问题" class="headerlink" title="1.包版本兼容问题"></a>1.包版本兼容问题</h4><p>按照教程来，会自动进行安装最新的npm包，最后在启动本地服务时会产生版本不匹配的错误，解决方法是先对<strong>package.json</strong>文件的依赖版本设定好，再使用<code>npm install</code>命令安装相关依赖。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-string">&quot;devDependencies&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;@babel/cli&quot;</span>: <span class="hljs-string">&quot;^7.14.5&quot;</span>,<br>    <span class="hljs-string">&quot;@babel/core&quot;</span>: <span class="hljs-string">&quot;^7.14.6&quot;</span>,<br>    <span class="hljs-string">&quot;@babel/preset-env&quot;</span>: <span class="hljs-string">&quot;^7.14.7&quot;</span>,<br>    <span class="hljs-string">&quot;@babel/preset-react&quot;</span>: <span class="hljs-string">&quot;^7.14.5&quot;</span>,<br>    <span class="hljs-string">&quot;babel-loader&quot;</span>: <span class="hljs-string">&quot;^8.2.2&quot;</span>,<br>    <span class="hljs-string">&quot;html-webpack-plugin&quot;</span>: <span class="hljs-string">&quot;^3.2.0&quot;</span>,<br>    <span class="hljs-string">&quot;react&quot;</span>: <span class="hljs-string">&quot;^16.7.0&quot;</span>,<br>    <span class="hljs-string">&quot;react-dom&quot;</span>: <span class="hljs-string">&quot;^16.7.0&quot;</span>,<br>    <span class="hljs-string">&quot;webpack&quot;</span>: <span class="hljs-string">&quot;^4.29.0&quot;</span>,<br>    <span class="hljs-string">&quot;webpack-cli&quot;</span>: <span class="hljs-string">&quot;^3.2.1&quot;</span>,<br>    <span class="hljs-string">&quot;webpack-dev-server&quot;</span>: <span class="hljs-string">&quot;^3.1.14&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="2-启动本地服务的问题"><a href="#2-启动本地服务的问题" class="headerlink" title="2.启动本地服务的问题"></a>2.启动本地服务的问题</h4><p>运行<code>npm run start</code>命令之后，会出现这个错误：<br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/%E6%89%BE%E4%B8%8D%E5%88%B0%E6%96%87%E4%BB%B6.png" alt="启动服务出错"></p>
+<p>但是浏览器中输入<strong>localhost:3001</strong>依旧可以正常访问，说明打包和启动服务过程没有问题，看上去应该是环境变量的问题，并且跟脚本中命令里的<code>&quot;start&quot;: &quot;webpack-dev-server --open development&quot;</code>有关，查看<strong>webpack-dev-server</strong>文档后，是直接使用了<code>webpack-dev-server</code>命令。</p>
+<p><code>--open</code>命令是告诉 dev-server 在服务器启动后打开浏览器；对于<code>development</code>，对比<strong>webpack中文文档</strong>后，发现这个<code>development</code>是用在<strong>mode</strong>中：<br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/mode.png" alt="文档内容"></p>
+<p>而<strong>webpack-dev-server</strong>其实是webpack在开发环境中使用的一个包，提供实时重新加载功能，应该代码编辑完之后进行增量编译的意思。</p>
+<p>所以将脚本命令改为<code>&quot;start&quot;: &quot;webpack-dev-server&quot;</code>即可，然后在<strong>webpack.config.js</strong>文件中的devServer部分配置改为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">devServer: &#123;<br>        port: 3001,<br>        open:<span class="hljs-literal">true</span>, //自动打开浏览器       <br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="3-部署到GitHub-Page"><a href="#3-部署到GitHub-Page" class="headerlink" title="3.部署到GitHub Page"></a>3.部署到GitHub Page</h4><p>按照参考链接1的步骤对组件开发完毕后，部署时发现报错：<br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/gh-pages-error.png" alt="Error：gh-pages"></p>
+<p>在仓库中也没有发现gh-pages这个分支，卸载重装gh-pages包依旧报错。其实应该先在GitHub上的仓库中手动创建gh-pages分支，再运行部署的命令。</p>
+<h4 id="npm-login报错"><a href="#npm-login报错" class="headerlink" title="npm login报错"></a>npm login报错</h4><p>报错信息：<code>500 Internal Server Error - PUT https://registry.npm.taobao.org</code></p>
+<p>原因是，之前使用的淘宝镜像改变了原本的地址，需要通过:<code>npm config set registry https://registry.npmjs.org/</code>命令换成原本的镜像地址。</p>
+<h4 id="4-无法发布"><a href="#4-无法发布" class="headerlink" title="4.无法发布"></a>4.无法发布</h4><p><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/publish-error.png" alt="发布报错"></p>
+<p>原因在于新注册的账号没有验证邮箱，如果手机端无法验证，就在网页端，或者去npm登录之后再发一次验证的邮件。</p>
+<h4 id="5-git-push出现的问题"><a href="#5-git-push出现的问题" class="headerlink" title="5.git push出现的问题"></a>5.git push出现的问题</h4><p><strong>Error1：</strong><br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/gitpush.png"><br>原因是没有将本地的分支与远程仓库的分支进行关联，解决方法是使用命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ git remote add origin git@github.com:github—name/repository-name.git<br></code></pre></td></tr></table></figure>
+
+<p><strong>Error2：</strong><br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/push-error.png"><br>出现这个错误的原因是git本地仓库的当前版本低于远程仓库的版本，需要通过git pull来更新，将远程仓库的内容拉取到本地代码。</p>
+<p><strong>Error3：</strong><br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/pull-error.png"><br>原因是两个分支是两个不同的版本，具有不同的提交历史，需要使用下面的命令，可以允许不相关历史，强制合并：</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">$git pull origin <span class="hljs-keyword">master</span> <span class="hljs-title">--allow-unrelated-histories</span><br></code></pre></td></tr></table></figure>
+<p>但是合并后，远程仓库与本地仓库不同的地方需要进行手动更改。</p>
+<p>另一种安全的解决办法是使用<code>git stash</code>命令，参见：<br><a href="https://blog.csdn.net/qq_36898043/article/details/79431168?utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-4.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-4.control">git stash和git stash pop</a></p>
+<h2 id="🔵最终发布"><a href="#🔵最终发布" class="headerlink" title="🔵最终发布"></a>🔵最终发布</h2><p>最终的测试包已经发布：<a href="https://www.npmjs.com/package/@dreamfields/npm-test">https://www.npmjs.com/package/@dreamfields/npm-test</a></p>
+]]></content>
+      <categories>
+        <category>Configuration</category>
+        <category>Front-end</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+        <tag>npm</tag>
+        <tag>webpack</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端规范</title>
     <url>/2021/12/06/%E5%89%8D%E7%AB%AF%E8%A7%84%E8%8C%83/</url>
     <content><![CDATA[<h1 id="🔵代码编辑器-使用-vscode"><a href="#🔵代码编辑器-使用-vscode" class="headerlink" title="🔵代码编辑器: 使用 vscode"></a>🔵代码编辑器: 使用 vscode</h1><p>编辑器使用vscode，代码的规范基本都要依赖于 vscode的插件</p>
@@ -1479,114 +1566,6 @@
       </tags>
   </entry>
   <entry>
-    <title>创建并发布一个react组件到npm</title>
-    <url>/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/</url>
-    <content><![CDATA[<blockquote>
-<p>参考链接与官方文档：</p>
-<ol>
-<li><a href="https://segmentfault.com/a/1190000018079170">教程——发布 react 组件到 npm 上</a></li>
-<li><a href="https://webpack.docschina.org/configuration">webpack中文文档</a></li>
-<li><a href="https://www.npmjs.com/package/webpack-dev-server#browser-support">NPM: webpack-dev-server</a></li>
-<li><a href="https://blog.csdn.net/woshiwangdaye/article/details/105182357">Github 徽章shields使用教程</a></li>
-<li><a href="https://docs.npmjs.com/cli/v7/configuring-npm/package-json">NPM的 package.json 配置官网</a></li>
-<li><a href="https://semver.org/lang/zh-CN/">包的版本控制规范</a></li>
-</ol>
-</blockquote>
-<h2 id="🔵-问题与解决"><a href="#🔵-问题与解决" class="headerlink" title="🔵 问题与解决"></a>🔵 问题与解决</h2><h4 id="1-包版本兼容问题"><a href="#1-包版本兼容问题" class="headerlink" title="1.包版本兼容问题"></a>1.包版本兼容问题</h4><p>按照教程来，会自动进行安装最新的npm包，最后在启动本地服务时会产生版本不匹配的错误，解决方法是先对<strong>package.json</strong>文件的依赖版本设定好，再使用<code>npm install</code>命令安装相关依赖。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-string">&quot;devDependencies&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;@babel/cli&quot;</span>: <span class="hljs-string">&quot;^7.14.5&quot;</span>,<br>    <span class="hljs-string">&quot;@babel/core&quot;</span>: <span class="hljs-string">&quot;^7.14.6&quot;</span>,<br>    <span class="hljs-string">&quot;@babel/preset-env&quot;</span>: <span class="hljs-string">&quot;^7.14.7&quot;</span>,<br>    <span class="hljs-string">&quot;@babel/preset-react&quot;</span>: <span class="hljs-string">&quot;^7.14.5&quot;</span>,<br>    <span class="hljs-string">&quot;babel-loader&quot;</span>: <span class="hljs-string">&quot;^8.2.2&quot;</span>,<br>    <span class="hljs-string">&quot;html-webpack-plugin&quot;</span>: <span class="hljs-string">&quot;^3.2.0&quot;</span>,<br>    <span class="hljs-string">&quot;react&quot;</span>: <span class="hljs-string">&quot;^16.7.0&quot;</span>,<br>    <span class="hljs-string">&quot;react-dom&quot;</span>: <span class="hljs-string">&quot;^16.7.0&quot;</span>,<br>    <span class="hljs-string">&quot;webpack&quot;</span>: <span class="hljs-string">&quot;^4.29.0&quot;</span>,<br>    <span class="hljs-string">&quot;webpack-cli&quot;</span>: <span class="hljs-string">&quot;^3.2.1&quot;</span>,<br>    <span class="hljs-string">&quot;webpack-dev-server&quot;</span>: <span class="hljs-string">&quot;^3.1.14&quot;</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="2-启动本地服务的问题"><a href="#2-启动本地服务的问题" class="headerlink" title="2.启动本地服务的问题"></a>2.启动本地服务的问题</h4><p>运行<code>npm run start</code>命令之后，会出现这个错误：<br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/%E6%89%BE%E4%B8%8D%E5%88%B0%E6%96%87%E4%BB%B6.png" alt="启动服务出错"></p>
-<p>但是浏览器中输入<strong>localhost:3001</strong>依旧可以正常访问，说明打包和启动服务过程没有问题，看上去应该是环境变量的问题，并且跟脚本中命令里的<code>&quot;start&quot;: &quot;webpack-dev-server --open development&quot;</code>有关，查看<strong>webpack-dev-server</strong>文档后，是直接使用了<code>webpack-dev-server</code>命令。</p>
-<p><code>--open</code>命令是告诉 dev-server 在服务器启动后打开浏览器；对于<code>development</code>，对比<strong>webpack中文文档</strong>后，发现这个<code>development</code>是用在<strong>mode</strong>中：<br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/mode.png" alt="文档内容"></p>
-<p>而<strong>webpack-dev-server</strong>其实是webpack在开发环境中使用的一个包，提供实时重新加载功能，应该代码编辑完之后进行增量编译的意思。</p>
-<p>所以将脚本命令改为<code>&quot;start&quot;: &quot;webpack-dev-server&quot;</code>即可，然后在<strong>webpack.config.js</strong>文件中的devServer部分配置改为：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">devServer: &#123;<br>        port: 3001,<br>        open:<span class="hljs-literal">true</span>, //自动打开浏览器       <br>    &#125;<br></code></pre></td></tr></table></figure>
-
-<h4 id="3-部署到GitHub-Page"><a href="#3-部署到GitHub-Page" class="headerlink" title="3.部署到GitHub Page"></a>3.部署到GitHub Page</h4><p>按照参考链接1的步骤对组件开发完毕后，部署时发现报错：<br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/gh-pages-error.png" alt="Error：gh-pages"></p>
-<p>在仓库中也没有发现gh-pages这个分支，卸载重装gh-pages包依旧报错。其实应该先在GitHub上的仓库中手动创建gh-pages分支，再运行部署的命令。</p>
-<h4 id="npm-login报错"><a href="#npm-login报错" class="headerlink" title="npm login报错"></a>npm login报错</h4><p>报错信息：<code>500 Internal Server Error - PUT https://registry.npm.taobao.org</code></p>
-<p>原因是，之前使用的淘宝镜像改变了原本的地址，需要通过:<code>npm config set registry https://registry.npmjs.org/</code>命令换成原本的镜像地址。</p>
-<h4 id="4-无法发布"><a href="#4-无法发布" class="headerlink" title="4.无法发布"></a>4.无法发布</h4><p><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/publish-error.png" alt="发布报错"></p>
-<p>原因在于新注册的账号没有验证邮箱，如果手机端无法验证，就在网页端，或者去npm登录之后再发一次验证的邮件。</p>
-<h4 id="5-git-push出现的问题"><a href="#5-git-push出现的问题" class="headerlink" title="5.git push出现的问题"></a>5.git push出现的问题</h4><p><strong>Error1：</strong><br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/gitpush.png"><br>原因是没有将本地的分支与远程仓库的分支进行关联，解决方法是使用命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ git remote add origin git@github.com:github—name/repository-name.git<br></code></pre></td></tr></table></figure>
-
-<p><strong>Error2：</strong><br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/push-error.png"><br>出现这个错误的原因是git本地仓库的当前版本低于远程仓库的版本，需要通过git pull来更新，将远程仓库的内容拉取到本地代码。</p>
-<p><strong>Error3：</strong><br><img src="/2021/07/08/%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAreact%E7%BB%84%E4%BB%B6%E5%88%B0npm/pull-error.png"><br>原因是两个分支是两个不同的版本，具有不同的提交历史，需要使用下面的命令，可以允许不相关历史，强制合并：</p>
-<figure class="highlight crmsh"><table><tr><td class="code"><pre><code class="hljs crmsh">$git pull origin <span class="hljs-keyword">master</span> <span class="hljs-title">--allow-unrelated-histories</span><br></code></pre></td></tr></table></figure>
-<p>但是合并后，远程仓库与本地仓库不同的地方需要进行手动更改。</p>
-<p>另一种安全的解决办法是使用<code>git stash</code>命令，参见：<br><a href="https://blog.csdn.net/qq_36898043/article/details/79431168?utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-4.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-4.control">git stash和git stash pop</a></p>
-<h2 id="🔵最终发布"><a href="#🔵最终发布" class="headerlink" title="🔵最终发布"></a>🔵最终发布</h2><p>最终的测试包已经发布：<a href="https://www.npmjs.com/package/@dreamfields/npm-test">https://www.npmjs.com/package/@dreamfields/npm-test</a></p>
-]]></content>
-      <categories>
-        <category>Configuration</category>
-        <category>Front-end</category>
-      </categories>
-      <tags>
-        <tag>react</tag>
-        <tag>npm</tag>
-        <tag>webpack</tag>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>链接合集</title>
-    <url>/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/</url>
-    <content><![CDATA[<h1 id="📗-工具介绍"><a href="#📗-工具介绍" class="headerlink" title="📗 工具介绍"></a>📗 工具介绍</h1><ul>
-<li><a href="https://www.jianshu.com/p/c4f02f46224f">yarn的介绍及workspace的使用</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/77577415">Monorepo 是什么，为什么大家都在用？</a></li>
-<li><a href="https://www.jianshu.com/p/dafc2052eedc">Monorepo实战</a></li>
-</ul>
-<h1 id="🎈-文档链接"><a href="#🎈-文档链接" class="headerlink" title="🎈 文档链接"></a>🎈 文档链接</h1><ul>
-<li><a href="https://yarn.bootcss.com/docs/">Yarn</a></li>
-<li><a href="https://webpack.docschina.org/configuration">webpack</a></li>
-<li><a href="https://github.com/lerna/lerna">Lerna</a></li>
-</ul>
-<h1 id="💙-参考教程"><a href="#💙-参考教程" class="headerlink" title="💙 参考教程"></a>💙 参考教程</h1><h2 id="VS-Code-——-C-开发"><a href="#VS-Code-——-C-开发" class="headerlink" title="VS Code —— C++开发"></a>VS Code —— C++开发</h2><ul>
-<li><a href="https://www.whbwiki.com/335.html">开发环境配置详细教程</a></li>
-<li><a href="https://blog.csdn.net/weixin_43343144/article/details/85147439">配置文件说明</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/153252108">插件CodeRunner运行C++代码时中文乱码问题的解决</a></li>
-<li><a href="https://blog.csdn.net/weixin_43940314/article/details/115456199">安装和使用C++线性代数库eigen（Windows，MinGW，VS Code和VS2019的配置）</a></li>
-<li>Code-Runner在编译时不会自动引入eigen，需要在setting.json中设置<code>&quot;code-runner.executorMap&quot;</code>中的<code>&quot;cpp&quot;: &quot;cd $dir &amp;&amp; g++ -g $fileName -o $fileNameWithoutExt -I &#39;C:/Users/xxx/eigen-3.4-rc1&#39; &amp;&amp; $dir$fileNameWithoutExt&quot;</code>，才可以正常运行。当然这个插件配置较为简单，更加复杂、稳妥的配置推荐使用C&#x2F;C++插件中的tasks.json文件。</li>
-</ul>
-<h2 id="VS-Code-——-CMake"><a href="#VS-Code-——-CMake" class="headerlink" title="VS Code —— CMake"></a>VS Code —— CMake</h2><ul>
-<li><a href="https://www.cnblogs.com/herelsp/p/8679200.html#_label2">CMake+MinGW64搭建C&#x2F;C++编译环境</a></li>
-<li><a href="https://blog.csdn.net/JohnJim0/article/details/81842249?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-9.pc_relevant_baidujshouduan&spm=1001.2101.3001.4242">CMake+VSCode搭建C&#x2F;C++编译环境</a> <h4 id="使用CMake编译和运行包含有eigen库的步骤"><a href="#使用CMake编译和运行包含有eigen库的步骤" class="headerlink" title="使用CMake编译和运行包含有eigen库的步骤"></a>使用CMake编译和运行包含有eigen库的步骤</h4></li>
-</ul>
-<ol>
-<li>编写main.cpp文件</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;Eigen/Core&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;Eigen/Dense&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-comment">// Example of vector</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Example of vector \n&quot;</span>;<br>    <span class="hljs-comment">// vector definition</span><br>    <span class="hljs-function">Eigen::Vector3f <span class="hljs-title">v</span><span class="hljs-params">(<span class="hljs-number">1.0f</span>,<span class="hljs-number">2.0f</span>,<span class="hljs-number">3.0f</span>)</span></span>;<br>    <span class="hljs-function">Eigen::Vector3f <span class="hljs-title">w</span><span class="hljs-params">(<span class="hljs-number">1.0f</span>,<span class="hljs-number">0.0f</span>,<span class="hljs-number">0.0f</span>)</span></span>;<br>    <span class="hljs-comment">// vector output</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Example of output \n&quot;</span>;<br>    std::cout &lt;&lt; v &lt;&lt; std::endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<ol start="2">
-<li><p>编写CMakeLists.txt文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">cmake_minimum_required (VERSION 2.8.11)<br><br># 项目名<br>project (Transformation)<br><br># 将解压后的Eigen库的目录引入<br>include_directories(&quot;C:/Users/xxx/eigen-3.4-rc1/&quot;)<br><br># 添加可执行文件<br>add_executable (Transformation main.cpp)<br><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>在main.cpp所在目录下，打开终端(命令行)，依次输入：</p>
-</li>
-</ol>
-<ul>
-<li><code>mkdir build</code> 创建名为build的文件夹</li>
-<li><code>cd build</code> 移动到build文件夹下</li>
-<li><code>cmake -G &quot;MinGW Makefiles&quot; ..</code> 注意其中<code>..</code>表示上一级目录，若为<code>.</code>则表示当前目录；<code>&quot;MinGW Makefiles&quot;</code>指定了使用MinGW编译器，否则默认是MSVC（Visual Studio的编译器）</li>
-<li><code>mingw32-make.exe</code> 编译程序，错误提示会显示在终端中</li>
-<li><code>./Transformation</code>：若上一步无错误，则可运行程序(这里的Transformation为可执行文件名，可参照CMakeLists.txt中修改)</li>
-</ul>
-<p><img src="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/2021-08-10-09-06-58.png" alt="文件目录结构"></p>
-<p><img src="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/2021-08-10-09-16-22.png" alt="执行结果"></p>
-<blockquote>
-<p>cmake 在 find_path 和 find_library 时，会搜索一些默认的路径。当我们将一些lib安装在非默认搜索路径时，cmake就没法搜索到了。这是我们需要添加路径。方法如下：<br><code>set(CMAKE_INCLUDE_PATH &quot;include_path&quot;)</code><br><code>set(CMAKE_LIBRARY_PATH &quot;lib_path&quot;)</code></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Link-collect</category>
-      </categories>
-      <tags>
-        <tag>webpack</tag>
-        <tag>Monorepo</tag>
-        <tag>C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>寻找凸包问题</title>
     <url>/2022/05/19/%E5%AF%BB%E6%89%BE%E5%87%B8%E5%8C%85%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h1 id="凸包概念与性质"><a href="#凸包概念与性质" class="headerlink" title="凸包概念与性质"></a>凸包概念与性质</h1><p><strong>顶点定义法</strong></p>
@@ -1677,6 +1656,63 @@
       </categories>
       <tags>
         <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>链接合集</title>
+    <url>/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/</url>
+    <content><![CDATA[<h1 id="📗-工具介绍"><a href="#📗-工具介绍" class="headerlink" title="📗 工具介绍"></a>📗 工具介绍</h1><ul>
+<li><a href="https://www.jianshu.com/p/c4f02f46224f">yarn的介绍及workspace的使用</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/77577415">Monorepo 是什么，为什么大家都在用？</a></li>
+<li><a href="https://www.jianshu.com/p/dafc2052eedc">Monorepo实战</a></li>
+</ul>
+<h1 id="🎈-文档链接"><a href="#🎈-文档链接" class="headerlink" title="🎈 文档链接"></a>🎈 文档链接</h1><ul>
+<li><a href="https://yarn.bootcss.com/docs/">Yarn</a></li>
+<li><a href="https://webpack.docschina.org/configuration">webpack</a></li>
+<li><a href="https://github.com/lerna/lerna">Lerna</a></li>
+</ul>
+<h1 id="💙-参考教程"><a href="#💙-参考教程" class="headerlink" title="💙 参考教程"></a>💙 参考教程</h1><h2 id="VS-Code-——-C-开发"><a href="#VS-Code-——-C-开发" class="headerlink" title="VS Code —— C++开发"></a>VS Code —— C++开发</h2><ul>
+<li><a href="https://www.whbwiki.com/335.html">开发环境配置详细教程</a></li>
+<li><a href="https://blog.csdn.net/weixin_43343144/article/details/85147439">配置文件说明</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/153252108">插件CodeRunner运行C++代码时中文乱码问题的解决</a></li>
+<li><a href="https://blog.csdn.net/weixin_43940314/article/details/115456199">安装和使用C++线性代数库eigen（Windows，MinGW，VS Code和VS2019的配置）</a></li>
+<li>Code-Runner在编译时不会自动引入eigen，需要在setting.json中设置<code>&quot;code-runner.executorMap&quot;</code>中的<code>&quot;cpp&quot;: &quot;cd $dir &amp;&amp; g++ -g $fileName -o $fileNameWithoutExt -I &#39;C:/Users/xxx/eigen-3.4-rc1&#39; &amp;&amp; $dir$fileNameWithoutExt&quot;</code>，才可以正常运行。当然这个插件配置较为简单，更加复杂、稳妥的配置推荐使用C&#x2F;C++插件中的tasks.json文件。</li>
+</ul>
+<h2 id="VS-Code-——-CMake"><a href="#VS-Code-——-CMake" class="headerlink" title="VS Code —— CMake"></a>VS Code —— CMake</h2><ul>
+<li><a href="https://www.cnblogs.com/herelsp/p/8679200.html#_label2">CMake+MinGW64搭建C&#x2F;C++编译环境</a></li>
+<li><a href="https://blog.csdn.net/JohnJim0/article/details/81842249?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-9.pc_relevant_baidujshouduan&spm=1001.2101.3001.4242">CMake+VSCode搭建C&#x2F;C++编译环境</a> <h4 id="使用CMake编译和运行包含有eigen库的步骤"><a href="#使用CMake编译和运行包含有eigen库的步骤" class="headerlink" title="使用CMake编译和运行包含有eigen库的步骤"></a>使用CMake编译和运行包含有eigen库的步骤</h4></li>
+</ul>
+<ol>
+<li>编写main.cpp文件</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cmath&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;Eigen/Core&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;Eigen/Dense&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-comment">// Example of vector</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Example of vector \n&quot;</span>;<br>    <span class="hljs-comment">// vector definition</span><br>    <span class="hljs-function">Eigen::Vector3f <span class="hljs-title">v</span><span class="hljs-params">(<span class="hljs-number">1.0f</span>,<span class="hljs-number">2.0f</span>,<span class="hljs-number">3.0f</span>)</span></span>;<br>    <span class="hljs-function">Eigen::Vector3f <span class="hljs-title">w</span><span class="hljs-params">(<span class="hljs-number">1.0f</span>,<span class="hljs-number">0.0f</span>,<span class="hljs-number">0.0f</span>)</span></span>;<br>    <span class="hljs-comment">// vector output</span><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Example of output \n&quot;</span>;<br>    std::cout &lt;&lt; v &lt;&lt; std::endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>编写CMakeLists.txt文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs txt">cmake_minimum_required (VERSION 2.8.11)<br><br># 项目名<br>project (Transformation)<br><br># 将解压后的Eigen库的目录引入<br>include_directories(&quot;C:/Users/xxx/eigen-3.4-rc1/&quot;)<br><br># 添加可执行文件<br>add_executable (Transformation main.cpp)<br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在main.cpp所在目录下，打开终端(命令行)，依次输入：</p>
+</li>
+</ol>
+<ul>
+<li><code>mkdir build</code> 创建名为build的文件夹</li>
+<li><code>cd build</code> 移动到build文件夹下</li>
+<li><code>cmake -G &quot;MinGW Makefiles&quot; ..</code> 注意其中<code>..</code>表示上一级目录，若为<code>.</code>则表示当前目录；<code>&quot;MinGW Makefiles&quot;</code>指定了使用MinGW编译器，否则默认是MSVC（Visual Studio的编译器）</li>
+<li><code>mingw32-make.exe</code> 编译程序，错误提示会显示在终端中</li>
+<li><code>./Transformation</code>：若上一步无错误，则可运行程序(这里的Transformation为可执行文件名，可参照CMakeLists.txt中修改)</li>
+</ul>
+<p><img src="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/2021-08-10-09-06-58.png" alt="文件目录结构"></p>
+<p><img src="/2021/07/09/%E9%93%BE%E6%8E%A5%E5%90%88%E9%9B%86/2021-08-10-09-16-22.png" alt="执行结果"></p>
+<blockquote>
+<p>cmake 在 find_path 和 find_library 时，会搜索一些默认的路径。当我们将一些lib安装在非默认搜索路径时，cmake就没法搜索到了。这是我们需要添加路径。方法如下：<br><code>set(CMAKE_INCLUDE_PATH &quot;include_path&quot;)</code><br><code>set(CMAKE_LIBRARY_PATH &quot;lib_path&quot;)</code></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Link-collect</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+        <tag>Monorepo</tag>
+        <tag>C++</tag>
       </tags>
   </entry>
 </search>
