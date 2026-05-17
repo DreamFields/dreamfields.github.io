@@ -32,3 +32,5 @@ Deploy the generated site to the configured GitHub Pages branch:
 ```powershell
 yarn deploy
 ```
+
+GitHub Pages should be configured to publish from the `gh-pages` branch at `/`.
