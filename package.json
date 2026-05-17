@@ -5,8 +5,11 @@
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server",
+    "deploy": "node tools/deploy.js",
+    "server": "hexo server -i 127.0.0.1",
+    "server:lan": "hexo server -i 0.0.0.0",
+    "restart": "node tools/restart-server.js",
+    "setup": "node tools/setup.js",
     "finish": "build "
   },
   "hexo": {
